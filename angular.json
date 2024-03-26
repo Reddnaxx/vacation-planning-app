@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "VacationPlanningApp": {
+    "vacationplanningapp": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -84,10 +84,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "VacationPlanningApp:build:production"
+              "buildTarget": "vacationplanningapp:build:production"
             },
             "development": {
-              "buildTarget": "VacationPlanningApp:build:development"
+              "buildTarget": "vacationplanningapp:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -95,7 +95,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "VacationPlanningApp:build"
+            "buildTarget": "vacationplanningapp:build"
           }
         },
         "test": {
@@ -125,6 +125,23 @@
               "src/**/*.html"
             ]
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "vacationplanningapp:build:production",
+              "serveTarget": "vacationplanningapp:serve:production"
+            },
+            "development": {
+              "buildTarget": "vacationplanningapp:build:development",
+              "serveTarget": "vacationplanningapp:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
