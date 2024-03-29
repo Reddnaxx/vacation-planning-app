@@ -9,7 +9,7 @@ import CustomIcons from "../enums/CustomIcons";
 export class IconService {
   constructor(
     private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
   ) {}
 
   public registerIcons(): void {
@@ -21,8 +21,8 @@ export class IconService {
       this.matIconRegistry.addSvgIcon(
         key,
         this.domSanitizer.bypassSecurityTrustResourceUrl(
-          `${iconUrl}/${key}.svg`
-        )
+          `${iconUrl}/${key}.svg`,
+        ),
       );
     });
   }
