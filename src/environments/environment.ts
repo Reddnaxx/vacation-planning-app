@@ -8,6 +8,6 @@ export const environment = {
     storageBucket: "vacationplanningapp-7d4f7.appspot.com",
     messagingSenderId: "657987093593",
     appId: "1:657987093593:web:b9049a5dbeef63bc8e9d48",
-    measurementId: "G-N0LS1KWPCK"
-  }
+    measurementId: "G-N0LS1KWPCK",
+  },
 };
