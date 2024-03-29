@@ -1,5 +1,5 @@
 enum CustomIcons {
-  logo = "logo"
+  logo = "logo",
 }
 
-export default CustomIcons
+export default CustomIcons;
