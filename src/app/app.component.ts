@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
-import { FireModule } from './fire.module';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { IconService } from './shared/services/icon.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FireModule],
+  imports: [HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  constructor() {
+  public title: string = "ПЛАНИРОВЩИК ОТПУСКОВ";
 
+  constructor(private iconService: IconService) {
+    this.iconService.registerIcons()
   }
 }
