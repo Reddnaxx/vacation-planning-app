@@ -21,22 +21,21 @@ $color-warn: mat.define-palette(mat.$red-palette);
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
 $default-typography: mat.define-typography-config(
-  $headline-1:
-    mat.define-typography-level(
-      $font-family: "Russo One",
-      $font-size: 1.5rem,
-    ),
+  $headline-1: mat.define-typography-level(
+    $font-family: "Russo One",
+    $font-size: 1.5rem,
+  ),
 );
 
 $light-theme: mat.define-light-theme(
-  (
-    color: (
-      primary: $color-primary,
-      accent: $color-accent,
-      warn: $color-warn,
-    ),
-    typography: $default-typography,
-  )
+    (
+      color: (
+        primary: $color-primary,
+        accent: $color-accent,
+        warn: $color-warn,
+      ),
+      typography: $default-typography,
+    )
 );
 
 // Include theme styles for core and each component used in your app.
@@ -56,6 +55,7 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
