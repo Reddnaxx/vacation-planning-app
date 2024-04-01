@@ -1,51 +1,8 @@
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
-@use "@angular/material" as mat;
-
-// Plus imports for other components in your app.
-
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat.core();
-
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$color-primary: mat.define-palette(mat.$indigo-palette);
-$color-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
-$color-warn: mat.define-palette(mat.$red-palette);
-
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$default-typography: mat.define-typography-config(
-  $headline-1: mat.define-typography-level(
-    $font-family: "Russo One",
-    $font-size: 1.5rem,
-  ),
-);
-
-$light-theme: mat.define-light-theme(
-    (
-      color: (
-        primary: $color-primary,
-        accent: $color-accent,
-        warn: $color-warn,
-      ),
-      typography: $default-typography,
-    )
-);
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include mat.all-component-themes($light-theme);
-
-/* You can add global styles to this file, and also import other style files */
-
-@import "theme/global";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -59,4 +16,34 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+:root {
+  //Main colors
+  --color-accent: #8000FF;
+  --color-bg: #323232;
+  --color-primary: #404040;
+  --color-red: #CC0062;
+  --color-yellow: #ECE41E;
+  --color-green: #00C673;
+
+  //Text
+  --text-color-main: #1C274C;
+  --link-color-main: #5F5FFF;
+
+  //Components
+  --header-color: var(--color-accent);
+
+  //Button
+  --button-color-default: var(--color-accent);
+  --button-color-hover: #A347FF;
+  --button-color-active: #BF7FFF;
+  --button-color-disabled: #4F4F4F;
+  --button-text-color-disabled: rgba(255, 255, 255, 0.25);
+
+  //Toggle button
+  --toggle-color-checked: var(--color-green);
+
+  //Application
+  --application-bg-color: rgba(255, 255, 255, 0.25);
 }
