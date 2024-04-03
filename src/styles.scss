@@ -5,7 +5,8 @@
 }
 
 body {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Ubuntu, "Helvetica Neue", sans-serif;
+  background-color: var(--color-bg);
 }
 
 html,
@@ -15,7 +16,12 @@ body {
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Ubuntu, "Helvetica Neue", sans-serif;
+  color: var(--text-color-dark);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Russo One", "Helvetica Neue", sans-serif;
 }
 
 :root {
@@ -28,7 +34,9 @@ body {
   --color-green: #00C673;
 
   //Text
-  --text-color-main: #1C274C;
+  --text-color-light: #ffffff;
+  --text-color-dark: #1C274C;
+  --text-color-transparent: rgba(255, 255, 255, 0.5);
   --link-color-main: #5F5FFF;
 
   //Components
@@ -36,8 +44,6 @@ body {
 
   //Button
   --button-color-default: var(--color-accent);
-  --button-color-hover: #A347FF;
-  --button-color-active: #BF7FFF;
   --button-color-disabled: #4F4F4F;
   --button-text-color-disabled: rgba(255, 255, 255, 0.25);
 

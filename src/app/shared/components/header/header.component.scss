@@ -1,15 +1,16 @@
 .wrapper {
   display: flex;
   padding: 32px 100px;
-  background-color: var(--header-color);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25)
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+  background-color: var(--color-accent);
 }
 
 .title {
   font-family: "Russo One", sans-serif;
-  max-width: 220px;
+  max-width: 300px;
   color: white;
-  margin-left: 15px;
+  margin-left: 1rem;
+  font-weight: normal;
 }
 
 .logo {
