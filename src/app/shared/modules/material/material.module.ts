@@ -9,7 +9,7 @@ import {
   MatCardSubtitle,
   MatCardTitle,
 } from "@angular/material/card";
-import { MatFormField, MatLabel } from "@angular/material/form-field";
+import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from "@angular/material/input";
 
 const MaterialComponents = [
@@ -24,6 +24,7 @@ const MaterialComponents = [
   MatFormField,
   MatInput,
   MatLabel,
+  MatError
 ];
 
 @NgModule({
