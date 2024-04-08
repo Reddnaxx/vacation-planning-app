@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { MaterialModule } from "../../shared/modules/material/material.module";
 import UserModel from "../../shared/models/user.model";
-import { NgIf, NgOptimizedImage } from '@angular/common';
+import { NgIf, NgOptimizedImage } from "@angular/common";
 import {
   FormControl,
   FormGroup,

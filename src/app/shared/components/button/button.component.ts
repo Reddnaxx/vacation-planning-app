@@ -8,5 +8,4 @@ import { MatButton } from "@angular/material/button";
   templateUrl: "./button.component.html",
   styleUrl: "./button.component.scss",
 })
-export class ButtonComponent {
-}
+export class ButtonComponent {}
