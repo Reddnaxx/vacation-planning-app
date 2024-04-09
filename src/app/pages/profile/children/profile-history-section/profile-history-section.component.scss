@@ -1,0 +1,37 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-primary);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+  padding: 25px;
+  border-radius: 8px;
+}
+
+.title{
+  color: var(--text-color-light);
+  font-size: 42px;
+  font-family: Russo One, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  text-align: center;
+}
+
+.empty{
+  color: #fff;
+  font-size: 32px;
+  font-family: Ubuntu, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+}
+
+.header {
+  margin-bottom: 25px;
+}
+
+.actions-container {
+  margin-top: 25px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}

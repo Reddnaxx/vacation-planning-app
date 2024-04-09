@@ -1,0 +1,93 @@
+.history-info{
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 25px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #ffffff3f;
+}
+.display{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.card-info {
+  color: #fff;
+  font-size: 32px;
+  font-family: Russo One, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+}
+.date {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: Ubuntu, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  clear: both;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.status {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: Ubuntu, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  width: min-content;
+  height: min-content;
+  padding: 10px;
+  border-radius: 16px;
+  background-color: #0073c6;
+  margin-left: auto;
+}
+.status2 {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: Ubuntu, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  width: min-content;
+  height: min-content;
+  padding: 10px;
+  border-radius: 16px;
+  background-color: #00c673;
+  margin-left: auto;
+}
+.status3 {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: Ubuntu, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  width: min-content;
+  height: min-content;
+  padding: 10px;
+  border-radius: 16px;
+  background-color: #cc0062;
+  margin-left: auto;
+}
+.status4 {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: Ubuntu, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  width: min-content;
+  height: min-content;
+  padding: 10px;
+  border-radius: 16px;
+  background-color: #ece41e;
+  margin-left: auto;
+  white-space: nowrap;
+}
