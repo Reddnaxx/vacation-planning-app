@@ -1,0 +1,25 @@
+.wrapper {
+  background: var(--color-primary);
+  border-radius: 8px;
+}
+
+.header {
+  border-bottom: 5px solid var(--color-bg);
+}
+
+.week-days {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 1.5rem;
+  font-family: "Russo One", sans-serif;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.cells {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  padding-top: 15px;
+}
