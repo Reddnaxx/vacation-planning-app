@@ -1,1 +1,1 @@
-export type TCellStyle = "default" | "transparent" | "today" | "day off";
+export type TCellStyle = "default" | "transparent" | "today";

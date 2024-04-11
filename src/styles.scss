@@ -50,7 +50,9 @@ ul {
 
   //Calendar
   --cell-color: rgba(255, 255, 255, 0.7);
+  --cell-color-hover: rgba(185, 255, 194, 0.7);
   --cell-today-color: var(--color-accent);
+  --cell-today-color-hover: #a446ff;
 
   //Button
   --button-color-default: var(--color-accent);

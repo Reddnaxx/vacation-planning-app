@@ -3,17 +3,26 @@
   min-height: 120px;
   background-color: var(--cell-color);
   color: var(--text-color-dark);
+  transition: background-color 0.2s;
 
   h2 {
     font-size: 1.125rem;
   }
+
+  &:hover {
+    background-color: var(--cell-color-hover);
+  }
 }
 
 .transparent {
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 .today {
   background-color: var(--cell-today-color);
   color: var(--text-color-light);
+
+  &:hover {
+    background-color: var(--cell-today-color-hover);
+  }
 }
