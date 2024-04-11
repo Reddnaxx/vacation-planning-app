@@ -1,0 +1,43 @@
+<form>
+    <h2>Регистрация</h2>
+
+    <mat-form-field class="form-field">
+        <mat-label class="form-label">Почта</mat-label>
+        <input matInput type="email" placeholder="Введите почту..." class="form__input" />
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+        <mat-label class="form-label">Имя</mat-label>
+        <input matInput type="text" placeholder="Введите имя..." class="form__input" />
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+        <mat-label class="form-label">Фамилия</mat-label>
+        <input matInput type="text" placeholder="Введите фамилию..." class="form__input" />
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+        <mat-label class="form-label">Выберите отдел</mat-label>
+        <mat-select>
+            <mat-option value="one dep">Первый отдел</mat-option>
+            <mat-option value="two dep">Второй отдел</mat-option>
+            <mat-option value="three dep">Третий отдел</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+        <mat-label class="form-label">Пароль</mat-label>
+        <input matInput type="password" placeholder="Введите пароль..." class="form__input" />
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+        <mat-label class="form-label">Подтвердите пароль</mat-label>
+        <input matInput type="password" placeholder="Введите пароль ещё раз..." class="form__input" />
+    </mat-form-field>
+
+    <mat-checkbox class="boss_confirm">Являюсь управляющим</mat-checkbox>
+
+    <app-button class="reg_button">Зарегистрироваться</app-button>
+
+    <p>Уже есть аккаунт? <a href='#'>Войти</a></p>
+</form>
