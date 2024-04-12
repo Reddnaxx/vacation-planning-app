@@ -44,6 +44,14 @@
   background-color: var(--cell-dayoff-color);
   color: var(--text-color-light);
 
+  &.today {
+    background-color: var(--cell-today-dayoff-color);
+
+    &:hover {
+      background-color: var(--cell-today-dayoff-color-hover);
+    }
+  }
+
   &:hover {
     background-color: var(--cell-dayoff-color-hover);
   }
