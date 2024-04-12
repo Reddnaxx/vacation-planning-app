@@ -1,14 +1,14 @@
 <div class="wrapper">
   <h2 class="title">Календарь</h2>
   <div class="month-picker">
-    <button mat-icon-button>
+    <button mat-icon-button (click)="changeMonth(-1)">
       <mat-icon svgIcon="arrow" class="arrow-prev" />
     </button>
     <div class="month-picker__date">
-      <p>Апрель</p>
+      <p>{{ monthName }}</p>
       <span>2024</span>
     </div>
-    <button mat-icon-button>
+    <button mat-icon-button (click)="changeMonth(1)">
       <mat-icon svgIcon="arrow" class="arrow-next" />
     </button>
   </div>

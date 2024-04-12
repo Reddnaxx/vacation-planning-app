@@ -1,6 +1,7 @@
-import { Component } from "@angular/core";
-import { MatButton, MatIconButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
+import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { MatButton, MatIconButton } from "@angular/material/button";
+import { MatIcon } from "@angular/material/icon";
+import { MONTHS_NAMES } from "./data/months";
 
 @Component({
   selector: "app-calendar-header",
@@ -9,4 +10,18 @@ import { MatIcon } from '@angular/material/icon';
   templateUrl: "./calendar-header.component.html",
   styleUrl: "./calendar-header.component.scss",
 })
-export class CalendarHeaderComponent {}
+export class CalendarHeaderComponent {
+  @Input({ required: true })
+  public currentMonth!: number;
+
+  @Output()
+  public changeMonthEvent: EventEmitter<number> = new EventEmitter();
+
+  protected get monthName() {
+    return MONTHS_NAMES[this.currentMonth];
+  }
+
+  protected changeMonth(offset: -1 | 1) {
+    this.changeMonthEvent.emit(offset);
+  }
+}

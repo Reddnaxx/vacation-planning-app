@@ -14,13 +14,13 @@
     <ul class="cells">
       <app-calendar-cell *ngFor="let day of beforeDays"
                          [day]="day" cellStyle="transparent"
-                         [isToday]="day === currentDay" />
+                         [isToday]="day === currentDay && offset === 1" />
       <app-calendar-cell *ngFor="let day of currentMonthDays"
                          [day]="day"
-                         [isToday]="day === currentDay" />
+                         [isToday]="day === currentDay && offset === 0" />
       <app-calendar-cell *ngFor="let day of fillDays"
                          [day]="day" cellStyle="transparent"
-                         [isToday]="day === currentDay" />
+                         [isToday]="day === currentDay && offset === -1" />
     </ul>
   </mat-card-content>
 </mat-card>
