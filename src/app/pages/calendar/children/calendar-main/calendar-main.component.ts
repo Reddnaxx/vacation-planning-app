@@ -26,5 +26,8 @@ export class CalendarMainComponent {
   public fillDays!: number[];
 
   @Input({ required: true })
-  public offset!: number;
+  public monthOffset!: number;
+
+  @Input({ required: true })
+  public yearOffset!: number;
 }

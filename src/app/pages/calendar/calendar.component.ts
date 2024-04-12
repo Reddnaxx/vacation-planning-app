@@ -12,12 +12,21 @@ import { MONTH_DAYS } from "./children/calendar-main/data/monthDays";
 })
 export class CalendarComponent {
   public monthOffset: number = 0;
+  public yearOffset: number = 0;
 
   protected changeMonth(offset: number) {
     this.monthOffset += offset;
+    console.log(this.days);
 
-    if (this.monthWithOffset > 11) this.monthOffset--;
-    if (this.monthWithOffset < 0) this.monthOffset++;
+    if (offset < 0 && this.monthWithOffset < 0) {
+      this.yearOffset--;
+      this.monthOffset = 11 - this.currentMonth;
+    }
+
+    if (offset > 0 && this.monthWithOffset > 11) {
+      this.yearOffset++;
+      this.monthOffset = -this.currentMonth;
+    }
   }
 
   protected currentYear: number;
@@ -26,22 +35,27 @@ export class CalendarComponent {
   protected startDayOfWeek: number;
 
   private get days() {
-    return MONTH_DAYS(this.currentYear);
+    return MONTH_DAYS(this.yearWithOffset);
   }
 
   protected get monthWithOffset() {
     return this.currentMonth + this.monthOffset;
   }
 
+  protected get yearWithOffset() {
+    return this.currentYear + this.yearOffset;
+  }
+
   private get startDayWithOffset() {
     const date = new Date();
     date.setMonth(this.monthWithOffset);
+    date.setFullYear(this.yearWithOffset);
     date.setDate(1);
     return date.getDay() + 1;
   }
 
   protected get beforeDays() {
-    let month = (this.monthWithOffset - 1) % 12;
+    let month = this.monthWithOffset - 1;
     month = month < 0 ? 11 : month;
     return this.days[month].filter(
       value => value > this.days[month].length - this.startDayWithOffset + 2,
@@ -55,7 +69,7 @@ export class CalendarComponent {
   protected get fillDays() {
     return this.days[(this.monthWithOffset + 1) % 12].filter(
       value =>
-        value < 35 - this.beforeDays.length - this.currentMonthDays.length + 1,
+        value < 42 - this.beforeDays.length - this.currentMonthDays.length + 1,
     );
   }
 

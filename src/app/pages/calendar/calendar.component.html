@@ -2,9 +2,11 @@
   <div class="container">
     <app-calendar-header class="header"
                          (changeMonthEvent)="changeMonth($event)"
-                         [currentMonth]="monthWithOffset" />
+                         [currentMonth]="monthWithOffset"
+                         [currentYear]="yearWithOffset" />
     <app-calendar-main class="main"
-                       [offset]="monthOffset"
+                       [monthOffset]="monthOffset"
+                       [yearOffset]="yearOffset"
                        [beforeDays]="beforeDays"
                        [currentDay]="currentDay"
                        [currentMonthDays]="currentMonthDays"

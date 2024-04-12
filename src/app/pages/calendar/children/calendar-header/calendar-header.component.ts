@@ -14,6 +14,9 @@ export class CalendarHeaderComponent {
   @Input({ required: true })
   public currentMonth!: number;
 
+  @Input({ required: true })
+  public currentYear!: number;
+
   @Output()
   public changeMonthEvent: EventEmitter<number> = new EventEmitter();
 
