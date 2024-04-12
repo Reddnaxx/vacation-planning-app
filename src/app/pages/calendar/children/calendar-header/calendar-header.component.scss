@@ -12,10 +12,10 @@
 
 .month-picker {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex: 1;
-  gap: 50px;
+  padding-inline: 100px;
 
   &__date {
     display: flex;
