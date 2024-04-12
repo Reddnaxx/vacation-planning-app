@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from "@angular/core";
 import { MaterialModule } from "../../../../shared/modules/material/material.module";
 import { CommonModule } from "@angular/common";
 import { provideNativeDateAdapter } from "@angular/material/core";
@@ -13,9 +20,16 @@ import { CalendarCellComponent } from "../../components/calendar-cell/calendar-c
   styleUrl: "./calendar-main.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CalendarMainComponent {
+export class CalendarMainComponent implements OnChanges {
+  ngOnChanges(): void {
+    console.log(this.beforeDays);
+  }
+
   @Input({ required: true })
   public currentDay!: number;
+
+  @Input({ required: true })
+  public monthStartDay!: number;
 
   @Input({ required: true })
   public beforeDays!: number[];

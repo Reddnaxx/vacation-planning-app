@@ -47,7 +47,7 @@ export class CalendarComponent {
     return this.currentYear + this.yearOffset;
   }
 
-  private get startDayWithOffset() {
+  protected get startDayWithOffset() {
     const date = new Date();
     date.setMonth(this.monthWithOffset);
     date.setFullYear(this.yearWithOffset);
@@ -61,7 +61,7 @@ export class CalendarComponent {
     month = month < 0 ? 11 : month;
     return this.days[month].filter(
       value => value > this.days[month].length - this.startDayWithOffset + 1,
-    );  
+    );
   }
 
   protected get currentMonthDays() {

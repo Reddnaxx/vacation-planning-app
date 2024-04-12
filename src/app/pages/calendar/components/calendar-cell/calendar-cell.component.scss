@@ -3,19 +3,32 @@
   min-height: 105px;
   background-color: var(--cell-color);
   color: var(--text-color-dark);
-  transition: background-color 0.2s;
-
-  h2 {
-    font-size: 1.125rem;
-  }
 
   &:hover {
+    transition: 0.1s ease-in;
     background-color: var(--cell-color-hover);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    transform: translate(-2px, -2px);
   }
 }
 
 .transparent {
-  opacity: 0.6;
+  opacity: 0.7;
+}
+
+.header {
+  mat-card-title {
+    position: absolute;
+    left: 15px;
+    font-size: 1.125rem;
+    font-family: "Russo One", "Helvetica Neue", sans-serif;
+  }
+
+  mat-card-subtitle {
+    position: absolute;
+    font-family: "Russo One", "Helvetica Neue", sans-serif;
+    right: 15px;
+  }
 }
 
 .today {
@@ -24,5 +37,14 @@
 
   &:hover {
     background-color: var(--cell-today-color-hover);
+  }
+}
+
+.day-off {
+  background-color: var(--cell-dayoff-color);
+  color: var(--text-color-light);
+
+  &:hover {
+    background-color: var(--cell-dayoff-color-hover);
   }
 }
