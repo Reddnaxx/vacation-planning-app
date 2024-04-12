@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from "@angular/core";
 import { MatButton, MatIconButton } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
 import { MONTHS_NAMES } from "./data/months";
@@ -9,6 +15,7 @@ import { MONTHS_NAMES } from "./data/months";
   imports: [MatIconButton, MatIcon, MatButton],
   templateUrl: "./calendar-header.component.html",
   styleUrl: "./calendar-header.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarHeaderComponent {
   @Input({ required: true })

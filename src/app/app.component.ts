@@ -9,6 +9,7 @@ import { RouterModule, RouterOutlet } from "@angular/router";
   imports: [HeaderComponent, RouterOutlet, RouterModule],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   public title: string = "ПЛАНИРОВЩИК ОТПУСКОВ";

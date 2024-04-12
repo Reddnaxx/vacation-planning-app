@@ -1,7 +1,8 @@
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { CalendarMainComponent } from "./children/calendar-main/calendar-main.component";
 import { CalendarHeaderComponent } from "./children/calendar-header/calendar-header.component";
 import { MONTH_DAYS } from "./children/calendar-main/data/monthDays";
+import { log } from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
 
 @Component({
   selector: "app-calendar",
@@ -9,14 +10,19 @@ import { MONTH_DAYS } from "./children/calendar-main/data/monthDays";
   imports: [CalendarMainComponent, CalendarHeaderComponent],
   templateUrl: "./calendar.component.html",
   styleUrl: "./calendar.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarComponent {
   public monthOffset: number = 0;
   public yearOffset: number = 0;
 
+  protected currentYear: number;
+  protected currentMonth: number;
+  protected currentDay: number;
+  protected startDayOfWeek: number;
+
   protected changeMonth(offset: number) {
     this.monthOffset += offset;
-    console.log(this.days);
 
     if (offset < 0 && this.monthWithOffset < 0) {
       this.yearOffset--;
@@ -28,11 +34,6 @@ export class CalendarComponent {
       this.monthOffset = -this.currentMonth;
     }
   }
-
-  protected currentYear: number;
-  protected currentMonth: number;
-  protected currentDay: number;
-  protected startDayOfWeek: number;
 
   private get days() {
     return MONTH_DAYS(this.yearWithOffset);
@@ -51,15 +52,16 @@ export class CalendarComponent {
     date.setMonth(this.monthWithOffset);
     date.setFullYear(this.yearWithOffset);
     date.setDate(1);
-    return date.getDay() + 1;
+    const day = date.getDay();
+    return day === 0 ? 7 : day;
   }
 
   protected get beforeDays() {
     let month = this.monthWithOffset - 1;
     month = month < 0 ? 11 : month;
     return this.days[month].filter(
-      value => value > this.days[month].length - this.startDayWithOffset + 2,
-    );
+      value => value > this.days[month].length - this.startDayWithOffset + 1,
+    );  
   }
 
   protected get currentMonthDays() {

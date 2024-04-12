@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MaterialModule } from "../../../../shared/modules/material/material.module";
 import { CommonModule } from "@angular/common";
 import { provideNativeDateAdapter } from "@angular/material/core";
@@ -11,6 +11,7 @@ import { CalendarCellComponent } from "../../components/calendar-cell/calendar-c
   providers: [provideNativeDateAdapter()],
   templateUrl: "./calendar-main.component.html",
   styleUrl: "./calendar-main.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarMainComponent {
   @Input({ required: true })

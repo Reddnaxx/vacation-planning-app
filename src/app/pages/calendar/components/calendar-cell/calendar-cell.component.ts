@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatCard, MatCardContent, MatCardHeader } from "@angular/material/card";
 import { NgClass } from "@angular/common";
 import { TCellStyle } from "../../types/cell-style.type";
@@ -9,6 +9,7 @@ import { TCellStyle } from "../../types/cell-style.type";
   imports: [MatCard, MatCardContent, MatCardHeader, NgClass],
   templateUrl: "./calendar-cell.component.html",
   styleUrl: "./calendar-cell.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarCellComponent {
   @Input()
