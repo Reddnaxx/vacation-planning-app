@@ -1,0 +1,17 @@
+<button [matBadge]="1" matBadgeColor="warn" class="wrapper" [matMenuTriggerFor]="menu">
+  <img class="img" ngSrc="/assets/svg/default-profile.png"
+       alt="Профиль" height="128" width="128" />
+</button>
+
+<mat-menu #menu="matMenu" xPosition="before">
+  <ng-template matMenuContent>
+    <a mat-menu-item class="profile-btn" [href]="'profile'">
+      <mat-icon svgIcon="profile"/>
+      Профиль
+    </a>
+    <button mat-menu-item class="exit-btn">
+      <mat-icon svgIcon="exit"/>
+      Выход
+    </button>
+  </ng-template>
+</mat-menu>

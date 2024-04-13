@@ -7,22 +7,6 @@
   background-color: var(--color-accent);
 }
 
-.profile-container {
-  --mat-badge-container-overlap-offset: -20px;
-
-  &:hover {
-    .profile {
-      filter: drop-shadow(0 0 20px rgb(255, 0, 77));
-    }
-  }
-}
-
-.profile {
-  width: 64px;
-  height: 64px;
-  transition-duration: 0.2s;
-}
-
 .link {
   display: flex;
   text-decoration: none;
