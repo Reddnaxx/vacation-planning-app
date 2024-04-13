@@ -3,4 +3,9 @@
     <mat-icon class="logo" svgIcon="logo" />
     <h1 class="title">{{ title }}</h1>
   </a>
+  <a [matBadge]="1" matBadgeColor="warn" class="profile-container"
+     [href]="'profile'">
+    <img class="profile" ngSrc="/assets/svg/default-profile.png"
+         alt="Профиль" height="128" width="128" />
+  </a>
 </header>
