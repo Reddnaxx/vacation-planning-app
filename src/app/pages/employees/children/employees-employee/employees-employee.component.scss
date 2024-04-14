@@ -5,14 +5,6 @@
     display: grid;
     align-items: center;
     grid-template-columns: 1fr 2fr;
-
-    h3 {
-      margin-right: 20px;
-    }
-
-    p {
-      margin-right: 10px;
-    }
   }
 
   &__remove-btn {
@@ -22,11 +14,7 @@
   &__info {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-
-    @media (width < 550px) {
-      display: flex;
-      flex-direction: column;
-    }
+    gap: 10px;
   }
 }
 

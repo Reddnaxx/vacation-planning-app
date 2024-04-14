@@ -21,9 +21,11 @@ import { DepartmentsService } from "./services/departments.service";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeesComponent {
-  public departments: DepartmentModel[];
+  public departments: DepartmentModel[] = [];
 
   constructor(private departmentsService: DepartmentsService) {
-    this.departments = this.departmentsService.getAll();
+    this.departmentsService.departments$.subscribe(
+      data => (this.departments = data),
+    );
   }
 }
