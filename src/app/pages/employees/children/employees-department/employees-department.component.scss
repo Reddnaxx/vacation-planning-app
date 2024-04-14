@@ -1,0 +1,19 @@
+.department-card {
+  background-color: var(--color-bg);
+  min-width: fit-content;
+
+  &__title {
+    font-family: "Russo One", "Helvetica Neue", sans-serif;
+    font-size: 1.25rem;
+  }
+
+  &__employees {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__new-employee-btn {
+    margin-top: 20px;
+  }
+}

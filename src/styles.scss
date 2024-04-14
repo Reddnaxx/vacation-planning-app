@@ -24,6 +24,10 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Russo One", "Helvetica Neue", sans-serif;
 }
 
+ul, ol {
+  list-style: none;
+}
+
 :root {
   //Main colors
   --color-accent: #8000FF;

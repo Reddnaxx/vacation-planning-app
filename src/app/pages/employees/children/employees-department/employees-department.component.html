@@ -1,0 +1,14 @@
+<mat-expansion-panel class="department-card">
+  <mat-expansion-panel-header>
+    <mat-panel-title class="department-card__title">{{ department.name }}</mat-panel-title>
+  </mat-expansion-panel-header>
+  <ul class="department-card__employees">
+    <li *ngFor="let employee of employees">
+      <app-employees-employee [employee]="employee" />
+    </li>
+  </ul>
+  <button mat-raised-button color="accent" class="department-card__new-employee-btn">
+    <mat-icon fontIcon="add" />
+    Добавить сотрудника
+  </button>
+</mat-expansion-panel>

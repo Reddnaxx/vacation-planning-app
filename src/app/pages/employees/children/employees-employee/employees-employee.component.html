@@ -1,0 +1,12 @@
+<mat-card class="employee-card">
+  <mat-card-content class="employee-card__content">
+    <div class="employee-card__info">
+      <h3 class="name">{{ employee.name }}</h3>
+      <p class="email">{{ employee.email }}</p>
+      <p class="phone">{{ employee.phone }}</p>
+    </div>
+    <button mat-icon-button class="employee-card__remove-btn" (click)="remove()">
+      <mat-icon fontIcon="close" color="warn" />
+    </button>
+  </mat-card-content>
+</mat-card>

@@ -3,6 +3,7 @@ enum CustomIcons {
   profile = "profile",
   exit = "exit",
   calendar = "calendar",
+  employees = "employees",
 }
 
 export default CustomIcons;
