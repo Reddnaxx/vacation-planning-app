@@ -2,8 +2,9 @@ import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { MatCardModule } from "@angular/material/card";
 import { MaterialModule } from "../../../../shared/modules/material/material.module";
 import { EmployeeModel } from "../../models/employee.model";
-import { EmployeesService } from "../../services/employees.service";
-import { EmployeeInfoCardComponent } from './components/employee-info-card/employee-info-card.component';
+import { EmployeeInfoCardComponent } from "./components/employee-info-card/employee-info-card.component";
+import { MatDialog } from "@angular/material/dialog";
+import { EmployeesDeleteDialogComponent } from "../employees-delete-dialog/employees-delete-dialog.component";
 
 @Component({
   selector: "app-employees-employee",
@@ -17,9 +18,11 @@ export class EmployeesEmployeeComponent {
   @Input({ required: true })
   public employee!: EmployeeModel;
 
-  constructor(private employeesService: EmployeesService) {}
+  constructor(private dialog: MatDialog) {}
 
-  public remove() {
-    this.employeesService.delete(this.employee.id);
+  protected openDeleteDialog(): void {
+    this.dialog.open(EmployeesDeleteDialogComponent, {
+      data: { name: this.employee.name, id: this.employee.id },
+    });
   }
 }

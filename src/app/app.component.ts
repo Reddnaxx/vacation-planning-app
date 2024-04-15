@@ -2,11 +2,13 @@ import { Component } from "@angular/core";
 import { HeaderComponent } from "./shared/components/header/header.component";
 import { IconService } from "./shared/services/icon.service";
 import { RouterModule, RouterOutlet } from "@angular/router";
+import { AngularFirestore } from "@angular/fire/compat/firestore";
 
 @Component({
   selector: "app-root",
   standalone: true,
   imports: [HeaderComponent, RouterOutlet, RouterModule],
+  providers: [AngularFirestore],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss",
 })

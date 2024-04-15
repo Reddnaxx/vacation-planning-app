@@ -3,7 +3,7 @@ import { EmployeeModel } from "../models/employee.model";
 import { TestEmployees } from "../data/testEmployees";
 import { BehaviorSubject } from "rxjs";
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class EmployeesService {
   public employees$: BehaviorSubject<EmployeeModel[]>;
 

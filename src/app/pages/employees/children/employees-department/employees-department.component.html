@@ -3,7 +3,7 @@
     <mat-panel-title class="department-card__title">{{ department.name }}</mat-panel-title>
   </mat-expansion-panel-header>
   <ul class="department-card__employees">
-    <li *ngFor="let employee of employees">
+    <li *ngFor="let employee of employees$ | async">
       <app-employees-employee [employee]="employee" />
     </li>
   </ul>

@@ -3,7 +3,7 @@ import DepartmentModel from "../models/department.model";
 import { TestDepartments } from "../data/testDepartments";
 import { BehaviorSubject } from "rxjs";
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class DepartmentsService {
   public departments$: BehaviorSubject<DepartmentModel[]>;
 

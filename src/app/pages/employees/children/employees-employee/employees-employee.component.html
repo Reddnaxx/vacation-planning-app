@@ -5,7 +5,7 @@
       <app-employee-info-card name="Почта" [value]="employee.email"/>
       <app-employee-info-card name="Телефон" [value]="employee.phone"/>
     </div>
-    <button mat-icon-button class="employee-card__remove-btn" (click)="remove()">
+    <button mat-icon-button class="employee-card__remove-btn" (click)="openDeleteDialog()">
       <mat-icon fontIcon="close" color="warn" />
     </button>
   </mat-card-content>
