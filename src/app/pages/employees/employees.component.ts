@@ -5,7 +5,7 @@ import { MatExpansionModule } from "@angular/material/expansion";
 import { EmployeesDepartmentComponent } from "./children/employees-department/employees-department.component";
 import DepartmentModel from "./models/department.model";
 import { DepartmentsService } from "./services/departments.service";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 
 @Component({
   selector: "app-employees",

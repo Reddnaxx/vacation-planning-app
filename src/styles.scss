@@ -28,12 +28,28 @@ ul, ol {
   list-style: none;
 }
 
+.mat-mdc-snack-bar-container {
+  --mat-snack-bar-button-color: #ffffff;
+  --mdc-snackbar-supporting-text-color: #ffffff;
+
+  .mdc-snackbar__label {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 550px;
+  }
+
+  &.app-snack-bar-error {
+    --mdc-snackbar-container-color: var(--color-warn);
+  }
+}
+
 :root {
   //Main colors
   --color-accent: #8000FF;
   --color-bg: #323232;
   --color-primary: #404040;
   --color-red: #CC0062;
+  --color-warn: #e53935;
   --color-yellow: #ECE41E;
   --color-green: #00C673;
 
