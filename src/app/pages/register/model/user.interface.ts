@@ -1,8 +1,9 @@
-export interface UserI {
+export interface IUser {
   id?: number;
   email?: string;
-  username?: string;
+  firstName?: string;
+  lastName?: string;
   password?: string;
-  surname?: string;
   department?: string;
+  isManager?: boolean
 }

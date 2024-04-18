@@ -17,13 +17,13 @@
             </mat-form-field>
 
             <mat-form-field>
-              <input type="text" matInput placeholder="Введите имя..." formControlName="username">
-              <mat-error *ngIf="username.touched && username.hasError('required')">Имя не введено</mat-error>
+              <input type="text" matInput placeholder="Введите имя..." formControlName="firstName">
+              <mat-error *ngIf="firstName.touched && firstName.hasError('required')">Имя не введено</mat-error>
             </mat-form-field>
 
             <mat-form-field>
-              <input type="text" matInput placeholder="Введите фамилию..." formControlName="surname">
-              <mat-error *ngIf="surname.touched && surname.hasError('required')">Фамилия не введена</mat-error>
+              <input type="text" matInput placeholder="Введите фамилию..." formControlName="lastName">
+              <mat-error *ngIf="lastName.touched && lastName.hasError('required')">Фамилия не введена</mat-error>
             </mat-form-field>
 
             <mat-form-field>
@@ -47,7 +47,7 @@
                 совпадают</mat-error>
             </mat-form-field>
 
-            <mat-checkbox formControlName="isBoss">Являюсь управляющим</mat-checkbox>
+            <mat-checkbox formControlName="isManager">Являюсь управляющим</mat-checkbox>
 
             <div class="button">
               <button mat-button type="submit" [disabled]="!form.valid">Зарегистрироваться</button>

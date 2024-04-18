@@ -15,11 +15,12 @@ export class RegisterComponent {
 
   form: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
-    username: new FormControl(null, [Validators.required]),
-    surname: new FormControl(null, [Validators.required]),
+    firstName: new FormControl(null, [Validators.required]),
+    lastName: new FormControl(null, [Validators.required]),
     password: new FormControl(null, [Validators.required]),
     passwordConfirm: new FormControl(null, [Validators.required]),
-    department: new FormControl(null, [Validators.required])
+    department: new FormControl(null, [Validators.required]),
+    isManager: new FormControl(null, [Validators.required])
   },
     { validators: CustomValidators.passwordsMatching }
   );
@@ -30,10 +31,11 @@ export class RegisterComponent {
     if (this.form.valid) {
       this.userService.create({
         email: this.email.value,
-        username: this.username.value,
+        firstName: this.firstName.value,
         password: this.password.value,
-        surname: this.surname.value,
+        lastName: this.lastName.value,
         department: this.department.value,
+        isManager: this.isManager.value,
       }).pipe(
         tap(() => this.router.navigate(['../login']))
       ).subscribe();
@@ -44,12 +46,12 @@ export class RegisterComponent {
     return this.form.get('email') as FormControl;
   }
 
-  get username(): FormControl {
-    return this.form.get('username') as FormControl
+  get firstName(): FormControl {
+    return this.form.get('firstName') as FormControl
   }
 
-  get surname(): FormControl {
-    return this.form.get('surname') as FormControl
+  get lastName(): FormControl {
+    return this.form.get('lastName') as FormControl
   }
 
   get department(): FormControl {
@@ -64,4 +66,7 @@ export class RegisterComponent {
     return this.form.get('passwordConfirm') as FormControl;
   }
 
+  get isManager(): FormControl {
+    return this.form.get('isManager') as FormControl;
+  }
 }
