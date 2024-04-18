@@ -4,6 +4,12 @@
     display: grid;
     align-items: center;
     grid-template-columns: 1fr 2fr;
+
+    @media (width < 900px) {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+    }
   }
 
   &__remove-btn {
@@ -14,6 +20,15 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
+    width: 100%;
+
+    @media (width < 900px) {
+      display: flex;
+      flex-wrap: wrap;
+      > * {
+        width: 100%;
+      }
+    }
   }
 }
 
