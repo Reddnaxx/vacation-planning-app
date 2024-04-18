@@ -7,6 +7,8 @@ import { CommonModule } from "@angular/common";
 import DepartmentModel from "../../models/department.model";
 import { EmployeesService } from "../../services/employees.service";
 import { BehaviorSubject, map } from "rxjs";
+import { MatDialog } from "@angular/material/dialog";
+import { EmployeesAddDialogComponent } from '../employees-add-dialog/employees-add-dialog.component';
 
 @Component({
   selector: "app-employees-department",
@@ -26,7 +28,10 @@ export class EmployeesDepartmentComponent implements OnInit {
 
   public employees$!: BehaviorSubject<EmployeeModel[]>;
 
-  constructor(private employeesService: EmployeesService) {}
+  constructor(
+    private employeesService: EmployeesService,
+    private matDialog: MatDialog,
+  ) {}
 
   ngOnInit(): void {
     this.employees$ = new BehaviorSubject<EmployeeModel[]>([]);
@@ -40,5 +45,12 @@ export class EmployeesDepartmentComponent implements OnInit {
         console.log(value);
         this.employees$.next(value);
       });
+  }
+
+  protected openAddEmployeeDialog() {
+    this.matDialog.open(EmployeesAddDialogComponent, {
+      data: { id: this.department.id },
+      panelClass: "app-add-employee-dialog",
+    });
   }
 }

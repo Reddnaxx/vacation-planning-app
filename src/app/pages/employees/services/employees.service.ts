@@ -21,4 +21,26 @@ export class EmployeesService {
 
     this.employees$.next(newArray);
   }
+
+  public moveToDepartment(departmentId: number, email: string): EmployeeModel {
+    const employees = this.employees$.getValue();
+    const employee = employees.find(employee => employee.email === email);
+
+    if (!employee) throw new Error(`Пользователь с почтой ${email} не найден`);
+
+    if (employee.department === departmentId)
+      throw new Error(`${employee.name} уже находится в этом отделе`);
+
+    const newArray: EmployeeModel[] = employees.map(employee => {
+      if (employee.email === email) {
+        return { ...employee, department: departmentId };
+      }
+
+      return employee;
+    });
+
+    this.employees$.next(newArray);
+
+    return employee;
+  }
 }

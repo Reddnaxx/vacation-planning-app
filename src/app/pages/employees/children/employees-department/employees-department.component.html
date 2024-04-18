@@ -7,7 +7,10 @@
       <app-employees-employee [employee]="employee" />
     </li>
   </ul>
-  <button mat-raised-button color="accent" class="department-card__new-employee-btn">
+  <button mat-raised-button color="accent"
+          class="department-card__new-employee-btn"
+          (click)="openAddEmployeeDialog()"
+  >
     <mat-icon fontIcon="add" />
     Добавить сотрудника
   </button>

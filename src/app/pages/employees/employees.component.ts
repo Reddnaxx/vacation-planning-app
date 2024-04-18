@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MaterialModule } from "../../shared/modules/material/material.module";
 import { MatExpansionModule } from "@angular/material/expansion";
