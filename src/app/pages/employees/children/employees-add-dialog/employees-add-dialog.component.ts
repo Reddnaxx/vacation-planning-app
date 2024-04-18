@@ -1,4 +1,4 @@
-import { Component, Inject } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MaterialModule } from "../../../../shared/modules/material/material.module";
 import {
   MAT_DIALOG_DATA,
@@ -36,6 +36,7 @@ import { FilterPipe } from '../../../../shared/pipes/filter.pipe';
   ],
   templateUrl: "./employees-add-dialog.component.html",
   styleUrl: "./employees-add-dialog.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeesAddDialogComponent {
   protected newEmployeeForm!: FormGroup<IEmployeesAddDialogForm>;

@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angular/core';
 import { MaterialModule } from "../../../../shared/modules/material/material.module";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { EmployeesEmployeeComponent } from "../employees-employee/employees-employee.component";
@@ -21,6 +21,7 @@ import { EmployeesAddDialogComponent } from '../employees-add-dialog/employees-a
   ],
   templateUrl: "./employees-department.component.html",
   styleUrl: "./employees-department.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeesDepartmentComponent implements OnInit {
   @Input({ required: true })

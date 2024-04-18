@@ -1,5 +1,5 @@
-import { Component, Input } from "@angular/core";
-import { MatCard, MatCardModule } from "@angular/material/card";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { MatCardModule } from "@angular/material/card";
 
 @Component({
   selector: "app-employee-info-card",
@@ -7,6 +7,7 @@ import { MatCard, MatCardModule } from "@angular/material/card";
   imports: [MatCardModule],
   templateUrl: "./employee-info-card.component.html",
   styleUrl: "./employee-info-card.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeInfoCardComponent {
   @Input({ required: true })

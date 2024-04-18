@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import {
   FormControl,
@@ -26,6 +26,7 @@ import { IEmployeesDepartmentCreateForm } from "./interfaces/employees-departmen
   ],
   templateUrl: "./employees-department-create-dialog.component.html",
   styleUrl: "./employees-department-create-dialog.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeesDepartmentCreateDialogComponent {
   protected newDepartmentForm: FormGroup<IEmployeesDepartmentCreateForm>;
