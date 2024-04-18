@@ -4,6 +4,8 @@
   &__title {
     font-family: "Russo One", "Helvetica Neue", sans-serif;
     font-size: 1.25rem;
+    flex: 0;
+    white-space: nowrap;
   }
 
   &__employees {
@@ -12,7 +14,11 @@
     gap: 10px;
   }
 
-  &__new-employee-btn {
-    margin-top: 20px;
+  &__actions {
+    justify-content: flex-start;
+  }
+
+  &__edit-btn {
+    background-color: var(--color-yellow);
   }
 }

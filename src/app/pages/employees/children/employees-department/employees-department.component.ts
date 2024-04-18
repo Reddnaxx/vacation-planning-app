@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  Input,
+  OnInit,
+} from "@angular/core";
 import { MaterialModule } from "../../../../shared/modules/material/material.module";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { EmployeesEmployeeComponent } from "../employees-employee/employees-employee.component";
@@ -8,17 +14,14 @@ import DepartmentModel from "../../models/department.model";
 import { EmployeesService } from "../../services/employees.service";
 import { BehaviorSubject, map } from "rxjs";
 import { MatDialog } from "@angular/material/dialog";
-import { EmployeesAddDialogComponent } from '../employees-add-dialog/employees-add-dialog.component';
+import { EmployeesAddDialogComponent } from "../employees-add-dialog/employees-add-dialog.component";
+import { EmployeesDepartmentEditDialogComponent } from "../employees-department-edit-dialog/employees-department-edit-dialog.component";
+import { EmployeesModule } from "../../modules/employees.module";
 
 @Component({
   selector: "app-employees-department",
   standalone: true,
-  imports: [
-    MaterialModule,
-    MatExpansionModule,
-    EmployeesEmployeeComponent,
-    CommonModule,
-  ],
+  imports: [EmployeesModule, EmployeesEmployeeComponent],
   templateUrl: "./employees-department.component.html",
   styleUrl: "./employees-department.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,7 +34,7 @@ export class EmployeesDepartmentComponent implements OnInit {
 
   constructor(
     private employeesService: EmployeesService,
-    private matDialog: MatDialog,
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -46,9 +49,16 @@ export class EmployeesDepartmentComponent implements OnInit {
   }
 
   protected openAddEmployeeDialog() {
-    this.matDialog.open(EmployeesAddDialogComponent, {
+    this.dialog.open(EmployeesAddDialogComponent, {
       data: { id: this.department.id },
       panelClass: "app-default-dialog",
+    });
+  }
+
+  protected openDepartmentEditDialog() {
+    this.dialog.open(EmployeesDepartmentEditDialogComponent, {
+      panelClass: "app-default-dialog",
+      data: { department: this.department },
     });
   }
 }

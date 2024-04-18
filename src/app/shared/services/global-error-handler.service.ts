@@ -6,7 +6,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
   constructor(private snackBar: MatSnackBar) {}
 
   handleError(error: Error): void {
-    console.error(`ERROR: ${error.message}`);
+    console.error(`ERROR: ${error.stack}`);
     this.snackBar.open(`ОШИБКА: ${error.message}`, "Закрыть", {
       horizontalPosition: "right",
       panelClass: "app-snack-bar-error",

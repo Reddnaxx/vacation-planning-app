@@ -13,17 +13,12 @@ import { DepartmentsService } from "../../services/departments.service";
 import { EmployeesDeleteDialogComponent } from "../employees-delete-dialog/employees-delete-dialog.component";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { IEmployeesDepartmentCreateForm } from "./interfaces/employees-department-create-form.interface";
+import { EmployeesModule } from "../../modules/employees.module";
 
 @Component({
   selector: "app-employees-department-create-dialog",
   standalone: true,
-  imports: [
-    MaterialModule,
-    MatDialogModule,
-    MatAutocompleteModule,
-    ReactiveFormsModule,
-    CommonModule,
-  ],
+  imports: [EmployeesModule],
   templateUrl: "./employees-department-create-dialog.component.html",
   styleUrl: "./employees-department-create-dialog.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,

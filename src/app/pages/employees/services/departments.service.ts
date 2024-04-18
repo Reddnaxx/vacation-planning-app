@@ -19,7 +19,7 @@ export class DepartmentsService {
         department => department.name.toLowerCase() === name.toLowerCase(),
       )
     )
-      throw new Error(`Отдел с названием ${name.toLowerCase()} уже существует`);
+      throw new Error(`${name} уже существует`);
 
     const newDepartment = new DepartmentModel(newArray.length + 1, name);
 
@@ -27,5 +27,32 @@ export class DepartmentsService {
     this.departments$.next(newArray);
 
     return newDepartment;
+  }
+
+  public edit(id: number, name: string): void {
+    if (!this.departments$.getValue().some(department => department.id === id))
+      throw new Error(`Отдел с id ${id} не найден`);
+
+    const array = this.departments$.getValue();
+
+    if (
+      array.some(
+        department => department.name.toLowerCase() === name.toLowerCase(),
+      )
+    )
+      throw new Error(`${name} уже существует`);
+
+    array.map(department => {
+      if (department.id === id) {
+        return {
+          ...department,
+          name: name,
+        };
+      }
+
+      return department;
+    });
+
+    this.departments$.next(array);
   }
 }

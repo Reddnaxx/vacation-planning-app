@@ -8,11 +8,12 @@ import { IEmployeesDeleteDialogData } from "./interfaces/employees-delete-dialog
 import { MatButtonModule } from "@angular/material/button";
 import { EmployeesService } from "../../services/employees.service";
 import { MatDividerModule } from "@angular/material/divider";
+import { EmployeesModule } from "../../modules/employees.module";
 
 @Component({
   selector: "app-employees-delete-dialog",
   standalone: true,
-  imports: [MatDialogModule, MatButtonModule, MatDividerModule],
+  imports: [EmployeesModule],
   templateUrl: "./employees-delete-dialog.component.html",
   styleUrl: "./employees-delete-dialog.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,

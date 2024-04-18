@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from "@angular/core";
 import { MaterialModule } from "../../../../shared/modules/material/material.module";
 import {
   MAT_DIALOG_DATA,
@@ -21,19 +21,13 @@ import { CommonModule } from "@angular/common";
 import { EmployeesDeleteDialogComponent } from "../employees-delete-dialog/employees-delete-dialog.component";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { DepartmentsService } from "../../services/departments.service";
-import { FilterPipe } from '../../../../shared/pipes/filter.pipe';
+import { FilterPipe } from "../../../../shared/pipes/filter.pipe";
+import { EmployeesModule } from "../../modules/employees.module";
 
 @Component({
   selector: "app-employees-add-dialog",
   standalone: true,
-  imports: [
-    MaterialModule,
-    MatDialogModule,
-    MatAutocompleteModule,
-    ReactiveFormsModule,
-    CommonModule,
-    FilterPipe,
-  ],
+  imports: [EmployeesModule],
   templateUrl: "./employees-add-dialog.component.html",
   styleUrl: "./employees-add-dialog.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,

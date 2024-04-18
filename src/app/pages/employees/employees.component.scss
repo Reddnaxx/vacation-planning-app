@@ -20,6 +20,13 @@
   padding-inline: 20px;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 5px;
+}
+
 .departments {
   display: flex;
   flex-direction: column;
@@ -29,5 +36,4 @@
 .title {
   font-size: 1.75rem;
   font-family: "Russo One", "Helvetica Neue", sans-serif;
-  margin-bottom: 20px;
 }
