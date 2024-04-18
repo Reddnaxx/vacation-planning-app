@@ -6,6 +6,7 @@
   margin-top: 50px;
   min-width: fit-content;
   max-width: 400px;
+  gap: 10px;
 
   @media (width < 1220px) {
     margin-inline: 100px;
@@ -14,6 +15,10 @@
   @media (width < 900px) {
     margin-inline: 50px;
   }
+}
+
+.content, .actions {
+  padding-inline: 20px;
 }
 
 .departments {

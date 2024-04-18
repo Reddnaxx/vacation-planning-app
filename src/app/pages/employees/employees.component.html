@@ -9,4 +9,13 @@
       </li>
     </ul>
   </mat-card-content>
+  <mat-card-actions class="actions">
+    <button mat-raised-button
+            color="accent"
+            (click)="openDepartmentCreateDialog()"
+    >
+      <mat-icon fontIcon="add" />
+      Создать новый отдел
+    </button>
+  </mat-card-actions>
 </mat-card>

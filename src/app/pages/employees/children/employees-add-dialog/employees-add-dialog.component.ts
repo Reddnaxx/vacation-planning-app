@@ -17,7 +17,7 @@ import { IEmployeesAddDialogForm } from "./interfaces/employees-add-dialog-form.
 import { EmployeesService } from "../../services/employees.service";
 import { BehaviorSubject } from "rxjs";
 import { EmployeeModel } from "../../models/employee.model";
-import { AsyncPipe, NgForOf } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { EmployeesDeleteDialogComponent } from "../employees-delete-dialog/employees-delete-dialog.component";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { DepartmentsService } from "../../services/departments.service";
@@ -30,8 +30,7 @@ import { DepartmentsService } from "../../services/departments.service";
     MatDialogModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
-    NgForOf,
-    AsyncPipe,
+    CommonModule,
   ],
   templateUrl: "./employees-add-dialog.component.html",
   styleUrl: "./employees-add-dialog.component.scss",
