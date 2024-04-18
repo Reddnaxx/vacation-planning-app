@@ -8,6 +8,7 @@ import { DepartmentsService } from "./services/departments.service";
 import { BehaviorSubject } from "rxjs";
 import { MatDialog } from "@angular/material/dialog";
 import { EmployeesDepartmentCreateDialogComponent } from "./children/employees-department-create-dialog/employees-department-create-dialog.component";
+import { FilterPipe } from "../../shared/pipes/filter.pipe";
 
 @Component({
   selector: "app-employees",
@@ -17,6 +18,7 @@ import { EmployeesDepartmentCreateDialogComponent } from "./children/employees-d
     MaterialModule,
     MatExpansionModule,
     EmployeesDepartmentComponent,
+    FilterPipe,
   ],
   templateUrl: "./employees.component.html",
   styleUrl: "./employees.component.scss",
@@ -37,7 +39,7 @@ export class EmployeesComponent {
 
   protected openDepartmentCreateDialog() {
     this.dialog.open(EmployeesDepartmentCreateDialogComponent, {
-      panelClass: "app-create-department-dialog",
+      panelClass: "app-default-dialog",
     });
   }
 }

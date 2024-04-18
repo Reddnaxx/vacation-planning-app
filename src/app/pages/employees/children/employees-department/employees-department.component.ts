@@ -41,16 +41,13 @@ export class EmployeesDepartmentComponent implements OnInit {
           value.filter(item => item.department === this.department.id),
         ),
       )
-      .subscribe(value => {
-        console.log(value);
-        this.employees$.next(value);
-      });
+      .subscribe(value => this.employees$.next(value));
   }
 
   protected openAddEmployeeDialog() {
     this.matDialog.open(EmployeesAddDialogComponent, {
       data: { id: this.department.id },
-      panelClass: "app-add-employee-dialog",
+      panelClass: "app-default-dialog",
     });
   }
 }

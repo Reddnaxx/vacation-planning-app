@@ -8,11 +8,14 @@
       <input type="email" matInput [matAutocomplete]="usersAuto"
              [formControl]="newEmployeeForm.controls.email">
       <mat-autocomplete #usersAuto="matAutocomplete">
-        <mat-option *ngFor="let employee of employees$ | async"
-                    [value]="employee.email"
-        >
-          {{employee.email}}
-        </mat-option>
+        <ng-container *ngIf="employees$ | async as employees">
+          <mat-option *ngFor="let employee of employees |
+                              filter:'email':newEmployeeForm.controls.email.value"
+                      [value]="employee.email"
+          >
+            {{ employee.email }} ({{ employee.name }})
+          </mat-option>
+        </ng-container>
       </mat-autocomplete>
     </mat-form-field>
     <button mat-raised-button

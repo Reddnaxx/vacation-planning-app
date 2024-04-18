@@ -21,6 +21,7 @@ import { CommonModule } from "@angular/common";
 import { EmployeesDeleteDialogComponent } from "../employees-delete-dialog/employees-delete-dialog.component";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { DepartmentsService } from "../../services/departments.service";
+import { FilterPipe } from '../../../../shared/pipes/filter.pipe';
 
 @Component({
   selector: "app-employees-add-dialog",
@@ -31,6 +32,7 @@ import { DepartmentsService } from "../../services/departments.service";
     MatAutocompleteModule,
     ReactiveFormsModule,
     CommonModule,
+    FilterPipe,
   ],
   templateUrl: "./employees-add-dialog.component.html",
   styleUrl: "./employees-add-dialog.component.scss",
