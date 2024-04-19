@@ -1,0 +1,52 @@
+.wrapper {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 2.625rem;
+  flex: 1;
+  font-weight: normal;
+}
+
+.month-picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  gap: 50px;
+
+  &__date {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  p {
+    font-family: "Russo One", "Helvetica Neue", sans-serif;
+    font-size: 2rem;
+  }
+
+  span {
+    font-family: Ubuntu, "Helvetica Neue", sans-serif;
+    font-size: 1.125rem;
+    color: var(--text-color-transparent);
+    font-weight: bold;
+  }
+}
+
+.arrow-next {
+  transform: rotate(180deg);
+}
+
+.btn-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.new-btn {
+  font-size: 1.75rem;
+}

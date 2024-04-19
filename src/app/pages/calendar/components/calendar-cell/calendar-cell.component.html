@@ -1,0 +1,10 @@
+<mat-card [ngClass]="[
+    'wrapper',
+    cellStyle,
+    isToday ? 'today' : '',
+    ]"
+>
+  <mat-card-header>
+    <h3>{{ day }}</h3>
+  </mat-card-header>
+</mat-card>
