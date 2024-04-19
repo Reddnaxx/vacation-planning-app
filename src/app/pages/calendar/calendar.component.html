@@ -1,6 +1,16 @@
 <div class="wrapper">
   <div class="container">
-    <app-calendar-header class="header"/>
-    <app-calendar-main class="main"/>
+    <app-calendar-header class="header"
+                         (changeMonthEvent)="changeMonth($event)"
+                         [currentMonth]="monthWithOffset"
+                         [currentYear]="yearWithOffset" />
+    <app-calendar-main class="main"
+                       [monthOffset]="monthOffset"
+                       [yearOffset]="yearOffset"
+                       [beforeDays]="beforeDays"
+                       [currentDay]="currentDay"
+                       [currentMonthDays]="currentMonthDays"
+                       [fillDays]="fillDays"
+                       [monthStartDay]="startDayWithOffset" />
   </div>
 </div>

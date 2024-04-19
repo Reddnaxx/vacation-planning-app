@@ -84,9 +84,13 @@ ul, ol {
 
   //Calendar
   --cell-color: rgba(255, 255, 255, 0.7);
-  --cell-color-hover: rgba(185, 255, 194, 0.7);
+  --cell-color-hover: rgba(255, 255, 255, 0.8);
   --cell-today-color: var(--color-accent);
   --cell-today-color-hover: #a446ff;
+  --cell-dayoff-color: #b21d64;
+  --cell-dayoff-color-hover: #be3f7b;
+  --cell-today-dayoff-color: #990fb2;
+  --cell-today-dayoff-color-hover: #aa1dc4;
 
   //Button
   --button-color-default: var(--color-accent);

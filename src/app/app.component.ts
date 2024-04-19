@@ -12,6 +12,7 @@ import { MatButton } from "@angular/material/button";
   providers: [AngularFirestore],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   public title: string = "ПЛАНИРОВЩИК ОТПУСКОВ";
