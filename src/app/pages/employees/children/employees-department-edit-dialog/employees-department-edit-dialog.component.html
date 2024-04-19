@@ -1,0 +1,23 @@
+<h2 mat-dialog-title class="title">Редактирование отдела</h2>
+<mat-dialog-actions class="actions">
+  <form class="form"
+        [formGroup]="departmentEditForm"
+        (ngSubmit)="updateDepartment(departmentEditForm.value.name!)">
+    <mat-form-field color="accent">
+      <mat-label class="form__label">Название</mat-label>
+      <input matInput [formControl]="departmentEditForm.controls.name">
+    </mat-form-field>
+    <button mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="
+              !departmentEditForm.valid ||
+              !departmentEditForm.value.name ||
+              !departmentEditForm.dirty"
+    >
+      Подтвердить
+    </button>
+  </form>
+</mat-dialog-actions>
+
+

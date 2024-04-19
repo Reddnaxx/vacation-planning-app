@@ -1,0 +1,32 @@
+<h2 mat-dialog-title class="title">Добавить сотрудника</h2>
+<mat-dialog-actions class="actions">
+  <form class="form"
+        [formGroup]="newEmployeeForm"
+        (ngSubmit)="addEmployee(newEmployeeForm.controls.email.value!)">
+    <mat-form-field color="accent">
+      <mat-label class="form__label">Почта</mat-label>
+      <input type="email" matInput [matAutocomplete]="usersAuto"
+             [formControl]="newEmployeeForm.controls.email">
+      <mat-autocomplete #usersAuto="matAutocomplete">
+        <ng-container *ngIf="employees$ | async as employees">
+          <mat-option *ngFor="let employee of employees |
+                              filter:'email':newEmployeeForm.controls.email.value"
+                      [value]="employee.email"
+          >
+            {{ employee.email }} <br/> {{ employee.name }}
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
+    </mat-form-field>
+    <button mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!newEmployeeForm.valid ||
+             !newEmployeeForm.controls.email.value"
+    >
+      Добавить
+    </button>
+  </form>
+</mat-dialog-actions>
+
+
