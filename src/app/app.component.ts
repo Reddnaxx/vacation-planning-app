@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { HeaderComponent } from "./shared/components/header/header.component";
 import { IconService } from "./shared/services/icon.service";
 import { RouterModule, RouterOutlet } from "@angular/router";
