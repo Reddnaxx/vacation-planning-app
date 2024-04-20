@@ -6,8 +6,6 @@
   flex-wrap: nowrap;
   align-items: center;
   gap: 25px;
-  box-sizing: border-box;
-  overflow: hidden;
   border-radius: 8px;
   background: #ffffff3f;
 }
@@ -90,4 +88,8 @@
   background-color: #ece41e;
   margin-left: auto;
   white-space: nowrap;
+}
+
+.delete-btn {
+  background-color: var(--color-red);
 }
