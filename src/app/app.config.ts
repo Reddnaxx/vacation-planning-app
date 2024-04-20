@@ -1,4 +1,4 @@
-import { ApplicationConfig, importProvidersFrom } from "@angular/core";
+import { ApplicationConfig, ErrorHandler, importProvidersFrom } from '@angular/core';
 import { provideRouter } from "@angular/router";
 
 import { routes } from "./app.routes";
@@ -8,6 +8,7 @@ import { getFirestore, provideFirestore } from "@angular/fire/firestore";
 import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
 import { environment } from "../environments/environment";
 import { HttpClientModule } from "@angular/common/http";
+import { GlobalErrorHandlerService } from './shared/services/global-error-handler.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,5 +20,9 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(HttpClientModule),
     importProvidersFrom(provideFirestore(() => getFirestore())),
     provideAnimationsAsync(),
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandlerService,
+    },
   ],
 };

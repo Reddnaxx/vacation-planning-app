@@ -1,0 +1,15 @@
+<mat-card [ngClass]="[
+    'wrapper',
+    cellStyle,
+    isToday ? 'today' : '',
+    isDayOff ? 'day-off' : '',
+    ]"
+>
+  <mat-card-header class="header">
+    <mat-card-title>{{ day }}</mat-card-title>
+    <mat-card-subtitle *ngIf="isToday">Сегодня</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+  </mat-card-content>
+</mat-card>
