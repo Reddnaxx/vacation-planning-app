@@ -5,14 +5,11 @@
   margin-inline: auto;
   margin-top: 50px;
   max-width: 60dvw;
+  min-width: 760px;
   gap: 10px;
 
-  @media (width < 1220px) {
-    margin-inline: 100px;
-  }
-
-  @media (width < 900px) {
-    margin-inline: 50px;
+  @media (width < 780px) {
+    min-width: 420px  ;
   }
 }
 

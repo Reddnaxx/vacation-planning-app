@@ -2,11 +2,16 @@
   <mat-expansion-panel-header class="department-card__header">
     <mat-panel-title class="department-card__title">{{ department.name }}</mat-panel-title>
   </mat-expansion-panel-header>
-  <ul class="department-card__employees">
-    <li *ngFor="let employee of employees$ | async">
-      <app-employees-employee [employee]="employee" />
-    </li>
-  </ul>
+  <ng-container *ngIf="employees$ | async as employees">
+    <ul class="department-card__employees" *ngIf="employees.length > 0;else no_employees">
+      <li *ngFor="let employee of employees$ | async">
+        <app-employees-employee [employee]="employee" />
+      </li>
+    </ul>
+    <ng-template #no_employees>
+      <p>В этом отделе нет сотрудников</p>
+    </ng-template>
+  </ng-container>
   <mat-action-row class="department-card__actions">
     <button mat-raised-button color="accent"
             class="department-card__new-employee-btn"

@@ -20,6 +20,7 @@ export class EmployeesEmployeeComponent {
   constructor(private dialog: MatDialog) {}
 
   protected openDeleteDialog(): void {
+    console.log(this.employee.id);
     this.dialog.open(EmployeesDeleteDialogComponent, {
       data: { name: this.employee.name, id: this.employee.id },
     });

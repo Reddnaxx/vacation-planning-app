@@ -45,8 +45,8 @@ export class EmployeesDepartmentEditDialogComponent {
     this.departmentEditForm.controls.name.setValue(this.department.name);
   }
 
-  protected updateDepartment(name: string) {
-    this.departmentsService.edit(this.department.id, name);
+  protected async updateDepartment(name: string) {
+    await this.departmentsService.edit(this.department.id, name);
     this.dialogRef.close();
     this.snackbar.open(`${this.department.name} успешно изменен`, "Ок", {
       horizontalPosition: "right",

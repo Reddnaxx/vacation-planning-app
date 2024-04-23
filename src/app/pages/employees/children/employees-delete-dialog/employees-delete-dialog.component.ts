@@ -1,14 +1,8 @@
 import { ChangeDetectionStrategy, Component, Inject } from "@angular/core";
-import {
-  MAT_DIALOG_DATA,
-  MatDialogModule,
-  MatDialogRef,
-} from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { IEmployeesDeleteDialogData } from "./interfaces/employees-delete-dialog-data.interface";
-import { MatButtonModule } from "@angular/material/button";
-import { EmployeesService } from "../../services/employees.service";
-import { MatDividerModule } from "@angular/material/divider";
 import { EmployeesModule } from "../../modules/employees.module";
+import { DepartmentsService } from '../../services/departments.service';
 
 @Component({
   selector: "app-employees-delete-dialog",
@@ -22,15 +16,15 @@ export class EmployeesDeleteDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<EmployeesDeleteDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: IEmployeesDeleteDialogData,
-    private employeesService: EmployeesService,
+    private departmentsService: DepartmentsService,
   ) {}
 
   protected onNoClick(): void {
     this.dialogRef.close();
   }
 
-  protected onDeleteClick(): void {
-    this.employeesService.delete(this.data.id);
+  protected async onDeleteClick() {
+    await this.departmentsService.removeEmployee(this.data.id);
     this.dialogRef.close();
   }
 }
