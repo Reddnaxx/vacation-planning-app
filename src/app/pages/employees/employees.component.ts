@@ -12,11 +12,12 @@ import { EmployeesDepartmentCreateDialogComponent } from "./children/employees-d
 import { EmployeesModule } from "./modules/employees.module";
 import { EmployeesDepartmentComponent } from "./children/employees-department/employees-department.component";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { LoaderComponent } from '../../shared/components/loader/loader.component';
 
 @Component({
   selector: "app-employees",
   standalone: true,
-  imports: [EmployeesModule, EmployeesDepartmentComponent],
+  imports: [EmployeesModule, EmployeesDepartmentComponent, LoaderComponent],
   templateUrl: "./employees.component.html",
   styleUrl: "./employees.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
