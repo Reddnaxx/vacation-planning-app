@@ -53,7 +53,7 @@
               <button mat-button type="submit" [disabled]="!form.valid">Зарегистрироваться</button>
             </div>
 
-            <p>Уже есть аккаунт? <a href='#'>Войти</a></p>
+            <p>Уже есть аккаунт? <a [routerLink]="['../login']">Войти</a></p>
 
           </form>
         </mat-card-content>
