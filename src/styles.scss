@@ -103,3 +103,6 @@ ul, ol {
   //Application
   --application-bg-color: rgba(255, 255, 255, 0.25);
 }
+.blur-backdrop {
+  backdrop-filter: blur(5px);
+}

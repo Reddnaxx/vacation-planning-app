@@ -8,5 +8,4 @@ enum CustomIcons {
   calendar = "calendar",
   employees = "employees",
 }
-
 export default CustomIcons;

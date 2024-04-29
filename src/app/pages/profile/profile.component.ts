@@ -8,6 +8,7 @@ import { ProfileHistorySectionComponent } from "./children/profile-history-secti
 import { HistoryInfoCardComponent } from "./children/history-info-card/history-info-card.component";
 import HistoryModel from "./children/models/history.model";
 
+
 @Component({
   selector: "app-profile",
   standalone: true,
@@ -36,24 +37,28 @@ export class ProfileComponent {
     );
     this.history = [new HistoryModel(
       "Заявка №1",
-      "16 Февраля - 17 Февраля 2023г",
+      "16 Февраля" ,
+      "17 Февраля 2023г",
       "Выполнено"),
-    new HistoryModel(
-      "Заявка №2",
-      "1 Июня - 16 Июня 2023г",
-      "Выполнено"),
-    new HistoryModel(
-      "Заявка №3",
-      "1 Сентября - 31 Сентября 2024г",
-      "Подтверждено"),
-    new HistoryModel(
-      "Заявка №4",
-      "1 Сентября - 31 Сентября 2024г",
-      "Отклонено"),
-    new HistoryModel(
-      "Заявка №5",
-      "1 Сентября - 31 Сентября 2024г",
-      "В ожидании")]
+      new HistoryModel(
+        "Заявка №2",
+        "16 Февраля" ,
+        "16 Июня 2023г",
+        "Выполнено"),
+      new HistoryModel(
+        "Заявка №3",
+        "1 Сентября" ,
+        "31 Сентября 2024г",
+        "Подтверждено"),
+      new HistoryModel(
+        "Заявка №4",
+        "1 Декабря" ,
+        "10 Января 2024г",
+        "Отклонено"),
+      new HistoryModel(
+        "Заявка №5",
+        "29 Марта" ,
+        "4 Апреля 2024г",
+        "В ожидании")]
   }
 }
-
