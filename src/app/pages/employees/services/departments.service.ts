@@ -1,13 +1,14 @@
 import { Injectable } from "@angular/core";
 import DepartmentModel from "../models/department.model";
-import { Observable } from "rxjs";
+import { first, map, mergeMap, Observable } from "rxjs";
 import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from "@angular/fire/compat/firestore";
-import { EmployeeModel } from "../models/employee.model";
+import { UserModel } from "../models/user.model";
 import { catchError } from "rxjs/operators";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
+import slug from "slug";
 
 @Injectable({ providedIn: "root" })
 export class DepartmentsService {
@@ -31,6 +32,8 @@ export class DepartmentsService {
     const newDepartment: DepartmentModel = {
       id: "",
       name: name,
+      managerId: "users/efCYrJg3N9yyMptitQOg",
+      slug: slug(name),
     };
     await this.departmentsCollection
       .add(newDepartment)
@@ -43,9 +46,9 @@ export class DepartmentsService {
     return newDepartment;
   }
 
-  public getEmployees(id: string): Observable<EmployeeModel[]> {
+  public getEmployees(id: string): Observable<UserModel[]> {
     return this.fs
-      .collection<EmployeeModel>("/users", ref =>
+      .collection<UserModel>("/users", ref =>
         ref
           .where("department", "==", `departments/${id}`)
           .where("isActive", "==", true),
@@ -56,6 +59,12 @@ export class DepartmentsService {
           throw new Error(err);
         }),
       );
+  }
+
+  public get(slug: string) {
+    return this.departments$.pipe(
+      map(item => item.filter(dep => dep.slug === slug)[0]),
+    );
   }
 
   public async edit(id: string, name: string) {
@@ -81,7 +90,7 @@ export class DepartmentsService {
       .createUserWithEmailAndPassword(email, password)
       .then(async () => {
         await this.fs
-          .collection<EmployeeModel>("/users")
+          .collection<UserModel>("/users")
           .add({
             id: this.fs.createId(),
             isActive: true,
@@ -100,7 +109,7 @@ export class DepartmentsService {
       })
       .catch(async () => {
         await this.fs
-          .collection<EmployeeModel>("/users", ref =>
+          .collection<UserModel>("/users", ref =>
             ref.where("email", "==", email),
           )
           .get()
@@ -118,7 +127,7 @@ export class DepartmentsService {
 
   public async removeEmployee(id: string) {
     await this.fs
-      .collection<EmployeeModel>(`/users`)
+      .collection<UserModel>(`/users`)
       .doc(id)
       .update({
         isActive: false,

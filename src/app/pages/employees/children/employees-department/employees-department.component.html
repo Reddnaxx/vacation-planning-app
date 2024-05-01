@@ -1,31 +1,51 @@
-<mat-expansion-panel class="department-card">
-  <mat-expansion-panel-header class="department-card__header">
-    <mat-panel-title class="department-card__title">{{ department.name }}</mat-panel-title>
-  </mat-expansion-panel-header>
-  <ng-container *ngIf="employees$ | async as employees">
-    <ul class="department-card__employees" *ngIf="employees.length > 0;else no_employees">
-      <li *ngFor="let employee of employees$ | async">
-        <app-employees-employee [employee]="employee" />
-      </li>
-    </ul>
-    <ng-template #no_employees>
-      <p>В этом отделе нет сотрудников</p>
+<mat-card class="department-card" (click)="navigateToDepartmentPage()">
+  <mat-card-header class="department-card__header">
+    <mat-card-title class="department-card__title">{{ department.name }}</mat-card-title>
+  </mat-card-header>
+  <mat-divider />
+  <mat-card-content class="department-card__content">
+    <ng-container *ngIf="employees$ | async as employees;else loader">
+      <app-employee-department-info-card cardTitle="Управляющий" class="department-card__manager-name">
+        {{ manager.name }}
+      </app-employee-department-info-card>
+      <app-employee-department-info-card cardTitle="Сотрудники">
+        {{ employees.length }}
+      </app-employee-department-info-card>
+      <app-employee-department-info-card cardTitle="Email">
+        {{ manager.email }}
+      </app-employee-department-info-card>
+    </ng-container>
+    <ng-template #loader>
+      <app-loader class="loader"/>
     </ng-template>
-  </ng-container>
-  <mat-action-row class="department-card__actions">
-    <button mat-raised-button color="accent"
-            class="department-card__new-employee-btn"
-            (click)="openAddEmployeeDialog()"
-    >
-      <mat-icon fontIcon="add" />
-      Добавить сотрудника
-    </button>
-    <button mat-raised-button
-            class="department-card__edit-btn"
-            (click)="openDepartmentEditDialog()"
-    >
-      <mat-icon fontIcon="edit" />
-      Изменить
-    </button>
-  </mat-action-row>
-</mat-expansion-panel>
+  </mat-card-content>
+  <!--  <mat-expansion-panel-header class="department-card__header">-->
+  <!--    <mat-panel-title class="department-card__title">{{ department.name }}</mat-panel-title>-->
+  <!--  </mat-expansion-panel-header>-->
+  <!--  <ng-container *ngIf="employees$ | async as employees">-->
+  <!--    <ul class="department-card__employees" *ngIf="employees.length > 0;else no_employees">-->
+  <!--      <li *ngFor="let employee of employees$ | async">-->
+  <!--        <app-employees-employee [employee]="employee" />-->
+  <!--      </li>-->
+  <!--    </ul>-->
+  <!--    <ng-template #no_employees>-->
+  <!--      <p>В этом отделе нет сотрудников</p>-->
+  <!--    </ng-template>-->
+  <!--  </ng-container>-->
+  <!--  <mat-action-row class="department-card__actions">-->
+  <!--    <button mat-raised-button color="accent"-->
+  <!--            class="department-card__new-employee-btn"-->
+  <!--            (click)="openAddEmployeeDialog()"-->
+  <!--    >-->
+  <!--      <mat-icon fontIcon="add" />-->
+  <!--      Добавить сотрудника-->
+  <!--    </button>-->
+  <!--    <button mat-raised-button-->
+  <!--            class="department-card__edit-btn"-->
+  <!--            (click)="openDepartmentEditDialog()"-->
+  <!--    >-->
+  <!--      <mat-icon fontIcon="edit" />-->
+  <!--      Изменить-->
+  <!--    </button>-->
+  <!--  </mat-action-row>-->
+</mat-card>

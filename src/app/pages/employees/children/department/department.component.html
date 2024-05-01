@@ -1,0 +1,7 @@
+<p *ngIf="department$ | async as department;else loader">
+  {{ department.name }} works!
+</p>
+
+<ng-template #loader>
+  <app-loader class="loader" />
+</ng-template>
