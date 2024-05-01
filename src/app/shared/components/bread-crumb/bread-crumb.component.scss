@@ -7,6 +7,10 @@
   gap: 5px;
   color: var(--breadcrumb-color);
 
+  @media (width < 480px) {
+    font-size: 0.75rem;
+  }
+
   li {
     display: flex;
     align-items: center;
