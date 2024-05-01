@@ -14,6 +14,7 @@ import { UserService } from "@shared/services/user.service";
 import { EmployeeInfoCardComponent } from "../employees-employee/components/employee-info-card/employee-info-card.component";
 import { MatDialog } from "@angular/material/dialog";
 import { EmployeesAddDialogComponent } from "../employees-add-dialog/employees-add-dialog.component";
+import { FilterPipe } from '@shared/pipes/filter.pipe';
 
 @Component({
   selector: "app-department",
@@ -25,6 +26,7 @@ import { EmployeesAddDialogComponent } from "../employees-add-dialog/employees-a
     DepartmentSectionComponent,
     EmployeesEmployeeComponent,
     EmployeeInfoCardComponent,
+    FilterPipe,
   ],
   templateUrl: "./department-page.component.html",
   styleUrl: "./department-page.component.scss",

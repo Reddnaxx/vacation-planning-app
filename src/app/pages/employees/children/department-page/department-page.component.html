@@ -21,8 +21,13 @@
     </app-department-section>
 
     <app-department-section name="Сотрудники">
+      <mat-form-field color="accent" floatLabel="auto">
+        <mat-label>Поиск</mat-label>
+        <input matInput autocomplete="off" #employee_search>
+      </mat-form-field>
       <div *ngIf="employees$ | async as employees;else sectionLoader" class="department-page__employees">
-        <app-employees-employee *ngFor="let employee of employees" [employee]="employee"
+        <app-employees-employee *ngFor="let employee of employees |
+         filter: ['name', 'email', 'phone']:employee_search.value" [employee]="employee"
                                 [isDeleteLocked]="employee.id === manager.id" />
 
         <button mat-raised-button color="accent" class="department-page__add-employee-btn"
