@@ -13,7 +13,8 @@ import { provideAnimationsAsync } from "@angular/platform-browser/animations/asy
 import { environment } from "../environments/environment";
 import { HttpClientModule } from "@angular/common/http";
 import { GlobalErrorHandlerService } from "./shared/services/global-error-handler.service";
-import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { AngularFireModule, FIREBASE_OPTIONS } from "@angular/fire/compat";
+import { provideAnimations } from "@angular/platform-browser/animations";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -30,5 +31,6 @@ export const appConfig: ApplicationConfig = {
       useClass: GlobalErrorHandlerService,
     },
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
+    provideAnimations(),
   ],
 };

@@ -17,6 +17,14 @@
   @media (width < 1200px) {
     max-width: 768px;
   }
+
+  @media (width < 768px) {
+    max-width: 90dvw;
+  }
+
+  @media (width < 470px) {
+    max-width: unset;
+  }
 }
 
 .content, .actions {
@@ -60,6 +68,7 @@
 .title {
   font-size: 1.75rem;
   font-family: "Russo One", "Helvetica Neue", sans-serif;
+  white-space: nowrap;
 }
 
 .loader {

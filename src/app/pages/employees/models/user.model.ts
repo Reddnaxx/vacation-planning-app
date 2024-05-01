@@ -5,6 +5,7 @@ export class UserModel {
     public email: string,
     public phone: string,
     public department: string,
+    public role: string,
     public isActive: boolean,
   ) {}
 }

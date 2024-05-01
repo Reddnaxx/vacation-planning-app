@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import DepartmentModel from "../models/department.model";
-import { first, map, mergeMap, Observable } from "rxjs";
+import { map, Observable, timeout } from "rxjs";
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -55,6 +55,7 @@ export class DepartmentsService {
       )
       .valueChanges()
       .pipe(
+        map(value => value.reverse()),
         catchError(err => {
           throw new Error(err);
         }),
@@ -64,6 +65,9 @@ export class DepartmentsService {
   public get(slug: string) {
     return this.departments$.pipe(
       map(item => item.filter(dep => dep.slug === slug)[0]),
+      catchError(err => {
+        throw new Error(err);
+      }),
     );
   }
 
@@ -98,6 +102,7 @@ export class DepartmentsService {
             name: name,
             phone: phone,
             email: email,
+            role: "employee",
           })
           .then(res => {
             res.update({ id: res.id });

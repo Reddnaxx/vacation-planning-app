@@ -1,0 +1,52 @@
+.department-page {
+  margin-inline: auto;
+  max-width: 1620px;
+  margin-top: 20px;
+
+  @media (width < 1620px) {
+    max-width: 1100px;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-family: "Russo One", "Helvetica Neue", sans-serif;
+  }
+
+  &__content {
+    padding-block: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 15px;
+
+    font-size: 1.25rem;
+  }
+
+  &__employees {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  &__add-employee-btn {
+    width: fit-content;
+  }
+}
+
+.page-loader {
+  display: flex;
+  padding: 100px;
+  width: 100%;
+  justify-content: center;
+}
