@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import DepartmentModel from "../models/department.model";
-import { map, Observable, timeout } from "rxjs";
+import { map, Observable } from "rxjs";
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -19,8 +19,10 @@ export class DepartmentsService {
     private fs: AngularFirestore,
     private fa: AngularFireAuth,
   ) {
-    this.departmentsCollection =
-      this.fs.collection<DepartmentModel>("/departments");
+    this.departmentsCollection = this.fs.collection<DepartmentModel>(
+      "/departments",
+      ref => ref.orderBy("name"),
+    );
     this.departments$ = this.departmentsCollection.valueChanges().pipe(
       catchError(err => {
         throw new Error(err);

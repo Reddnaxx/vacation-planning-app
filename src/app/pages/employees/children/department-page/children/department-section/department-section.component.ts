@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { booleanAttribute, Component, Input } from '@angular/core';
 import { MatExpansionModule } from "@angular/material/expansion";
 
 @Component({
@@ -11,4 +11,7 @@ import { MatExpansionModule } from "@angular/material/expansion";
 export class DepartmentSectionComponent {
   @Input()
   public name?: string;
+
+  @Input({ transform: booleanAttribute })
+  public expanded?: boolean;
 }

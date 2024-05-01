@@ -5,6 +5,7 @@ import { MatToolbar } from "@angular/material/toolbar";
 import { NgOptimizedImage } from "@angular/common";
 import { MatBadgeModule } from "@angular/material/badge";
 import { HeaderProfileButtonComponent } from './components/header-profile-button/header-profile-button.component';
+import { BreadCrumbComponent } from '@shared/components/bread-crumb/bread-crumb.component';
 
 @Component({
   selector: "app-header",
@@ -16,6 +17,7 @@ import { HeaderProfileButtonComponent } from './components/header-profile-button
     NgOptimizedImage,
     MatBadgeModule,
     HeaderProfileButtonComponent,
+    BreadCrumbComponent,
   ],
   templateUrl: "./header.component.html",
   styleUrl: "./header.component.scss",

@@ -1,3 +1,4 @@
+<app-bread-crumb/>
 <mat-card *ngIf="department$ | async as department;else pageLoader"
           class="department-page">
   <mat-card-header class="department-page__header">
@@ -20,21 +21,20 @@
       </div>
     </app-department-section>
 
-    <app-department-section name="Сотрудники">
+    <app-department-section name="Сотрудники" expanded>
       <mat-form-field color="accent" floatLabel="auto">
         <mat-label>Поиск</mat-label>
         <input matInput autocomplete="off" #employee_search>
       </mat-form-field>
+      <button mat-raised-button color="accent" class="department-page__add-employee-btn"
+              (click)="openEmployeeAddDialog()">
+        <mat-icon fontIcon="add" />
+        Добавить сотрудника
+      </button>
       <div *ngIf="employees$ | async as employees;else sectionLoader" class="department-page__employees">
         <app-employees-employee *ngFor="let employee of employees |
-         filter: ['name', 'email', 'phone']:employee_search.value" [employee]="employee"
+         filter: ['name', 'email', 'phone']:employee_search.value; let i = index" [employee]="employee"
                                 [isDeleteLocked]="employee.id === manager.id" />
-
-        <button mat-raised-button color="accent" class="department-page__add-employee-btn"
-                (click)="openEmployeeAddDialog()">
-          <mat-icon fontIcon="add" />
-          Добавить сотрудника
-        </button>
       </div>
     </app-department-section>
 

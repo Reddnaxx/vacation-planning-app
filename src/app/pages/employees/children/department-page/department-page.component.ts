@@ -1,5 +1,5 @@
 import { Component, DestroyRef } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import DepartmentModel from "../../models/department.model";
 import { DepartmentsService } from "../../services/departments.service";
 import { BehaviorSubject, filter, Observable, switchMap } from "rxjs";
@@ -14,7 +14,9 @@ import { UserService } from "@shared/services/user.service";
 import { EmployeeInfoCardComponent } from "../employees-employee/components/employee-info-card/employee-info-card.component";
 import { MatDialog } from "@angular/material/dialog";
 import { EmployeesAddDialogComponent } from "../employees-add-dialog/employees-add-dialog.component";
-import { FilterPipe } from '@shared/pipes/filter.pipe';
+import { FilterPipe } from "@shared/pipes/filter.pipe";
+import { BreadCrumbComponent } from "@shared/components/bread-crumb/bread-crumb.component";
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: "app-department",
@@ -27,6 +29,7 @@ import { FilterPipe } from '@shared/pipes/filter.pipe';
     EmployeesEmployeeComponent,
     EmployeeInfoCardComponent,
     FilterPipe,
+    BreadCrumbComponent,
   ],
   templateUrl: "./department-page.component.html",
   styleUrl: "./department-page.component.scss",
@@ -43,6 +46,7 @@ export class DepartmentPageComponent {
     private userService: UserService,
     private destroyRef: DestroyRef,
     private dialog: MatDialog,
+    private titleService: Title,
   ) {
     this.department$ = new BehaviorSubject<DepartmentModel | null>(null);
 
@@ -51,8 +55,9 @@ export class DepartmentPageComponent {
         takeUntilDestroyed(this.destroyRef),
         switchMap(value => this.departmentsService.get(value["slug"])),
       )
-      .subscribe({
-        next: value => this.department$.next(value),
+      .subscribe(value => {
+        this.department$.next(value);
+        this.titleService.setTitle(value.name);
       });
 
     this.manager$ = this.department$.pipe(

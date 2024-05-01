@@ -7,6 +7,7 @@ import { ProfileUserSectionComponent } from "./children/profile-user-section/pro
 import { ProfileHistorySectionComponent } from "./children/profile-history-section/profile-history-section.component";
 import { HistoryInfoCardComponent } from "./children/history-info-card/history-info-card.component";
 import HistoryModel from "./children/models/history.model";
+import { BreadCrumbComponent } from '@shared/components/bread-crumb/bread-crumb.component';
 
 @Component({
   selector: "app-profile",
@@ -19,6 +20,7 @@ import HistoryModel from "./children/models/history.model";
     ProfileUserSectionComponent,
     ProfileHistorySectionComponent,
     HistoryInfoCardComponent,
+    BreadCrumbComponent,
   ],
   templateUrl: "./profile.component.html",
   styleUrl: "./profile.component.scss",
@@ -34,26 +36,29 @@ export class ProfileComponent {
       "test@mail.ru",
       "Отдел разработки",
     );
-    this.history = [new HistoryModel(
-      "Заявка №1",
-      "16 Февраля - 17 Февраля 2023г",
-      "Выполнено"),
-    new HistoryModel(
-      "Заявка №2",
-      "1 Июня - 16 Июня 2023г",
-      "Выполнено"),
-    new HistoryModel(
-      "Заявка №3",
-      "1 Сентября - 31 Сентября 2024г",
-      "Подтверждено"),
-    new HistoryModel(
-      "Заявка №4",
-      "1 Сентября - 31 Сентября 2024г",
-      "Отклонено"),
-    new HistoryModel(
-      "Заявка №5",
-      "1 Сентября - 31 Сентября 2024г",
-      "В ожидании")]
+    this.history = [
+      new HistoryModel(
+        "Заявка №1",
+        "16 Февраля - 17 Февраля 2023г",
+        "Выполнено",
+      ),
+      new HistoryModel("Заявка №2", "1 Июня - 16 Июня 2023г", "Выполнено"),
+      new HistoryModel(
+        "Заявка №3",
+        "1 Сентября - 31 Сентября 2024г",
+        "Подтверждено",
+      ),
+      new HistoryModel(
+        "Заявка №4",
+        "1 Сентября - 31 Сентября 2024г",
+        "Отклонено",
+      ),
+      new HistoryModel(
+        "Заявка №5",
+        "1 Сентября - 31 Сентября 2024г",
+        "В ожидании",
+      ),
+    ];
   }
 }
 

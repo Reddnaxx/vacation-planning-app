@@ -60,7 +60,7 @@ export class EmployeesDepartmentComponent implements OnInit {
 
   protected async navigateToDepartmentPage() {
     await this.router.navigate([`employees/${this.department.slug}`], {
-      relativeTo: null,
+      state: { name: this.department.name },
     });
   }
 

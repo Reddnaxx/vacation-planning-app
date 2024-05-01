@@ -26,10 +26,9 @@
   }
 
   &__info-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 15px;
-
     font-size: 1.25rem;
   }
 
@@ -47,6 +46,13 @@
 .page-loader {
   display: flex;
   padding: 100px;
+  width: 100%;
+  justify-content: center;
+}
+
+.section-loader {
+  display: flex;
+  padding: 25px;
   width: 100%;
   justify-content: center;
 }
