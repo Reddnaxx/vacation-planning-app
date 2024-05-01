@@ -1,11 +1,11 @@
 .breadcrumb {
   display: flex;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: bold;
-  margin-top: 5px;
+  margin-block: 0.5rem;
+  margin-inline: 0.25rem;
   gap: 5px;
   color: var(--breadcrumb-color);
-  margin-left: 5px;
 
   li {
     display: flex;
