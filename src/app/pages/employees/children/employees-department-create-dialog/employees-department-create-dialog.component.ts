@@ -1,14 +1,6 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from "@angular/forms";
-import { MatAutocompleteModule } from "@angular/material/autocomplete";
-import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
-import { MaterialModule } from "../../../../shared/modules/material/material.module";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { MatDialogRef } from "@angular/material/dialog";
 import { DepartmentsService } from "../../services/departments.service";
 import { EmployeesDeleteDialogComponent } from "../employees-delete-dialog/employees-delete-dialog.component";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -36,8 +28,8 @@ export class EmployeesDepartmentCreateDialogComponent {
     });
   }
 
-  protected createNewDepartment(name: string): void {
-    const newDepartment = this.departmentService.create(name);
+  protected async createNewDepartment(name: string) {
+    const newDepartment = await this.departmentService.create(name);
     this.dialogRef.close();
     this.snackBar.open(`${newDepartment.name} был успешно создан`, "Ок", {
       panelClass: "app-snack-bar-success",

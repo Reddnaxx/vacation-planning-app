@@ -1,21 +1,25 @@
+<app-bread-crumb/>
 <mat-card class="wrapper">
   <mat-card-header class="header">
     <mat-card-title class="title">Управление сотрудниками</mat-card-title>
   </mat-card-header>
   <mat-card-content class="content">
-    <ul class="departments">
+    <ul class="departments" *ngIf="(isLoading$ | async) === false;else loader">
       <li *ngFor="let department of departments$ | async">
-        <app-employees-department [department]="department" />
+        <app-employees-department [department]="department" class="departments__department" />
+      </li>
+      <li>
+        <button mat-raised-button
+                class="add-button"
+                color="dark"
+                (click)="openDepartmentCreateDialog()"
+        >
+          <mat-icon class="add-button__icon" fontIcon="add" inline />
+        </button>
       </li>
     </ul>
+    <ng-template #loader>
+      <app-loader class="loader" />
+    </ng-template>
   </mat-card-content>
-  <mat-card-actions class="actions">
-    <button mat-raised-button
-            color="accent"
-            (click)="openDepartmentCreateDialog()"
-    >
-      <mat-icon fontIcon="add" />
-      Создать новый отдел
-    </button>
-  </mat-card-actions>
 </mat-card>

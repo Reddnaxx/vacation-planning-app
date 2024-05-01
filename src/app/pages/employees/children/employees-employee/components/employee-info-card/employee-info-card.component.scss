@@ -5,3 +5,11 @@
 .name {
   font-family: "Russo One", "Helvetica Neue", sans-serif;
 }
+
+.value {
+  white-space: nowrap;
+
+  @media (width < 900px) {
+    white-space: pre-wrap;
+  }
+}

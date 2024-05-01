@@ -5,7 +5,7 @@
         (ngSubmit)="createNewDepartment(newDepartmentForm.controls.name.value!)">
     <mat-form-field color="accent">
       <mat-label class="form__label">Название</mat-label>
-      <input matInput [formControl]="newDepartmentForm.controls.name">
+      <input matInput [formControl]="newDepartmentForm.controls.name" autocomplete="off">
     </mat-form-field>
     <button mat-raised-button
             color="primary"

@@ -1,0 +1,45 @@
+:root {
+  //Main colors
+  --color-accent: #8000FF;
+  --color-bg: #323232;
+  --color-primary: #404040;
+  --color-red: #CC0062;
+  --color-warn: #e53935;
+  --color-yellow: #dacf0d;
+  --color-green: #00d500;
+
+  //Text
+  --text-color-light: #ffffff;
+  --text-color-dark: #1C274C;
+  --text-color-transparent: rgba(255, 255, 255, 0.5);
+  --link-color-main: #5F5FFF;
+
+  //Components
+  --header-color: var(--color-accent);
+
+  //Calendar
+  --cell-color: rgba(255, 255, 255, 0.7);
+  --cell-color-hover: rgba(255, 255, 255, 0.8);
+  --cell-today-color: var(--color-accent);
+  --cell-today-color-hover: #a446ff;
+  --cell-dayoff-color: #b21d64;
+  --cell-dayoff-color-hover: #be3f7b;
+  --cell-today-dayoff-color: #990fb2;
+  --cell-today-dayoff-color-hover: #aa1dc4;
+
+  //Button
+  --button-color-default: var(--color-accent);
+  --button-color-disabled: #4F4F4F;
+  --button-text-color-disabled: rgba(255, 255, 255, 0.25);
+
+  //Toggle button
+  --toggle-color-checked: var(--color-green);
+
+  //Departments
+  --department-card-color: #323232;
+  --department-card-hover-color: #51535d;
+
+  //Breadcrumbs
+  --breadcrumb-color: rgba(255, 255, 255, 0.2);
+  --breadcrumb-color-hover: rgba(255, 255, 255, 0.5);
+}

@@ -1,6 +1,8 @@
 export default class DepartmentModel {
   constructor(
-    public id: number,
     public name: string,
+    public id: string,
+    public managerId: string,
+    public slug: string,
   ) {}
 }

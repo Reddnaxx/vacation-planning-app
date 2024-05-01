@@ -1,0 +1,51 @@
+<app-bread-crumb/>
+<mat-card *ngIf="department$ | async as department;else pageLoader"
+          class="department-page">
+  <mat-card-header class="department-page__header">
+    <button mat-stroked-button (click)="goBack()">
+      <mat-icon fontIcon="arrow_back_ios" />
+      Назад
+    </button>
+    <mat-card-title class="department-page__title">{{ department.name }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-divider />
+
+  <mat-card-content class="department-page__content" *ngIf="manager$ | async as manager;else sectionLoader">
+
+    <app-department-section name="Информация">
+      <div class="department-page__info-cards" *ngIf="manager;else sectionLoader">
+        <app-employee-info-card name="Управляющий" [value]="manager.name" />
+        <app-employee-info-card name="Почта" [value]="manager.email" />
+        <app-employee-info-card name="Телефон" [value]="manager.phone" />
+      </div>
+    </app-department-section>
+
+    <app-department-section name="Сотрудники" expanded>
+      <mat-form-field color="accent" floatLabel="auto">
+        <mat-label>Поиск</mat-label>
+        <input matInput autocomplete="off" #employee_search>
+      </mat-form-field>
+      <button mat-raised-button color="accent" class="department-page__add-employee-btn"
+              (click)="openEmployeeAddDialog()">
+        <mat-icon fontIcon="add" />
+        Добавить сотрудника
+      </button>
+      <div *ngIf="employees$ | async as employees;else sectionLoader" class="department-page__employees">
+        <app-employees-employee *ngFor="let employee of employees |
+         filter: ['name', 'email', 'phone']:employee_search.value; let i = index" [employee]="employee"
+                                [isDeleteLocked]="employee.id === manager.id" />
+      </div>
+    </app-department-section>
+
+  </mat-card-content>
+
+  <ng-template #sectionLoader>
+    <app-loader class="section-loader" />
+  </ng-template>
+
+</mat-card>
+
+<ng-template #pageLoader>
+  <app-loader class="page-loader" />
+</ng-template>

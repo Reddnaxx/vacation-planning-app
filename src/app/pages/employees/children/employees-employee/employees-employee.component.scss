@@ -3,32 +3,19 @@
   &__content {
     display: grid;
     align-items: center;
-    grid-template-columns: 1fr 2fr;
-
-    @media (width < 900px) {
-      display: flex;
-      align-items: flex-start;
-      gap: 15px;
-    }
+    grid-template-columns: 10fr 1fr;
   }
 
   &__remove-btn {
     justify-self: flex-end;
+    align-self: flex-start;
   }
 
   &__info {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 10px;
     width: 100%;
-
-    @media (width < 900px) {
-      display: flex;
-      flex-wrap: wrap;
-      > * {
-        width: 100%;
-      }
-    }
   }
 }
 

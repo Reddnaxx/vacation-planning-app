@@ -1,0 +1,8 @@
+<ul class="breadcrumb">
+  <li *ngFor="let breadcrumb of breadcrumbs; let i = index">
+    <a [href]="breadcrumb.url" [ngClass]="{'current': breadcrumb.url.includes(currentRoute)}">
+      {{ breadcrumb.label }}
+    </a>
+    <mat-icon fontIcon="arrow_forward_ios" inline *ngIf="i !== breadcrumbs.length - 1" />
+  </li>
+</ul>
