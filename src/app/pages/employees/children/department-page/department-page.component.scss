@@ -2,6 +2,11 @@
   margin-inline: auto;
   margin-top: 20px;
 
+  &__btns {
+    display: flex;
+    gap: 5px;
+  }
+
   &__header {
     display: flex;
     justify-content: space-between;

@@ -17,6 +17,7 @@ import { EmployeesAddDialogComponent } from "../employees-add-dialog/employees-a
 import { FilterPipe } from "@shared/pipes/filter.pipe";
 import { BreadCrumbComponent } from "@shared/components/bread-crumb/bread-crumb.component";
 import { Title } from "@angular/platform-browser";
+import { EmployeesDepartmentEditDialogComponent } from "@pages/employees/children/employees-department-edit-dialog/employees-department-edit-dialog.component";
 
 @Component({
   selector: "app-department",
@@ -80,5 +81,12 @@ export class DepartmentPageComponent {
 
   protected async goBack() {
     await this.router.navigate(["/employees"]);
+  }
+
+  protected openDepartmentEditDialog() {
+    this.dialog.open(EmployeesDepartmentEditDialogComponent, {
+      panelClass: "app-default-dialog",
+      data: { department: this.department$.value },
+    });
   }
 }
