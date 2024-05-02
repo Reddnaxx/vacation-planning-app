@@ -8,16 +8,16 @@ import {
 import { EmployeesEmployeeComponent } from "../employees-employee/employees-employee.component";
 import { UserModel } from "../../models/user.model";
 import DepartmentModel from "../../models/department.model";
-import { BehaviorSubject, Observable } from "rxjs";
+import { Observable } from "rxjs";
 import { MatDialog } from "@angular/material/dialog";
 import { EmployeesDepartmentEditDialogComponent } from "../employees-department-edit-dialog/employees-department-edit-dialog.component";
 import { EmployeesModule } from "../../modules/employees.module";
 import { EmployeesAddDialogComponent } from "../employees-add-dialog/employees-add-dialog.component";
 import { DepartmentsService } from "../../services/departments.service";
 import { MatStepper } from "@angular/material/stepper";
-import { LoaderComponent } from "../../../../shared/components/loader/loader.component";
+import { LoaderComponent } from "@shared/components/loader/loader.component";
 import { EmployeeDepartmentInfoCardComponent } from "./components/employee-department-info-card/employee-department-info-card.component";
-import { UserService } from "../../../../shared/services/user.service";
+import { UserService } from "@shared/services/user.service";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router } from "@angular/router";
 
@@ -31,11 +31,11 @@ import { Router } from "@angular/router";
     LoaderComponent,
     EmployeeDepartmentInfoCardComponent,
   ],
-  templateUrl: "./employees-department.component.html",
-  styleUrl: "./employees-department.component.scss",
+  templateUrl: "./employees-department-card.component.html",
+  styleUrl: "./employees-department-card.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EmployeesDepartmentComponent implements OnInit {
+export class EmployeesDepartmentCardComponent implements OnInit {
   @Input({ required: true })
   public department!: DepartmentModel;
 
