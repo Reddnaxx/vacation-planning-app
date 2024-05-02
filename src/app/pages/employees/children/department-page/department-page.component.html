@@ -11,8 +11,12 @@
         <mat-icon fontIcon="edit" />
         Редактировать
       </button>
+      <button mat-stroked-button color="warn" (click)="openDepartmentDeleteDialog()">
+        <mat-icon fontIcon="delete" />
+        Удалить
+      </button>
     </div>
-    <mat-card-title class="department-page__title">{{ department.name }}</mat-card-title>
+    <mat-card-title class="department-page__title">{{ department.name | titlecase }}</mat-card-title>
   </mat-card-header>
 
   <mat-divider />

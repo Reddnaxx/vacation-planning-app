@@ -18,6 +18,7 @@ import { FilterPipe } from "@shared/pipes/filter.pipe";
 import { BreadCrumbComponent } from "@shared/components/bread-crumb/bread-crumb.component";
 import { Title } from "@angular/platform-browser";
 import { EmployeesDepartmentEditDialogComponent } from "@pages/employees/children/employees-department-edit-dialog/employees-department-edit-dialog.component";
+import { DepartmentDeleteDialogComponent } from "@pages/employees/children/department-delete-dialog/department-delete-dialog.component";
 
 @Component({
   selector: "app-department",
@@ -87,6 +88,16 @@ export class DepartmentPageComponent {
     this.dialog.open(EmployeesDepartmentEditDialogComponent, {
       panelClass: "app-default-dialog",
       data: { department: this.department$.value },
+    });
+  }
+
+  protected openDepartmentDeleteDialog() {
+    this.dialog.open(DepartmentDeleteDialogComponent, {
+      panelClass: "app-default-dialog",
+      data: {
+        name: this.department$.value?.name,
+        id: this.department$.value?.id,
+      },
     });
   }
 }

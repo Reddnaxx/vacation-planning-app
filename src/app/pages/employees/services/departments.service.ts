@@ -48,6 +48,22 @@ export class DepartmentsService {
     return newDepartment;
   }
 
+  public async remove(id: string) {
+    await this.departmentsCollection
+      .doc(id)
+      .delete()
+      .then(() => {
+        this.fs
+          .collection<UserModel>("/users", ref =>
+            ref
+              .where("department", "==", `departments/${id}`)
+              .where("isActive", "==", true),
+          )
+          .get()
+          .forEach(e => e.forEach(r => r.ref.update({ isActive: false })));
+      });
+  }
+
   public getEmployees(id: string): Observable<UserModel[]> {
     return this.fs
       .collection<UserModel>("/users", ref =>

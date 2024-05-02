@@ -1,6 +1,6 @@
-<mat-card class="department-card" (click)="navigateToDepartmentPage()" >
+<mat-card class="department-card" (click)="navigateToDepartmentPage()">
   <mat-card-header class="department-card__header">
-    <mat-card-title class="department-card__title">{{ department.name }}</mat-card-title>
+    <mat-card-title class="department-card__title">{{ department.name | titlecase }}</mat-card-title>
   </mat-card-header>
   <mat-divider />
   <mat-card-content class="department-card__content">
@@ -16,7 +16,7 @@
       </app-employee-department-info-card>
     </ng-container>
     <ng-template #loader>
-      <app-loader class="loader"/>
+      <app-loader class="loader" />
     </ng-template>
   </mat-card-content>
   <!--  <mat-expansion-panel-header class="department-card__header">-->
