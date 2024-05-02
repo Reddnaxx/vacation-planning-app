@@ -20,7 +20,6 @@ export class RegisterComponent {
     password: new FormControl(null, [Validators.required]),
     passwordConfirm: new FormControl(null, [Validators.required]),
     department: new FormControl(null, [Validators.required]),
-    isManager: new FormControl(null, [Validators.required])
   },
     { validators: CustomValidators.passwordsMatching }
   );
@@ -35,7 +34,6 @@ export class RegisterComponent {
         password: this.password.value,
         lastName: this.lastName.value,
         department: this.department.value,
-        isManager: this.isManager.value,
       }).pipe(
         tap(() => this.router.navigate(['../login']))
       ).subscribe();
@@ -64,9 +62,5 @@ export class RegisterComponent {
 
   get passwordConfirm(): FormControl {
     return this.form.get('passwordConfirm') as FormControl;
-  }
-
-  get isManager(): FormControl {
-    return this.form.get('isManager') as FormControl;
   }
 }
