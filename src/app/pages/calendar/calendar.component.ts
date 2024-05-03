@@ -3,8 +3,8 @@ import { CalendarMainComponent } from "./children/calendar-main/calendar-main.co
 import { CalendarHeaderComponent } from "./children/calendar-header/calendar-header.component";
 import { MONTH_DAYS } from "./children/calendar-main/data/monthDays";
 import { log } from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
-import { BreadCrumbComponent } from '@shared/components/bread-crumb/bread-crumb.component';
-import { MatCard } from '@angular/material/card';
+import { BreadCrumbComponent } from "@shared/components/bread-crumb/bread-crumb.component";
+import { MatCard } from "@angular/material/card";
 
 @Component({
   selector: "app-calendar",

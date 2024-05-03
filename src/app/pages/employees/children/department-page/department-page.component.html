@@ -1,12 +1,22 @@
-<app-bread-crumb/>
+<app-bread-crumb />
 <mat-card *ngIf="department$ | async as department;else pageLoader"
           class="department-page">
   <mat-card-header class="department-page__header">
-    <button mat-stroked-button (click)="goBack()">
-      <mat-icon fontIcon="arrow_back_ios" />
-      Назад
-    </button>
-    <mat-card-title class="department-page__title">{{ department.name }}</mat-card-title>
+    <div class="department-page__btns">
+      <button mat-stroked-button (click)="goBack()">
+        <mat-icon fontIcon="arrow_back_ios" />
+        Назад
+      </button>
+      <button mat-stroked-button (click)="openDepartmentEditDialog()">
+        <mat-icon fontIcon="edit" />
+        Редактировать
+      </button>
+      <button mat-stroked-button color="warn" (click)="openDepartmentDeleteDialog()">
+        <mat-icon fontIcon="delete" />
+        Удалить
+      </button>
+    </div>
+    <mat-card-title class="department-page__title">{{ department.name | titlecase }}</mat-card-title>
   </mat-card-header>
 
   <mat-divider />
@@ -14,10 +24,13 @@
   <mat-card-content class="department-page__content" *ngIf="manager$ | async as manager;else sectionLoader">
 
     <app-department-section name="Информация">
-      <div class="department-page__info-cards" *ngIf="manager;else sectionLoader">
-        <app-employee-info-card name="Управляющий" [value]="manager.name" />
-        <app-employee-info-card name="Почта" [value]="manager.email" />
-        <app-employee-info-card name="Телефон" [value]="manager.phone" />
+      <div class="department-page__info" *ngIf="manager;else sectionLoader">
+        <div class="department-page__manager manager">
+          <h4 class="manager__title">Управляющий</h4>
+          <p class="manager__name"><span>{{manager.name}}</span></p>
+          <p class="manager__email">{{manager.email}}</p>
+          <p class="manager__phone">{{manager.phone}}</p>
+        </div>
       </div>
     </app-department-section>
 
@@ -32,9 +45,15 @@
         Добавить сотрудника
       </button>
       <div *ngIf="employees$ | async as employees;else sectionLoader" class="department-page__employees">
-        <app-employees-employee *ngFor="let employee of employees |
-         filter: ['name', 'email', 'phone']:employee_search.value; let i = index" [employee]="employee"
-                                [isDeleteLocked]="employee.id === manager.id" />
+        @if (employees.length !== 0) {
+          <app-employees-employee *ngFor="let employee of employees |
+                                  filter:['name', 'email', 'phone']
+                                   :employee_search.value; let i = index"
+                                  [employee]="employee"
+                                  [isDeleteLocked]="employee.id === manager.id" />
+        } @else {
+          <p>Список пуст</p>
+        }
       </div>
     </app-department-section>
 

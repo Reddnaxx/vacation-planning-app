@@ -4,6 +4,7 @@
   min-height: 150px;
   cursor: pointer;
   transition-duration: 0.2s;
+  height: 100%;
 
   &:hover {
     background-color: var(--department-card-hover-color);
@@ -12,8 +13,11 @@
   }
 
   &__manager-name {
-    flex: 1;
-    grid-area: manager-name;
+    font-weight: normal;
+  }
+
+  &__manager-email {
+    margin-bottom: 0.5rem;
   }
 
   &__header {
@@ -23,8 +27,8 @@
   }
 
   &__content {
-    display: grid;
-    grid-template-areas: "manager-name manager-name";
+    display: flex;
+    flex-direction: column;
     padding: 15px;
     gap: 5px;
   }

@@ -46,8 +46,8 @@ export class EmployeesDepartmentEditDialogComponent {
   }
 
   protected async updateDepartment(name: string) {
-    await this.departmentsService.edit(this.department.id, name);
     this.dialogRef.close();
+    await this.departmentsService.edit(this.department.id, name);
     this.snackbar.open(`${this.department.name} успешно изменен`, "Ок", {
       horizontalPosition: "right",
       panelClass: "app-snack-bar-success",

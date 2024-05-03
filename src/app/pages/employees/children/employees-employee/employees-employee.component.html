@@ -1,17 +1,30 @@
 <mat-card class="employee-card">
   <mat-card-content class="employee-card__content">
     <div class="employee-card__info">
-      <app-employee-info-card name="ФИО" [value]="employee.name" />
-      <app-employee-info-card name="Роль"
-                              [value]="employee.role === 'manager'
-                                                          ? 'Управляющий'
-                                                          : 'Сотрудник'" />
-      <app-employee-info-card name="Почта" [value]="employee.email" />
-      <app-employee-info-card name="Телефон" [value]="employee.phone" />
+      <h4 class="employee-card__name">{{employee.name}}</h4>
+      <p class="employee-card__role">{{employee.role === 'manager'
+        ? 'Управляющий'
+        : 'Сотрудник'}}</p>
+      <p class="employee-card__email">{{employee.email}}</p>
+      <p class="employee-card__phone">{{employee.phone}}</p>
     </div>
-    <button *ngIf="!isDeleteLocked" mat-icon-button class="employee-card__remove-btn"
-            (click)="openDeleteDialog()">
-      <mat-icon fontIcon="close" color="warn" />
-    </button>
+    <div class="employee-card__active" *ngIf="employee.role !== 'manager'">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon fontIcon="more_vert" />
+      </button>
+    </div>
   </mat-card-content>
 </mat-card>
+
+<mat-menu #menu="matMenu">
+  <ng-template matMenuContent>
+    <button mat-menu-item (click)="openDeleteDialog()">
+      <mat-icon fontIcon="edit" />
+      Изменить
+    </button>
+    <button mat-menu-item (click)="openDeleteDialog()">
+      <mat-icon fontIcon="delete" color="warn" />
+      Удалить
+    </button>
+  </ng-template>
+</mat-menu>

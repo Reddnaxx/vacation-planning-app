@@ -10,21 +10,8 @@
   display: flex;
   flex-direction: column;
   margin-inline: auto;
-  margin-top: 50px;
-  max-width: 1200px;
+  margin-top: 15px;
   gap: 10px;
-
-  @media (width < 1200px) {
-    max-width: 768px;
-  }
-
-  @media (width < 768px) {
-    max-width: 90dvw;
-  }
-
-  @media (width < 470px) {
-    max-width: unset;
-  }
 }
 
 .content, .actions {
@@ -51,8 +38,6 @@
 .header {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
-  gap: 5px;
 }
 
 .departments {

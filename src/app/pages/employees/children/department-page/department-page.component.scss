@@ -1,10 +1,10 @@
 .department-page {
   margin-inline: auto;
-  max-width: 1620px;
   margin-top: 20px;
 
-  @media (width < 1620px) {
-    max-width: 1100px;
+  &__btns {
+    display: flex;
+    gap: 5px;
   }
 
   &__header {
@@ -25,10 +25,10 @@
     gap: 10px;
   }
 
-  &__info-cards {
+  &__info {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 0.5rem;
     font-size: 1.25rem;
   }
 
@@ -40,6 +40,15 @@
 
   &__add-employee-btn {
     width: fit-content;
+  }
+
+  .manager {
+    font-size: 1rem;
+
+    &__title {
+      font-size: 1.25rem;
+      font-weight: normal;
+    }
   }
 }
 

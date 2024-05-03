@@ -1,0 +1,16 @@
+<mat-card class="department-card" (click)="navigateToDepartmentPage()">
+  <mat-card-header class="department-card__header">
+    <mat-card-title class="department-card__title">{{ department.name | titlecase }}</mat-card-title>
+  </mat-card-header>
+  <mat-divider />
+  <mat-card-content class="department-card__content">
+    <ng-container *ngIf="employees$ | async as employees;else loader">
+      <h3 class="department-card__manager-name">Управляющий: <br/> {{ manager.name }}</h3>
+      <p class="department-card__manager-email">{{ manager.email }}</p>
+      <p>Кол-во сотрудников: {{ employees.length }}</p>
+    </ng-container>
+    <ng-template #loader>
+      <app-loader class="loader" />
+    </ng-template>
+  </mat-card-content>
+</mat-card>

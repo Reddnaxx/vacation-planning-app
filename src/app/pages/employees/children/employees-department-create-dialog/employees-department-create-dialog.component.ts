@@ -29,8 +29,10 @@ export class EmployeesDepartmentCreateDialogComponent {
   }
 
   protected async createNewDepartment(name: string) {
-    const newDepartment = await this.departmentService.create(name);
     this.dialogRef.close();
+    const newDepartment = await this.departmentService.create(
+      name.toLowerCase(),
+    );
     this.snackBar.open(`${newDepartment.name} был успешно создан`, "Ок", {
       panelClass: "app-snack-bar-success",
       horizontalPosition: "right",

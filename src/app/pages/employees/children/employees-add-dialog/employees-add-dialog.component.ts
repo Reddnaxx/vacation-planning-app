@@ -61,6 +61,7 @@ export class EmployeesAddDialogComponent {
     email: string | null,
     password: string | null,
   ) {
+    this.dialogRef.close();
     await this.departmentService.createEmployee(
       this.data.id,
       name!,
@@ -68,7 +69,6 @@ export class EmployeesAddDialogComponent {
       email!,
       password!,
     );
-    this.dialogRef.close();
     this.snackBar.open(`${name} был успешно добавлен`, "Ок", {
       horizontalPosition: "right",
       panelClass: "app-snack-bar-success",
