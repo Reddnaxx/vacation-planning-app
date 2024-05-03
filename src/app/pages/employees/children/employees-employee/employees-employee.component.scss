@@ -1,14 +1,8 @@
 .employee-card {
-
   &__content {
     display: grid;
     align-items: center;
     grid-template-columns: 10fr 1fr;
-  }
-
-  &__remove-btn {
-    justify-self: flex-end;
-    align-self: flex-start;
   }
 
   &__info {
@@ -16,6 +10,15 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 10px;
     width: 100%;
+    height: 100%;
+  }
+
+  &__active {
+    height: 100%;
+    justify-self: flex-end;
+    align-self: center;
+    display: flex;
+    gap: 5px;
   }
 }
 

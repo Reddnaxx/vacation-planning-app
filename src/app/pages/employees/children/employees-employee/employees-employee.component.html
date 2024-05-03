@@ -9,9 +9,23 @@
       <app-employee-info-card name="Почта" [value]="employee.email" />
       <app-employee-info-card name="Телефон" [value]="employee.phone" />
     </div>
-    <button *ngIf="!isDeleteLocked" mat-icon-button class="employee-card__remove-btn"
-            (click)="openDeleteDialog()">
-      <mat-icon fontIcon="close" color="warn" />
-    </button>
+    <div class="employee-card__active" *ngIf="employee.role !== 'manager'">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon fontIcon="more_vert" />
+      </button>
+    </div>
   </mat-card-content>
 </mat-card>
+
+<mat-menu #menu="matMenu">
+  <ng-template matMenuContent>
+    <button mat-menu-item (click)="openDeleteDialog()">
+      <mat-icon fontIcon="edit" />
+      Изменить
+    </button>
+    <button mat-menu-item (click)="openDeleteDialog()">
+      <mat-icon fontIcon="delete" color="warn" />
+      Удалить
+    </button>
+  </ng-template>
+</mat-menu>

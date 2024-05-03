@@ -4,12 +4,12 @@ import { UserModel } from "../../models/user.model";
 import { EmployeeInfoCardComponent } from "./components/employee-info-card/employee-info-card.component";
 import { MatDialog } from "@angular/material/dialog";
 import { EmployeesDeleteDialogComponent } from "../employees-delete-dialog/employees-delete-dialog.component";
-import { NgIf } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 
 @Component({
   selector: "app-employees-employee",
   standalone: true,
-  imports: [MaterialModule, EmployeeInfoCardComponent, NgIf],
+  imports: [MaterialModule, EmployeeInfoCardComponent, CommonModule],
   templateUrl: "./employees-employee.component.html",
   styleUrl: "./employees-employee.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,

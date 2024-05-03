@@ -8,6 +8,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatExpansionModule } from "@angular/material/expansion";
+import { MatMenuModule } from '@angular/material/menu';
 
 const MaterialComponents = [
   MatIconModule,
@@ -19,6 +20,7 @@ const MaterialComponents = [
   MatInputModule,
   MatDividerModule,
   MatExpansionModule,
+  MatMenuModule
 ];
 
 @NgModule({

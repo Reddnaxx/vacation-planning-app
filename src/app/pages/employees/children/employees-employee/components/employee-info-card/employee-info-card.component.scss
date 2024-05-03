@@ -1,5 +1,9 @@
 .wrapper {
   background-color: var(--color-accent);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .name {
@@ -10,6 +14,6 @@
   white-space: nowrap;
 
   @media (width < 900px) {
-    white-space: pre-wrap;
+    white-space: unset;
   }
 }
