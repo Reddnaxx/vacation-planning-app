@@ -1,4 +1,4 @@
-<app-bread-crumb/>
+<app-bread-crumb />
 <mat-card *ngIf="department$ | async as department;else pageLoader"
           class="department-page">
   <mat-card-header class="department-page__header">
@@ -24,10 +24,13 @@
   <mat-card-content class="department-page__content" *ngIf="manager$ | async as manager;else sectionLoader">
 
     <app-department-section name="Информация">
-      <div class="department-page__info-cards" *ngIf="manager;else sectionLoader">
-        <app-employee-info-card name="Управляющий" [value]="manager.name" />
-        <app-employee-info-card name="Почта" [value]="manager.email" />
-        <app-employee-info-card name="Телефон" [value]="manager.phone" />
+      <div class="department-page__info" *ngIf="manager;else sectionLoader">
+        <div class="department-page__manager manager">
+          <h4 class="manager__title">Управляющий</h4>
+          <p class="manager__name"><span>{{manager.name}}</span></p>
+          <p class="manager__email">{{manager.email}}</p>
+          <p class="manager__phone">{{manager.phone}}</p>
+        </div>
       </div>
     </app-department-section>
 
@@ -44,7 +47,8 @@
       <div *ngIf="employees$ | async as employees;else sectionLoader" class="department-page__employees">
         @if (employees.length !== 0) {
           <app-employees-employee *ngFor="let employee of employees |
-         filter: ['name', 'email', 'phone']:employee_search.value; let i = index"
+                                  filter:['name', 'email', 'phone']
+                                   :employee_search.value; let i = index"
                                   [employee]="employee"
                                   [isDeleteLocked]="employee.id === manager.id" />
         } @else {
