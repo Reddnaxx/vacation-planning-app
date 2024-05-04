@@ -2,4 +2,6 @@ import HistoryModel from "../../../../pages/profile/children/models/history.mode
 
 export interface IDialogHistoryData {
   history: HistoryModel;
+  type: string;
+  content: string;
 }

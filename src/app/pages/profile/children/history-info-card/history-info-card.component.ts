@@ -7,6 +7,7 @@ import HistoryModel from "../models/history.model";
 import { MatIconButton } from "@angular/material/button";
 import { MatDialog } from "@angular/material/dialog";
 import { DialogHistoryComponent } from "../../../../shared/components/dialog-history/dialog-history.component";
+import { InfoHistoryComponent } from "../../../../shared/components/info-history/info-history.component";
 
 @Component({
   selector: "app-history-info-card",
@@ -21,9 +22,10 @@ import { DialogHistoryComponent } from "../../../../shared/components/dialog-his
     NgOptimizedImage,
     MatIconButton,
     DialogHistoryComponent,
+    InfoHistoryComponent,
   ],
   templateUrl: "./history-info-card.component.html",
-  styleUrl: "./history-info-card.component.scss",
+  styleUrls: ["./history-info-card.component.scss"],
 })
 export class HistoryInfoCardComponent {
   @Input({ required: true })
@@ -32,8 +34,21 @@ export class HistoryInfoCardComponent {
   constructor(private dialog: MatDialog) {}
 
   openEditDialog(history: HistoryModel) {
-    const dialogRef = this.dialog.open(DialogHistoryComponent, {
-      data: { history },
-      backdropClass: 'blur-backdrop'});
+    // Проверка на статус "В ожидании"
+    if (history.status === "В ожидании") {
+      const dialogRef = this.dialog.open(DialogHistoryComponent, {
+        data: { history },
+        backdropClass: "blur-backdrop",
+      });
+    } else {
+      // Открытие диалогового окна с информацией о заявке
+      this.openDialog(history);
+    }
+  }
+
+  openDialog(history: HistoryModel) {
+    this.dialog.open(InfoHistoryComponent, {
+      data: history,
+    });
   }
 }

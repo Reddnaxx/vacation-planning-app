@@ -1,6 +1,6 @@
 <mat-card class="history-info">
   <div class="display">
-    <button mat-icon-button (click)="openEditDialog(history)">
+    <button mat-icon-button (click)="openDialog(history)">
       <mat-icon fontIcon="info" />
     </button>
     <h3 class="card-info">{{ history.id }}</h3>
@@ -12,12 +12,12 @@
     'status3': history.status === 'Отклонено',
     'status4': history.status === 'В ожидании'
   }">{{ history.status }}</p>
-  <button *ngIf="history.status === 'Выполнено';else edit_btn" mat-icon-button class="delete-btn">
-    <mat-icon fontIcon="delete" />
+  <button *ngIf="history.status === 'Выполнено' || history.status === 'Подтверждено' || history.status === 'Отклонено'; else edit_btn" mat-icon-button class="delete-btn">
+    <mat-icon fontIcon="delete"></mat-icon>
   </button>
   <ng-template #edit_btn>
-    <button mat-icon-button *ngIf="history.status !== 'Выполнено'" (click)="openEditDialog(history)">
-      <mat-icon svgIcon="edit" />
+    <button mat-icon-button *ngIf="history.status !== 'Выполнено' && history.status !== 'Подтверждено' && history.status !== 'Отклонено'" (click)="openEditDialog(history)">
+      <mat-icon svgIcon="edit"></mat-icon>
     </button>
   </ng-template>
 </mat-card>

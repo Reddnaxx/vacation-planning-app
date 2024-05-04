@@ -4,5 +4,7 @@ export default class HistoryModel {
     public datestart: string,
     public dateend: string,
     public status: string,
-    ) {}
+    public type: string,
+    public content: string,
+  ) {}
 }
