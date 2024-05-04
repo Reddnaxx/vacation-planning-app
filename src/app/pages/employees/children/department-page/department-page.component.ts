@@ -19,6 +19,7 @@ import { BreadCrumbComponent } from "@shared/components/bread-crumb/bread-crumb.
 import { Title } from "@angular/platform-browser";
 import { EmployeesDepartmentEditDialogComponent } from "@pages/employees/children/employees-department-edit-dialog/employees-department-edit-dialog.component";
 import { DepartmentDeleteDialogComponent } from "@pages/employees/children/department-delete-dialog/department-delete-dialog.component";
+import { BreadCrumbService } from "@shared/services/bread-crumb.service";
 
 @Component({
   selector: "app-department",
@@ -49,6 +50,7 @@ export class DepartmentPageComponent {
     private destroyRef: DestroyRef,
     private dialog: MatDialog,
     private titleService: Title,
+    private breadcrumbService: BreadCrumbService,
   ) {
     this.department$ = new BehaviorSubject<DepartmentModel | null>(null);
 
@@ -71,6 +73,7 @@ export class DepartmentPageComponent {
       filter(value => !!value),
       switchMap(value => this.departmentsService.getEmployees(value!.id)),
     );
+    this.breadcrumbService.loadBreadCrumbs();
   }
 
   protected openEmployeeAddDialog() {
