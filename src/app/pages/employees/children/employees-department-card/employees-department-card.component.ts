@@ -55,9 +55,7 @@ export class EmployeesDepartmentCardComponent implements OnInit {
   }
 
   protected async navigateToDepartmentPage() {
-    await this.router.navigate([`employees/${this.department.slug}`], {
-      state: { name: this.department.name },
-    });
+    await this.router.navigate([`employees/${this.department.slug}`]);
   }
 
   protected readonly parent = parent;

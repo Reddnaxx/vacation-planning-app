@@ -7,7 +7,8 @@ import { ProfileUserSectionComponent } from "./children/profile-user-section/pro
 import { ProfileHistorySectionComponent } from "./children/profile-history-section/profile-history-section.component";
 import { HistoryInfoCardComponent } from "./children/history-info-card/history-info-card.component";
 import HistoryModel from "./children/models/history.model";
-import { BreadCrumbComponent } from '@shared/components/bread-crumb/bread-crumb.component';
+import { BreadCrumbComponent } from "@shared/components/bread-crumb/bread-crumb.component";
+import { BreadCrumbService } from "@shared/services/bread-crumb.service";
 
 @Component({
   selector: "app-profile",
@@ -29,7 +30,7 @@ export class ProfileComponent {
   public user!: UserModel;
   public history!: HistoryModel[];
 
-  constructor() {
+  constructor(private breadcrumbService: BreadCrumbService) {
     this.user = new UserModel(
       "Александр",
       "Рукавишников",
@@ -59,6 +60,6 @@ export class ProfileComponent {
         "В ожидании",
       ),
     ];
+    this.breadcrumbService.loadBreadCrumbs();
   }
 }
-

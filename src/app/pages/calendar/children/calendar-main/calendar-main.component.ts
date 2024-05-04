@@ -20,11 +20,7 @@ import { CalendarCellComponent } from "../../components/calendar-cell/calendar-c
   styleUrl: "./calendar-main.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CalendarMainComponent implements OnChanges {
-  ngOnChanges(): void {
-    console.log(this.beforeDays);
-  }
-
+export class CalendarMainComponent {
   @Input({ required: true })
   public currentDay!: number;
 

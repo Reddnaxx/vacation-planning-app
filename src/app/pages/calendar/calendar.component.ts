@@ -5,6 +5,7 @@ import { MONTH_DAYS } from "./children/calendar-main/data/monthDays";
 import { log } from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
 import { BreadCrumbComponent } from "@shared/components/bread-crumb/bread-crumb.component";
 import { MatCard } from "@angular/material/card";
+import { BreadCrumbService } from "@shared/services/bread-crumb.service";
 
 @Component({
   selector: "app-calendar",
@@ -82,7 +83,7 @@ export class CalendarComponent {
     );
   }
 
-  constructor() {
+  constructor(private breadcrumbService: BreadCrumbService) {
     const date = new Date();
 
     this.currentMonth = date.getMonth();
@@ -91,5 +92,7 @@ export class CalendarComponent {
 
     date.setDate(1);
     this.startDayOfWeek = date.getDay() + 1;
+
+    this.breadcrumbService.loadBreadCrumbs();
   }
 }

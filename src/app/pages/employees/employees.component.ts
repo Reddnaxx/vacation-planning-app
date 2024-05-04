@@ -9,6 +9,7 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { LoaderComponent } from "@shared/components/loader/loader.component";
 import { BreadCrumbComponent } from "@shared/components/bread-crumb/bread-crumb.component";
 import { EmployeesDepartmentCardComponent } from "./children/employees-department-card/employees-department-card.component";
+import { BreadCrumbService } from "@shared/services/bread-crumb.service";
 
 @Component({
   selector: "app-employees",
@@ -30,12 +31,14 @@ export class EmployeesComponent {
   constructor(
     private departmentsService: DepartmentsService,
     private dialog: MatDialog,
-    private destroy$: DestroyRef,
+    private destroy: DestroyRef,
+    private breadcrumbService: BreadCrumbService,
   ) {
     this.departments$ = this.departmentsService.departments$.pipe(
-      takeUntilDestroyed(this.destroy$),
+      takeUntilDestroyed(this.destroy),
     );
     this.departments$.subscribe(() => this.isLoading$.next(false));
+    this.breadcrumbService.loadBreadCrumbs();
   }
 
   protected openDepartmentCreateDialog() {
