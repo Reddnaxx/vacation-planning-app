@@ -10,7 +10,7 @@ body {
 .container {
   display: flex;
   justify-content: center;
-  margin: 100px;
+  margin: 50px;
   min-width: 350px;
 }
 
@@ -34,7 +34,8 @@ mat-card-title {
   display: flex;
   align-items: center;
   text-align: center;
-
+  justify-content: center;
+  margin: 20px;
   color: $primary-color;
 
   flex: none;
