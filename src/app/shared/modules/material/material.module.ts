@@ -1,30 +1,26 @@
 import { NgModule } from "@angular/core";
-import { MatIcon } from "@angular/material/icon";
-import { MatButton } from "@angular/material/button";
-import {
-  MatCard,
-  MatCardContent,
-  MatCardHeader,
-  MatCardImage,
-  MatCardSubtitle,
-  MatCardTitle,
-} from "@angular/material/card";
-import { MatError, MatFormField, MatLabel } from "@angular/material/form-field";
-import { MatInput } from "@angular/material/input";
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
+import { MatCardModule } from "@angular/material/card";
+import { MatFormField } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatDividerModule } from "@angular/material/divider";
+import { MatExpansionModule } from "@angular/material/expansion";
+import { MatMenuModule } from '@angular/material/menu';
 
 const MaterialComponents = [
-  MatIcon,
-  MatButton,
-  MatCard,
-  MatCardHeader,
-  MatCardContent,
-  MatCardTitle,
-  MatCardSubtitle,
-  MatCardImage,
+  MatIconModule,
+  MatButtonModule,
+  MatCardModule,
   MatFormField,
-  MatInput,
-  MatLabel,
-  MatError,
+  MatDialogModule,
+  MatAutocompleteModule,
+  MatInputModule,
+  MatDividerModule,
+  MatExpansionModule,
+  MatMenuModule
 ];
 
 @NgModule({

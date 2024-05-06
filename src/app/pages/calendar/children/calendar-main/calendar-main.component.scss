@@ -1,6 +1,7 @@
 .wrapper {
   background: var(--color-primary);
   border-radius: 8px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .header {
@@ -25,5 +26,5 @@
 }
 
 .day-off {
-  color: var(--color-red);
+  color: var(--cell-dayoff-color);
 }

@@ -1,0 +1,23 @@
+<mat-card class="history-info">
+  <div class="display">
+    <button mat-icon-button>
+      <mat-icon fontIcon="info" />
+    </button>
+    <h3 class="card-info">{{ history.id }}</h3>
+  </div>
+  <div class="date">{{ history.date }}</div>
+  <p [ngClass]="{
+  'status': history.status === 'Выполнено',
+  'status2': history.status === 'Подтверждено',
+  'status3': history.status === 'Отклонено',
+  'status4': history.status === 'В ожидании'
+  }">{{ history.status }}</p>
+  <button *ngIf="history.status === 'Выполнено';else edit_btn" mat-icon-button class="delete-btn">
+    <mat-icon fontIcon="delete" />
+  </button>
+  <ng-template #edit_btn>
+    <button mat-icon-button *ngIf="history.status !== 'Выполнено'">
+      <mat-icon svgIcon="edit" />
+    </button>
+  </ng-template>
+</mat-card>

@@ -24,10 +24,10 @@ export const MONTH_DAYS = (year: number) => {
     firstArray,
     secondArray,
     firstArray,
-    secondArray,
     firstArray,
     secondArray,
     firstArray,
     secondArray,
+    firstArray,
   ];
 };

@@ -1,0 +1,67 @@
+.department-page {
+  margin-inline: auto;
+  margin-top: 20px;
+
+  &__btns {
+    display: flex;
+    gap: 5px;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-family: "Russo One", "Helvetica Neue", sans-serif;
+  }
+
+  &__content {
+    padding-block: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+  }
+
+  &__employees {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  &__add-employee-btn {
+    width: fit-content;
+  }
+
+  .manager {
+    font-size: 1rem;
+
+    &__title {
+      font-size: 1.25rem;
+      font-weight: normal;
+    }
+  }
+}
+
+.page-loader {
+  display: flex;
+  padding: 100px;
+  width: 100%;
+  justify-content: center;
+}
+
+.section-loader {
+  display: flex;
+  padding: 25px;
+  width: 100%;
+  justify-content: center;
+}

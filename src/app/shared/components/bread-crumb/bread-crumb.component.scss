@@ -1,0 +1,32 @@
+.breadcrumb {
+  display: flex;
+  font-size: 0.875rem;
+  font-weight: bold;
+  margin-block: 0.5rem;
+  margin-inline: 0.25rem;
+  gap: 5px;
+  color: var(--breadcrumb-color);
+
+  @media (width < 480px) {
+    font-size: 0.75rem;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  a {
+    transition-duration: 0.2s;
+
+    &:hover {
+      color: var(--breadcrumb-color-hover);
+    }
+  }
+}
+
+.current {
+  color: var(--text-color-transparent );
+  pointer-events: none;
+}

@@ -12,15 +12,25 @@
   </mat-card-header>
   <mat-card-content>
     <ul class="cells">
-      <app-calendar-cell *ngFor="let day of beforeDays"
+      <app-calendar-cell *ngFor="let day of beforeDays; let i = index"
                          [day]="day" cellStyle="transparent"
-                         [isToday]="day === currentDay" />
-      <app-calendar-cell *ngFor="let day of currentMonthDays"
+                         [isToday]="day === currentDay &&
+                                    monthOffset === 1 &&
+                                    yearOffset === 0"
+                         [isDayOff]="i > 4" />
+      <app-calendar-cell *ngFor="let day of currentMonthDays; let i = index"
                          [day]="day"
-                         [isToday]="day === currentDay" />
-      <app-calendar-cell *ngFor="let day of fillDays"
+                         [isToday]="day === currentDay &&
+                                    monthOffset === 0 &&
+                                    yearOffset === 0"
+                         [isDayOff]="(monthStartDay + i + 1) % 7 === 0 || (monthStartDay + i) % 7 === 0" />
+      <app-calendar-cell *ngFor="let day of fillDays; let i = index"
                          [day]="day" cellStyle="transparent"
-                         [isToday]="day === currentDay" />
+                         [isToday]="day === currentDay &&
+                                    monthOffset === -1 &&
+                                    yearOffset === 0"
+                         [isDayOff]="(beforeDays.length + currentMonthDays.length + i + 1) % 7 === 0 ||
+                                      (beforeDays.length + currentMonthDays.length + i + 2) % 7 === 0" />
     </ul>
   </mat-card-content>
 </mat-card>

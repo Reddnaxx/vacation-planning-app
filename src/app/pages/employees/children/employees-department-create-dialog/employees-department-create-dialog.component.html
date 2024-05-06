@@ -1,0 +1,22 @@
+<h2 mat-dialog-title class="title">Создать отдел</h2>
+<mat-dialog-actions class="actions">
+  <form class="form"
+        [formGroup]="newDepartmentForm"
+        (ngSubmit)="createNewDepartment(newDepartmentForm.controls.name.value!)">
+    <mat-form-field color="accent">
+      <mat-label class="form__label">Название</mat-label>
+      <input matInput [formControl]="newDepartmentForm.controls.name" autocomplete="off">
+    </mat-form-field>
+    <button mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="
+              !newDepartmentForm.valid ||
+              !newDepartmentForm.controls.name.value"
+    >
+      Создать
+    </button>
+  </form>
+</mat-dialog-actions>
+
+

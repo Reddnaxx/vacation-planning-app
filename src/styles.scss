@@ -1,3 +1,6 @@
+@import "styles/custom-snackbar";
+@import "styles/custom-dialog";
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -20,48 +23,23 @@ body {
   color: var(--text-color-dark);
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: "Russo One", "Helvetica Neue", sans-serif;
 }
 
-ul {
+ul, ol {
   list-style: none;
-  margin: 0;
-  padding: 0;
 }
 
-:root {
-  //Main colors
-  --color-accent: #8000FF;
-  --color-bg: #323232;
-  --color-primary: #404040;
-  --color-red: #CC0062;
-  --color-yellow: #ECE41E;
-  --color-green: #00C673;
-
-  //Text
-  --text-color-light: #ffffff;
-  --text-color-dark: #1C274C;
-  --text-color-transparent: rgba(255, 255, 255, 0.5);
-  --link-color-main: #5F5FFF;
-
-  //Components
-  --header-color: var(--color-accent);
-
-  //Calendar
-  --cell-color: rgba(255, 255, 255, 0.7);
-  --cell-color-hover: rgba(185, 255, 194, 0.7);
-  --cell-today-color: var(--color-accent);
-  --cell-today-color-hover: #a446ff;
-
-  //Button
-  --button-color-default: var(--color-accent);
-  --button-color-disabled: #4F4F4F;
-  --button-text-color-disabled: rgba(255, 255, 255, 0.25);
-
-  //Toggle button
-  --toggle-color-checked: var(--color-green);
-
-  //Application
-  --application-bg-color: rgba(255, 255, 255, 0.25);
+input[type="password"] {
+  &::-ms-reveal {
+    display: none;
+  }
 }
+
+@import "styles/colors";
