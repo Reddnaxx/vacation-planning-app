@@ -19,15 +19,12 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   login() {
-    if (this.form.valid) {
-      this.authService.login({
-        email: this.email.value,
-        password: this.password.value
-      }).pipe(
-        tap(() => this.router.navigate(['']))
-      ).subscribe()
-    }
-  }
+    //if (this.form.valid) {
+      //this.authService.loginUser(this.form.value)
+        //.then(() => this.router.navigate(['']))
+        //.catch(error => console.error(error)); // Handle errors
+    //}
+  }//
 
   get email(): FormControl {
     return this.form.get('email') as FormControl;

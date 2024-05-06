@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
-import { UserService } from '../../services/user-service/user.service';
+import { AuthService } from '../../services/auth-service/auth.service';
 import { CustomValidators } from '../../_helpers/custom-validators';
 
 
@@ -24,19 +24,13 @@ export class RegisterComponent {
     { validators: CustomValidators.passwordsMatching }
   );
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   register() {
     if (this.form.valid) {
-      this.userService.create({
-        email: this.email.value,
-        firstName: this.firstName.value,
-        password: this.password.value,
-        lastName: this.lastName.value,
-        department: this.department.value,
-      }).pipe(
-        tap(() => this.router.navigate(['../login']))
-      ).subscribe();
+      this.authService.registerUser(this.form.value)
+        .then(() => this.router.navigate(['../login']))
+        .catch(error => console.error(error)); // Handle errors
     }
   }
 
