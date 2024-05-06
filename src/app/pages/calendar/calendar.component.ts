@@ -3,11 +3,12 @@ import { CalendarMainComponent } from "./children/calendar-main/calendar-main.co
 import { CalendarHeaderComponent } from "./children/calendar-header/calendar-header.component";
 import { MONTH_DAYS } from "./children/calendar-main/data/monthDays";
 import { log } from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
+import {CalendarButtonComponent} from '../../shared/components/calendar-button/calendar-button.component';
 
 @Component({
   selector: "app-calendar",
   standalone: true,
-  imports: [CalendarMainComponent, CalendarHeaderComponent],
+  imports: [CalendarMainComponent, CalendarHeaderComponent,CalendarButtonComponent],
   templateUrl: "./calendar.component.html",
   styleUrl: "./calendar.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -16,12 +17,12 @@ export class CalendarComponent {
   public monthOffset: number = 0;
   public yearOffset: number = 0;
 
-  protected currentYear: number;
-  protected currentMonth: number;
-  protected currentDay: number;
-  protected startDayOfWeek: number;
+  public currentYear: number;
+  public currentMonth: number;
+  public currentDay: number;
+  public startDayOfWeek: number;
 
-  protected changeMonth(offset: number) {
+  public changeMonth(offset: number) {
     this.monthOffset += offset;
 
     if (offset < 0 && this.monthWithOffset < 0) {
@@ -39,15 +40,15 @@ export class CalendarComponent {
     return MONTH_DAYS(this.yearWithOffset);
   }
 
-  protected get monthWithOffset() {
+  public get monthWithOffset() {
     return this.currentMonth + this.monthOffset;
   }
 
-  protected get yearWithOffset() {
+  public get yearWithOffset() {
     return this.currentYear + this.yearOffset;
   }
 
-  protected get startDayWithOffset() {
+  public get startDayWithOffset() {
     const date = new Date();
     date.setMonth(this.monthWithOffset);
     date.setFullYear(this.yearWithOffset);
@@ -56,7 +57,7 @@ export class CalendarComponent {
     return day === 0 ? 7 : day;
   }
 
-  protected get beforeDays() {
+  public get beforeDays() {
     let month = this.monthWithOffset - 1;
     month = month < 0 ? 11 : month;
     return this.days[month].filter(
@@ -64,11 +65,11 @@ export class CalendarComponent {
     );
   }
 
-  protected get currentMonthDays() {
+  public get currentMonthDays() {
     return this.days[this.monthWithOffset % 12];
   }
 
-  protected get fillDays() {
+  public get fillDays() {
     return this.days[(this.monthWithOffset + 1) % 12].filter(
       value =>
         value < 42 - this.beforeDays.length - this.currentMonthDays.length + 1,

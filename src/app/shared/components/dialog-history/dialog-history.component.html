@@ -1,6 +1,6 @@
 <div class="cau">
   <h1 mat-dialog-title class="title">{{ history.id }}</h1>
-  <div class="chill">Осталось отгулов: 5</div>
+  <div class="chill">Осталось отгулов: {{ history.dayoff }}</div>
   <form [formGroup]="historyForm" class="form">
     <div>
       <label for="type" class="type">Тип</label>

@@ -6,5 +6,6 @@ export default class HistoryModel {
     public status: string,
     public type: string,
     public content: string,
+    public dayoff: string,
   ) {}
 }
