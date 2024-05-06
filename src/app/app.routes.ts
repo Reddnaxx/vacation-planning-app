@@ -51,6 +51,6 @@ export const routes: Routes = [
       breadcrumb: "Планировщик отпусков",
     },
     loadChildren: () =>
-      import("./pages/register/public.module").then(m => m.PublicModule),
+      import("./pages/auth/public.module").then(m => m.PublicModule),
   },
 ];
