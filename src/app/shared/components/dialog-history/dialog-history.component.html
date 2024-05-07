@@ -1,0 +1,20 @@
+<div class="cau">
+  <h1 mat-dialog-title class="title">{{ history.id }}</h1>
+  <div class="chill">Осталось отгулов: {{ history.dayoff }}</div>
+  <form [formGroup]="historyForm" class="form">
+    <div>
+      <label for="type" class="type">Тип</label>
+      <input name="type" id="type" formControlName="type" class="Dates">
+    </div>
+    <div>
+      <label for="reason" class="reason">Причина</label>
+      <input name="reason" id="reason" formControlName="content" class="content">
+    </div>
+  </form>
+  <div class="date"><p>Срок</p>
+    <span class="from">{{ history.datestart }} - {{ history.dateend }}</span>
+  </div>
+  <mat-dialog-actions>
+    <button class="actions" (click)="saveChanges()">Сохранить</button>
+  </mat-dialog-actions>
+</div>

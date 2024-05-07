@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Информация о заявке</h2>
+<mat-dialog-content>
+  <p>ID: {{ data.id }}</p>
+  <p>Сроки: {{ data.datestart }} - {{ data.dateend }} </p>
+  <p>Статус: {{ data.status }}</p>
+  <p>Тип: {{ data.type }}</p>
+  <p>Осталось отгулов: {{ data.dayoff }}</p>
+  <p>Причина: {{ data.content }}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="actions" mat-button mat-dialog-close>Закрыть</button>
+</mat-dialog-actions>
+
