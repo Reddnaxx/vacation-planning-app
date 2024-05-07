@@ -1,7 +1,19 @@
 .wrapper {
   background-color: var(--color-accent);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .name {
   font-family: "Russo One", "Helvetica Neue", sans-serif;
+}
+
+.value {
+  white-space: nowrap;
+
+  @media (width < 900px) {
+    white-space: unset;
+  }
 }

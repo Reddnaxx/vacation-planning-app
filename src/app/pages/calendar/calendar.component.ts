@@ -4,11 +4,20 @@ import { CalendarHeaderComponent } from "./children/calendar-header/calendar-hea
 import { MONTH_DAYS } from "./children/calendar-main/data/monthDays";
 import { log } from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
 import {CalendarButtonComponent} from '../../shared/components/calendar-button/calendar-button.component';
+import { BreadCrumbComponent } from "@shared/components/bread-crumb/bread-crumb.component";
+import { MatCardModule } from "@angular/material/card";
+import { BreadCrumbService } from "@shared/services/bread-crumb.service";
 
 @Component({
   selector: "app-calendar",
   standalone: true,
-  imports: [CalendarMainComponent, CalendarHeaderComponent,CalendarButtonComponent],
+  imports: [
+    CalendarMainComponent,
+    CalendarHeaderComponent,
+    BreadCrumbComponent,
+    MatCardModule,
+    CalendarButtonComponent,
+  ],
   templateUrl: "./calendar.component.html",
   styleUrl: "./calendar.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -76,7 +85,7 @@ export class CalendarComponent {
     );
   }
 
-  constructor() {
+  constructor(private breadcrumbService: BreadCrumbService) {
     const date = new Date();
 
     this.currentMonth = date.getMonth();
@@ -85,5 +94,7 @@ export class CalendarComponent {
 
     date.setDate(1);
     this.startDayOfWeek = date.getDay() + 1;
+
+    this.breadcrumbService.loadBreadCrumbs();
   }
 }

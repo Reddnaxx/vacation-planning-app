@@ -1,12 +1,12 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { MatCard, MatCardContent, MatCardHeader, MatCardModule } from '@angular/material/card';
-import { NgClass, NgIf } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { MatCardModule } from "@angular/material/card";
+import { CommonModule } from "@angular/common";
 import { TCellStyle } from "../../types/cell-style.type";
 
 @Component({
   selector: "app-calendar-cell",
   standalone: true,
-  imports: [NgClass, NgIf, MatCardModule],
+  imports: [CommonModule, MatCardModule],
   templateUrl: "./calendar-cell.component.html",
   styleUrl: "./calendar-cell.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,

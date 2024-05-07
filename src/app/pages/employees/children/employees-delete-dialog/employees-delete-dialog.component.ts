@@ -1,14 +1,9 @@
 import { ChangeDetectionStrategy, Component, Inject } from "@angular/core";
-import {
-  MAT_DIALOG_DATA,
-  MatDialogModule,
-  MatDialogRef,
-} from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { IEmployeesDeleteDialogData } from "./interfaces/employees-delete-dialog-data.interface";
-import { MatButtonModule } from "@angular/material/button";
-import { EmployeesService } from "../../services/employees.service";
-import { MatDividerModule } from "@angular/material/divider";
 import { EmployeesModule } from "../../modules/employees.module";
+import { DepartmentsService } from "../../services/departments.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-employees-delete-dialog",
@@ -22,15 +17,22 @@ export class EmployeesDeleteDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<EmployeesDeleteDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: IEmployeesDeleteDialogData,
-    private employeesService: EmployeesService,
+    private departmentsService: DepartmentsService,
+    private snackbar: MatSnackBar,
   ) {}
 
   protected onNoClick(): void {
     this.dialogRef.close();
   }
 
-  protected onDeleteClick(): void {
-    this.employeesService.delete(this.data.id);
+  protected async onDeleteClick() {
     this.dialogRef.close();
+    await this.departmentsService.removeEmployee(this.data.id).then(() => {
+      this.snackbar.open(`${this.data.name} успешно удален из отдела`, "Ок", {
+        horizontalPosition: "right",
+        verticalPosition: "bottom",
+        panelClass: "app-snack-bar-success",
+      });
+    });
   }
 }

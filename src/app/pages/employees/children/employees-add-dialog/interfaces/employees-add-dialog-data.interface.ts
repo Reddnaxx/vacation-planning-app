@@ -1,3 +1,3 @@
 export interface IEmployeesAddDialogData {
-  id: number;
+  id: string;
 }

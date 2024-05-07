@@ -1,23 +1,40 @@
 import { Routes } from "@angular/router";
-import { ProfileComponent } from "./pages/profile/profile.component";
-import { EmployeesComponent } from "./pages/employees/employees.component";
-import { CalendarComponent } from "./pages/calendar/calendar.component";
-import { AuthGuard } from './pages/register/guards/auth.guard';
+import { ProfileComponent } from "@pages/profile/profile.component";
+import { CalendarComponent } from "@pages/calendar/calendar.component";
 
 export const routes: Routes = [
   {
     path: "profile",
     title: "Профиль",
     component: ProfileComponent,
-    loadChildren: () =>
-      import("./pages/employees/modules/employees.module").then(
-        m => m.EmployeesModule,
-      ),
+    data: {
+      breadcrumb: "Профиль",
+    },
   },
-  { path: "employees", title: "Сотрудники", component: EmployeesComponent },
-  { path: "calendar", title: "Календарь", component: CalendarComponent },
   {
-    path: '',
-    loadChildren: () => import('./pages/register/public.module').then(m => m.PublicModule)
+    path: "employees",
+    loadChildren: () =>
+      import("./pages/employees/modules/employees-routes").then(
+        m => m.EMPLOYEES_ROUTES,
+      ),
+    data: {
+      breadcrumb: "Сотрудники",
+    },
+  },
+  {
+    path: "calendar",
+    title: "Календарь",
+    component: CalendarComponent,
+    data: {
+      breadcrumb: "Календарь",
+    },
+  },
+  {
+    path: "",
+    loadChildren: () =>
+      import("./pages/register/public.module").then(m => m.PublicModule),
+    data: {
+      breadcrumb: "Планировщик отпусков",
+    },
   },
 ];

@@ -5,8 +5,8 @@ import {
   Input,
   Output,
 } from "@angular/core";
-import { MatButton, MatIconButton } from "@angular/material/button";
-import { MatIcon } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
 import { MONTHS_NAMES } from "./data/months";
 import HistoryModel from "../../../profile/children/models/history.model";
 import { CalendarButtonComponent } from "../../../../shared/components/calendar-button/calendar-button.component";
@@ -15,7 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: "app-calendar-header",
   standalone: true,
-  imports: [MatIconButton, MatIcon, MatButton, CalendarButtonComponent],
+  imports: [MatIconModule, MatButtonModule, CalendarButtonComponent],
   templateUrl: "./calendar-header.component.html",
   styleUrl: "./calendar-header.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
