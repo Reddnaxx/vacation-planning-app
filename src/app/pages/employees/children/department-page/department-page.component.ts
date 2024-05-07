@@ -1,4 +1,4 @@
-import { Component, DestroyRef } from "@angular/core";
+import { ChangeDetectionStrategy, Component, DestroyRef } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import DepartmentModel from "../../models/department.model";
 import { DepartmentsService } from "../../services/departments.service";
@@ -28,6 +28,7 @@ import { EmployeesModule } from "@pages/employees/modules/employees.module";
   ],
   templateUrl: "./department-page.component.html",
   styleUrl: "./department-page.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DepartmentPageComponent {
   protected department$!: BehaviorSubject<DepartmentModel | null>;

@@ -7,7 +7,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 
 @Component({
-  selector: "app-employees-delete-dialog",
+  selector: "app-department-delete-dialog",
   standalone: true,
   imports: [EmployeesModule],
   templateUrl: "./department-delete-dialog.component.html",

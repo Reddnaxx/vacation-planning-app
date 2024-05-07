@@ -2,9 +2,8 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { CalendarMainComponent } from "./children/calendar-main/calendar-main.component";
 import { CalendarHeaderComponent } from "./children/calendar-header/calendar-header.component";
 import { MONTH_DAYS } from "./children/calendar-main/data/monthDays";
-import { log } from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
 import { BreadCrumbComponent } from "@shared/components/bread-crumb/bread-crumb.component";
-import { MatCard } from "@angular/material/card";
+import { MatCardModule } from "@angular/material/card";
 import { BreadCrumbService } from "@shared/services/bread-crumb.service";
 
 @Component({
@@ -14,7 +13,7 @@ import { BreadCrumbService } from "@shared/services/bread-crumb.service";
     CalendarMainComponent,
     CalendarHeaderComponent,
     BreadCrumbComponent,
-    MatCard,
+    MatCardModule,
   ],
   templateUrl: "./calendar.component.html",
   styleUrl: "./calendar.component.scss",
