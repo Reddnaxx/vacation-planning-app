@@ -1,12 +1,9 @@
 import { Component, DestroyRef } from "@angular/core";
-import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import DepartmentModel from "../../models/department.model";
 import { DepartmentsService } from "../../services/departments.service";
 import { BehaviorSubject, filter, Observable, switchMap } from "rxjs";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { CommonModule } from "@angular/common";
-import { LoaderComponent } from "@shared/components/loader/loader.component";
-import { MaterialModule } from "@shared/modules/material/material.module";
 import { DepartmentSectionComponent } from "./children/department-section/department-section.component";
 import { EmployeesEmployeeComponent } from "../employees-employee/employees-employee.component";
 import { UserModel } from "@pages/employees/models/user.model";
@@ -14,25 +11,20 @@ import { UserService } from "@shared/services/user.service";
 import { EmployeeInfoCardComponent } from "../employees-employee/components/employee-info-card/employee-info-card.component";
 import { MatDialog } from "@angular/material/dialog";
 import { EmployeesAddDialogComponent } from "../employees-add-dialog/employees-add-dialog.component";
-import { FilterPipe } from "@shared/pipes/filter.pipe";
-import { BreadCrumbComponent } from "@shared/components/bread-crumb/bread-crumb.component";
 import { Title } from "@angular/platform-browser";
 import { EmployeesDepartmentEditDialogComponent } from "@pages/employees/children/employees-department-edit-dialog/employees-department-edit-dialog.component";
 import { DepartmentDeleteDialogComponent } from "@pages/employees/children/department-delete-dialog/department-delete-dialog.component";
 import { BreadCrumbService } from "@shared/services/bread-crumb.service";
+import { EmployeesModule } from "@pages/employees/modules/employees.module";
 
 @Component({
   selector: "app-department",
   standalone: true,
   imports: [
-    CommonModule,
-    LoaderComponent,
-    MaterialModule,
+    EmployeesModule,
     DepartmentSectionComponent,
     EmployeesEmployeeComponent,
     EmployeeInfoCardComponent,
-    FilterPipe,
-    BreadCrumbComponent,
   ],
   templateUrl: "./department-page.component.html",
   styleUrl: "./department-page.component.scss",
