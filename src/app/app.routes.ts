@@ -1,9 +1,6 @@
 import { Routes } from "@angular/router";
 import { ProfileComponent } from "@pages/profile/profile.component";
-import { EmployeesComponent } from "@pages/employees/employees.component";
 import { CalendarComponent } from "@pages/calendar/calendar.component";
-import { DepartmentPageComponent } from "@pages/employees/children/department-page/department-page.component";
-import { departmentResolver } from "@pages/employees/children/department-page/resolvers/department.resolver";
 
 export const routes: Routes = [
   {
@@ -13,29 +10,16 @@ export const routes: Routes = [
     data: {
       breadcrumb: "Профиль",
     },
-    loadChildren: () =>
-      import("./pages/employees/modules/employees.module").then(
-        m => m.EmployeesModule,
-      ),
   },
   {
     path: "employees",
+    loadChildren: () =>
+      import("./pages/employees/modules/employees-routes").then(
+        m => m.EMPLOYEES_ROUTES,
+      ),
     data: {
       breadcrumb: "Сотрудники",
     },
-    children: [
-      {
-        path: "",
-        pathMatch: "full",
-        title: "Сотрудники",
-        component: EmployeesComponent,
-      },
-      {
-        path: ":slug",
-        component: DepartmentPageComponent,
-        resolve: { breadcrumb: departmentResolver },
-      },
-    ],
   },
   {
     path: "calendar",
@@ -47,10 +31,10 @@ export const routes: Routes = [
   },
   {
     path: "",
+    loadChildren: () =>
+      import("./pages/register/public.module").then(m => m.PublicModule),
     data: {
       breadcrumb: "Планировщик отпусков",
     },
-    loadChildren: () =>
-      import("./pages/register/public.module").then(m => m.PublicModule),
   },
 ];

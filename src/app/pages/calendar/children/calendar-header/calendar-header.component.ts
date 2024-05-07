@@ -5,14 +5,14 @@ import {
   Input,
   Output,
 } from "@angular/core";
-import { MatButton, MatIconButton } from "@angular/material/button";
-import { MatIcon } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
 import { MONTHS_NAMES } from "./data/months";
 
 @Component({
   selector: "app-calendar-header",
   standalone: true,
-  imports: [MatIconButton, MatIcon, MatButton],
+  imports: [MatIconModule, MatButtonModule],
   templateUrl: "./calendar-header.component.html",
   styleUrl: "./calendar-header.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
