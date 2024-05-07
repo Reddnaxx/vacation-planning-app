@@ -9,7 +9,7 @@ import UserModel from "../../../../shared/models/user.model";
 export class AuthService {
   constructor(private afAuth: AngularFireAuth) {}
 
-  registerUser(user: UserModel): Promise<any> {
+  registerUser(user: UserModel): Promise<object> {
     if (user.email && user.password) {
       return this.afAuth.createUserWithEmailAndPassword(
         user.email,
@@ -20,7 +20,7 @@ export class AuthService {
     }
   }
 
-  loginUser(email: string, password: string): Promise<any> {
+  loginUser(email: string, password: string): Promise<object> {
     if (email && password) {
       return this.afAuth.signInWithEmailAndPassword(email, password);
     } else {

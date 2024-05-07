@@ -29,9 +29,9 @@
             <mat-form-field>
               <mat-label>Выберите отдел</mat-label>
               <mat-select formControlName="department">
-                <mat-option value="Первый отдел">Первый отдел</mat-option>
-                <mat-option value="Второй отдел">Второй отдел</mat-option>
-                <mat-option value="Третий отдел">Третий отдел</mat-option>
+                <mat-option value="Первый отдел">Отдел Разработки</mat-option>
+                <mat-option value="Второй отдел">Отдел Тестирования</mat-option>
+                <mat-option value="Третий отдел">Отдел Аналитики</mat-option>
               </mat-select>
               <mat-error *ngIf="department.touched && department.hasError('required')">Отдел не выбран</mat-error>
             </mat-form-field>

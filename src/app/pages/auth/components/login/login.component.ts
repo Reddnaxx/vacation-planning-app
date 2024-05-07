@@ -26,7 +26,7 @@ export class LoginComponent {
           this.form.get("email")?.value,
           this.form.get("password")?.value,
         )
-        .then(() => this.router.navigate([""]))
+        .then(() => this.router.navigate(["../profile"]))
         .catch(error => console.error(error)); // Handle errors
     }
   }
