@@ -1,11 +1,9 @@
 .wrapper {
   background-color: var(--color-primary);
-  width: fit-content;
-  padding: 25px;
+  padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
   color: var(--text-color-light);
-  flex: 1;
 }
 
 .form {
@@ -16,27 +14,26 @@
   &__label {
     font-family: "Russo One", "Helvetica Neue", sans-serif;
     font-size: 1.5rem;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
   }
 
   &__input {
     font-size: 1.75rem;
-    padding: 10px 15px;
+    padding: 0.5rem;
     border-radius: 8px;
-    color: var(--text-color-dark);
   }
 }
 
 .top-container {
   display: flex;
-  gap: 15px;
-  margin-bottom: 35px;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 .info {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.25rem;
 
   &__name {
     font-size: 2rem;
@@ -45,6 +42,12 @@
 
   &__dep, &__role {
     color: var(--text-color-transparent);
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
+}
+
+.save-btn {
+  font-size: 1.5rem;
+  --mdc-protected-button-container-height: unset;
+  padding: 1.5rem;
 }

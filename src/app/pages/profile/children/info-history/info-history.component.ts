@@ -4,10 +4,10 @@ import {
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
-  MatDialogTitle
-} from '@angular/material/dialog';
-import HistoryModel from "../../../pages/profile/children/models/history.model";
-import { MatButton } from '@angular/material/button';
+  MatDialogTitle,
+} from "@angular/material/dialog";
+import { MatButton } from "@angular/material/button";
+import HistoryModel from "@pages/profile/models/history.model";
 
 @Component({
   selector: "app-info-history",

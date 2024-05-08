@@ -1,93 +1,66 @@
-.history-info{
+.history-info {
   padding: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  flex-wrap: nowrap;
   align-items: center;
   gap: 25px;
   border-radius: 8px;
-  background: #ffffff3f;
+  background: var(--history-card-color);
 }
-.display{
+
+.display {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  flex-wrap: nowrap;
   align-items: center;
   gap: 10px;
-  box-sizing: border-box;
 }
 
 .card-info {
-  color: #fff;
-  font-size: 32px;
-  font-family: Russo One, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-  'Liberation Sans', sans-serif;
+  font-size: 2rem;
+
+  @media (width < 1680px) {
+    font-size: 1.5rem;
+  }
 }
+
 .date {
-  color: #fff;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: bold;
-  font-family: Ubuntu, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-  'Liberation Sans', sans-serif;
-  clear: both;
   display: inline-block;
-  overflow: hidden;
   white-space: nowrap;
+
+  @media (width < 1680px) {
+    display: none;
+  }
 }
+
 .status {
-  color: #fff;
-  font-size: 24px;
+  font-size: 1.25rem;
   font-weight: bold;
-  font-family: Ubuntu, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-  'Liberation Sans', sans-serif;
-  width: min-content;
-  height: min-content;
-  padding: 10px;
+  padding: 0.5rem;
   border-radius: 16px;
-  background-color: #0073c6;
-  margin-left: auto;
-}
-.status2 {
-  color: #fff;
-  font-size: 24px;
-  font-weight: bold;
-  font-family: Ubuntu, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-  'Liberation Sans', sans-serif;
-  width: min-content;
-  height: min-content;
-  padding: 10px;
-  border-radius: 16px;
-  background-color: #00c673;
-  margin-left: auto;
-}
-.status3 {
-  color: #fff;
-  font-size: 24px;
-  font-weight: bold;
-  font-family: Ubuntu, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-  'Liberation Sans', sans-serif;
-  width: min-content;
-  height: min-content;
-  padding: 10px;
-  border-radius: 16px;
-  background-color: #cc0062;
-  margin-left: auto;
-}
-.status4 {
-  color: #fff;
-  font-size: 24px;
-  font-weight: bold;
-  font-family: Ubuntu, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-  'Liberation Sans', sans-serif;
-  width: min-content;
-  height: min-content;
-  padding: 10px;
-  border-radius: 16px;
-  background-color: #ece41e;
   margin-left: auto;
   white-space: nowrap;
+
+  @media (width < 728px) {
+    font-size: 0.75rem;
+  }
+}
+
+.status1 {
+  background-color: #0073c6;
+}
+
+.status2 {
+  background-color: #00c673;
+}
+
+.status3 {
+  background-color: #cc0062;
+}
+
+.status4 {
+  background-color: #ece41e;
 }
 
 .delete-btn {

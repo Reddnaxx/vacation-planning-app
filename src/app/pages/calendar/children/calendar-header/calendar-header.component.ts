@@ -8,14 +8,14 @@ import {
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MONTHS_NAMES } from "./data/months";
-import HistoryModel from "../../../profile/children/models/history.model";
-import { CalendarButtonComponent } from "../../../../shared/components/calendar-button/calendar-button.component";
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog } from "@angular/material/dialog";
+import HistoryModel from "@pages/profile/models/history.model";
+import { HistoryDialogComponent } from "@shared/components/history-dialog/history-dialog.component";
 
 @Component({
   selector: "app-calendar-header",
   standalone: true,
-  imports: [MatIconModule, MatButtonModule, CalendarButtonComponent],
+  imports: [MatIconModule, MatButtonModule, HistoryDialogComponent],
   templateUrl: "./calendar-header.component.html",
   styleUrl: "./calendar-header.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,17 +27,21 @@ export class CalendarHeaderComponent {
   public currentYear!: number;
   @Output()
   public changeMonthEvent: EventEmitter<number> = new EventEmitter();
+
   protected get monthName() {
     return MONTHS_NAMES[this.currentMonth];
   }
+
   protected changeMonth(offset: -1 | 1) {
     this.changeMonthEvent.emit(offset);
   }
+
   public history!: HistoryModel;
+
   constructor(private dialog: MatDialog) {}
 
   openEditDialog() {
-    const dialogRef = this.dialog.open(CalendarButtonComponent, {
+    this.dialog.open(HistoryDialogComponent, {
       data: { history },
       backdropClass: "blur-backdrop",
     });

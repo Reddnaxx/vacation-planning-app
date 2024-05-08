@@ -5,9 +5,9 @@
     </button>
     <h3 class="card-info">{{ history.id }}</h3>
   </div>
-  <div class="date">{{ history.datestart }} - {{ history.dateend }}</div>
-  <p [ngClass]="{
-    'status': history.status === 'Выполнено',
+  <div class="date">{{ history.dateStart }} - {{ history.dateEnd }}</div>
+  <p class="status" [ngClass]="{
+    'status1': history.status === 'Выполнено',
     'status2': history.status === 'Подтверждено',
     'status3': history.status === 'Отклонено',
     'status4': history.status === 'В ожидании'

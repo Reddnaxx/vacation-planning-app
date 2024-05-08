@@ -8,8 +8,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { IProfileData } from "../../../../shared/models/profile-data.interface";
-import { ButtonComponent } from "../../../../shared/components/button/button.component";
+import { IProfileData } from "@shared/models/profile-data.interface";
 
 @Component({
   selector: "app-profile-user-section",
@@ -19,13 +18,12 @@ import { ButtonComponent } from "../../../../shared/components/button/button.com
     MaterialModule,
     NgOptimizedImage,
     ReactiveFormsModule,
-    ButtonComponent,
   ],
   templateUrl: "./profile-user-section.component.html",
   styleUrl: "./profile-user-section.component.scss",
 })
 export class ProfileUserSectionComponent {
-  @Input({required: true})
+  @Input({ required: true })
   public user!: UserModel;
 
   public dataForm: FormGroup<IProfileData> = new FormGroup<IProfileData>({

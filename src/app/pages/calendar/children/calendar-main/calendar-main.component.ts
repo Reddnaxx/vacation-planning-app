@@ -1,14 +1,17 @@
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
-import { MaterialModule } from '@shared/modules/material/material.module';
+import { MaterialModule } from "@shared/modules/material/material.module";
 import { CommonModule } from "@angular/common";
 import { provideNativeDateAdapter } from "@angular/material/core";
 import { CalendarCellComponent } from "../../components/calendar-cell/calendar-cell.component";
-import { CalendarButtonComponent} from '../../../../shared/components/calendar-button/calendar-button.component';
 
 @Component({
   selector: "app-calendar-main",
   standalone: true,
-  imports: [MaterialModule, CommonModule, CalendarCellComponent, CalendarButtonComponent],
+  imports: [
+    MaterialModule,
+    CommonModule,
+    CalendarCellComponent,
+  ],
   providers: [provideNativeDateAdapter()],
   templateUrl: "./calendar-main.component.html",
   styleUrl: "./calendar-main.component.scss",
