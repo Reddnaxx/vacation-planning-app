@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
 import { AuthService } from '../../services/auth-service/auth.service';
 import { CustomValidators } from '../../_helpers/custom-validators';
+import { UserModel } from '@shared/models/user.model';
 
 
 @Component({
@@ -26,12 +26,30 @@ export class RegisterComponent {
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  register() {
-    if (this.form.valid) {
-      this.authService.registerUser(this.form.value)
-        .then(() => this.router.navigate(['../login']))
-        .catch(error => console.error(error)); // Handle errors
+  ngOnInit(): void { }
+
+  onRegister() {
+    if (this.form.invalid) {
+      return;
     }
+
+    const user: UserModel = {
+      email: this.form.value.email,
+      password: this.form.value.password,
+      firstName: this.form.value.firstName,
+      lastName: this.form.value.lastName,
+      department: this.form.value.department,
+      isManager: false
+    };
+
+    this.authService.register(user).then(
+      () => {
+        this.router.navigate(["../profile"])
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   get email(): FormControl {

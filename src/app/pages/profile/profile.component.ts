@@ -1,6 +1,5 @@
-import { Component, NgModule } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { MaterialModule } from "../../shared/modules/material/material.module";
-import UserModel from "../../shared/models/user.model";
 import { NgIf, NgOptimizedImage } from "@angular/common";
 import { ButtonComponent } from "../../shared/components/button/button.component";
 import { ProfileUserSectionComponent } from "./children/profile-user-section/profile-user-section.component";
@@ -9,6 +8,10 @@ import { HistoryInfoCardComponent } from "./children/history-info-card/history-i
 import HistoryModel from "./children/models/history.model";
 import { BreadCrumbComponent } from "@shared/components/bread-crumb/bread-crumb.component";
 import { BreadCrumbService } from "@shared/services/bread-crumb.service";
+import { AuthService } from "@pages/auth/services/auth-service/auth.service";
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: "app-profile",
@@ -26,40 +29,34 @@ import { BreadCrumbService } from "@shared/services/bread-crumb.service";
   templateUrl: "./profile.component.html",
   styleUrl: "./profile.component.scss",
 })
-export class ProfileComponent {
-  public user!: UserModel;
-  public history!: HistoryModel[];
+export class ProfileComponent implements OnInit, OnDestroy {
+  subscription!: Subscription;
+  profileUser: any; // тип поменять
+  public history!: HistoryModel[]
 
-  constructor(private breadcrumbService: BreadCrumbService) {
-    this.user = new UserModel(
-      "Александр",
-      "Рукавишников",
-      "test@mail.ru",
-      "Отдел разработки",
-    );
-    this.history = [
-      new HistoryModel(
-        "Заявка №1",
-        "16 Февраля - 17 Февраля 2023г",
-        "Выполнено",
-      ),
-      new HistoryModel("Заявка №2", "1 Июня - 16 Июня 2023г", "Выполнено"),
-      new HistoryModel(
-        "Заявка №3",
-        "1 Сентября - 31 Сентября 2024г",
-        "Подтверждено",
-      ),
-      new HistoryModel(
-        "Заявка №4",
-        "1 Сентября - 31 Сентября 2024г",
-        "Отклонено",
-      ),
-      new HistoryModel(
-        "Заявка №5",
-        "1 Сентября - 31 Сентября 2024г",
-        "В ожидании",
-      ),
-    ];
+  constructor(private auth: AngularFireAuth, private authService: AuthService, private router: Router, private breadcrumbService: BreadCrumbService) {
+
+    this.history = []
     this.breadcrumbService.loadBreadCrumbs();
+  }
+
+  ngOnInit(): void {
+    this.subscription = this.auth.authState.subscribe((user) => {
+      if (user) {
+        this.profileUser = user
+      } else {
+        this.router.navigate(['/login']);
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  onLogout() {
+    this.authService.logout().then(() => {
+      this.router.navigate(['/login']);
+    });
   }
 }

@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "../../services/auth-service/auth.service";
 
@@ -9,33 +9,37 @@ import { AuthService } from "../../services/auth-service/auth.service";
   styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent {
-  form: FormGroup = new FormGroup({
-    email: new FormControl(null, [Validators.required, Validators.email]),
-    password: new FormControl(null, [Validators.required]),
-  });
+  loginForm: FormGroup;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-  ) {}
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
 
-  login() {
-    if (this.form.valid) {
-      this.authService
-        .loginUser(
-          this.form.get("email")?.value,
-          this.form.get("password")?.value,
-        )
-        .then(() => this.router.navigate(["../profile"]))
-        .catch(error => console.error(error)); // Handle errors
+  ngOnInit(): void { }
+
+  onLogin() {
+    if (this.loginForm.invalid) {
+      return;
     }
+
+    this.authService.login(this.loginForm.value).then(
+      () => {
+        this.router.navigate(["../profile"])
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   get email(): FormControl {
-    return this.form.get("email") as FormControl;
+    return this.loginForm.get("email") as FormControl;
   }
 
   get password(): FormControl {
-    return this.form.get("password") as FormControl;
+    return this.loginForm.get("password") as FormControl;
   }
 }

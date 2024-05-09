@@ -8,7 +8,7 @@
         <mat-card-title>Регистрация</mat-card-title>
 
         <mat-card-content>
-          <form [formGroup]="form" (ngSubmit)="register()">
+          <form [formGroup]="form" (ngSubmit)="onRegister()">
 
             <mat-form-field>
               <input type="email" matInput placeholder="Введите почту..." formControlName="email">
@@ -29,9 +29,9 @@
             <mat-form-field>
               <mat-label>Выберите отдел</mat-label>
               <mat-select formControlName="department">
-                <mat-option value="Первый отдел">Отдел Разработки</mat-option>
-                <mat-option value="Второй отдел">Отдел Тестирования</mat-option>
-                <mat-option value="Третий отдел">Отдел Аналитики</mat-option>
+                <mat-option value="Отдел Разработки">Отдел Разработки</mat-option>
+                <mat-option value="Отдел Тестирования">Отдел Тестирования</mat-option>
+                <mat-option value="Отдел Аналитики">Отдел Аналитики</mat-option>
               </mat-select>
               <mat-error *ngIf="department.touched && department.hasError('required')">Отдел не выбран</mat-error>
             </mat-form-field>
