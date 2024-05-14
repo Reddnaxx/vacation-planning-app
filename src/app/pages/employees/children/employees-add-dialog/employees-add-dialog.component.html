@@ -28,7 +28,8 @@
     <mat-form-field color="accent">
       <mat-label class="form__label">Телефон</mat-label>
       <input type="text" matInput
-             [formControl]="phone">
+             autocomplete="tel-national"
+             [formControl]="phone" phoneMask>
     </mat-form-field>
     <mat-form-field color="accent">
       <mat-label class="form__label">Пароль</mat-label>

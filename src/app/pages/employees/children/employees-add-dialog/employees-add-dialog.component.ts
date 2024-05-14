@@ -3,17 +3,18 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { IEmployeesAddDialogData } from "./interfaces/employees-add-dialog-data.interface";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { IEmployeesAddDialogForm } from "./interfaces/employees-add-dialog-form.interface";
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from "rxjs";
 import { UserModel } from "../../models/user.model";
 import { EmployeesDeleteDialogComponent } from "../employees-delete-dialog/employees-delete-dialog.component";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { DepartmentsService } from "../../services/departments.service";
 import { EmployeesModule } from "../../modules/employees.module";
+import { PhoneMaskDirective } from "@shared/directives/phone-mask.directive";
 
 @Component({
   selector: "app-employees-add-dialog",
   standalone: true,
-  imports: [EmployeesModule],
+  imports: [EmployeesModule, PhoneMaskDirective],
   templateUrl: "./employees-add-dialog.component.html",
   styleUrl: "./employees-add-dialog.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,

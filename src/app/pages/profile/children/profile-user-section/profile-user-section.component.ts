@@ -9,6 +9,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { IProfileData } from "@shared/models/profile-data.interface";
+import { PhoneMaskDirective } from '@shared/directives/phone-mask.directive';
 
 @Component({
   selector: "app-profile-user-section",
@@ -18,6 +19,7 @@ import { IProfileData } from "@shared/models/profile-data.interface";
     MaterialModule,
     NgOptimizedImage,
     ReactiveFormsModule,
+    PhoneMaskDirective,
   ],
   templateUrl: "./profile-user-section.component.html",
   styleUrl: "./profile-user-section.component.scss",
@@ -27,7 +29,7 @@ export class ProfileUserSectionComponent {
   public user!: UserModel;
 
   public dataForm: FormGroup<IProfileData> = new FormGroup<IProfileData>({
-    email: new FormControl<string>("", Validators.email),
-    phone: new FormControl<string>("", Validators.pattern(/[0-9]{10}/)),
+    email: new FormControl<string>("", [Validators.email, Validators.required]),
+    phone: new FormControl<string>("", [Validators.required]),
   });
 }
