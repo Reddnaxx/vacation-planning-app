@@ -1,4 +1,4 @@
-<mat-card class="department-card" (click)="navigateToDepartmentPage()">
+<mat-card *ngIf="department;else loader" class="department-card" (click)="navigateToDepartmentPage()">
   <mat-card-header class="department-card__header">
     <mat-card-title class="department-card__title">{{ department.name | titlecase }}</mat-card-title>
   </mat-card-header>
@@ -9,8 +9,9 @@
       <p class="department-card__manager-email">{{ manager.email }}</p>
       <p>Кол-во сотрудников: {{ employees.length }}</p>
     </ng-container>
-    <ng-template #loader>
-      <app-loader class="loader" />
-    </ng-template>
   </mat-card-content>
 </mat-card>
+
+<ng-template #loader>
+  <app-loader class="loader" />
+</ng-template>

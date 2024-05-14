@@ -4,9 +4,9 @@
   </mat-card-header>
   <mat-divider/>
   <mat-card-content class="content">
-    <ul class="departments" *ngIf="(isLoading$ | async) === false;else loader">
+    <ul class="departments">
       <li *ngFor="let department of departments$ | async">
-        <app-employees-department [department]="department" class="departments__department" />
+        <app-department-card [department]="department" class="departments__department" />
       </li>
       <li>
         <button mat-raised-button

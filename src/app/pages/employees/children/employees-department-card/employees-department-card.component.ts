@@ -16,10 +16,10 @@ import { LoaderComponent } from "@shared/components/loader/loader.component";
 import { EmployeeDepartmentInfoCardComponent } from "./components/employee-department-info-card/employee-department-info-card.component";
 import { UserService } from "@shared/services/user.service";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
-  selector: "app-employees-department",
+  selector: "app-department-card",
   standalone: true,
   imports: [
     EmployeesModule,

@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, DestroyRef } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  OnInit,
+} from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import DepartmentModel from "../../models/department.model";
 import { DepartmentsService } from "../../services/departments.service";
@@ -16,6 +21,8 @@ import { EmployeesDepartmentEditDialogComponent } from "@pages/employees/childre
 import { DepartmentDeleteDialogComponent } from "@pages/employees/children/department-delete-dialog/department-delete-dialog.component";
 import { BreadCrumbService } from "@shared/services/bread-crumb.service";
 import { EmployeesModule } from "@pages/employees/modules/employees.module";
+import { EmployeesDepartmentCardComponent } from "@pages/employees/children/employees-department-card/employees-department-card.component";
+import { EmployeesDepartmentCreateDialogComponent } from "@pages/employees/children/employees-department-create-dialog/employees-department-create-dialog.component";
 
 @Component({
   selector: "app-department",
@@ -25,6 +32,7 @@ import { EmployeesModule } from "@pages/employees/modules/employees.module";
     DepartmentSectionComponent,
     EmployeesEmployeeComponent,
     EmployeeInfoCardComponent,
+    EmployeesDepartmentCardComponent,
   ],
   templateUrl: "./department-page.component.html",
   styleUrl: "./department-page.component.scss",
@@ -34,6 +42,8 @@ export class DepartmentPageComponent {
   protected department$!: BehaviorSubject<DepartmentModel | null>;
   protected manager$!: Observable<UserModel>;
   protected employees$!: Observable<UserModel[]>;
+  protected departments$!: Observable<DepartmentModel[]>;
+  protected parent$!: Observable<DepartmentModel>;
 
   constructor(
     private route: ActivatedRoute,
@@ -51,10 +61,12 @@ export class DepartmentPageComponent {
       .pipe(
         takeUntilDestroyed(this.destroyRef),
         switchMap(value => this.departmentsService.get(value["slug"])),
+        filter(value => !!value),
       )
       .subscribe(value => {
         this.department$.next(value);
         this.titleService.setTitle(value.name);
+        this.breadcrumbService.loadBreadCrumbs();
       });
 
     this.manager$ = this.department$.pipe(
@@ -66,7 +78,20 @@ export class DepartmentPageComponent {
       filter(value => !!value),
       switchMap(value => this.departmentsService.getEmployees(value!.id)),
     );
-    this.breadcrumbService.loadBreadCrumbs();
+
+    this.departments$ = this.department$.pipe(
+      filter(value => !!value),
+      switchMap(value => this.departmentsService.getChildren(value!.id)),
+    );
+
+    this.parent$ = this.department$.pipe(
+      filter(value => !!value),
+      switchMap(value => this.departmentsService.getParent(value!.id)),
+    );
+  }
+
+  protected async openDepartment(slug: string) {
+    await this.router.navigate([`/employees/${slug}`]);
   }
 
   protected openEmployeeAddDialog() {
@@ -78,6 +103,13 @@ export class DepartmentPageComponent {
 
   protected async goBack() {
     await this.router.navigate(["/employees"]);
+  }
+
+  protected openDepartmentAddDialog() {
+    this.dialog.open(EmployeesDepartmentCreateDialogComponent, {
+      panelClass: "app-default-dialog",
+      data: { parent: this.department$.value?.id },
+    });
   }
 
   protected openDepartmentEditDialog() {

@@ -45,7 +45,28 @@
           <p class="manager__email">{{ manager.email }}</p>
           <p class="manager__phone">{{ manager.phone }}</p>
         </div>
+        <div class="department-page__parent" *ngIf="parent$ | async as parent">
+          <h4>Родительский отдел</h4>
+          <p>{{ parent.name }}</p>
+          <button mat-flat-button (click)="openDepartment(parent.slug)">Перейти</button>
+        </div>
       </div>
+    </app-department-section>
+
+    <app-department-section name="Отделы">
+      <button mat-raised-button color="accent" class="department-page__add-employee-btn"
+              (click)="openDepartmentAddDialog()">
+        <mat-icon fontIcon="add" />
+        Добавить отдел
+      </button>
+      <ul class="department-page__children" *ngIf="departments$ | async as departments;else sectionLoader">
+        @if (departments.length > 0) {
+          <app-department-card *ngFor="let department of departments" [department]="department" />
+        } @else {
+          <p>Нет дочерних отделов</p>
+        }
+      </ul>
+
     </app-department-section>
 
     <app-department-section name="Сотрудники" expanded>
