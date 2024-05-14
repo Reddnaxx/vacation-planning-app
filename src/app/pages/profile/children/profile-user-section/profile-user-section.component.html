@@ -18,10 +18,11 @@
       <mat-form-field appearance="outline">
         <mat-label class="form__label">Телефон</mat-label>
         <input matInput [formControl]="dataForm.controls.phone" type="text" name="phone" id="phone"
+               phoneMask
                class="form__input" />
         <mat-error *ngIf="dataForm.controls.phone.errors">Неправильно введен номер телефона</mat-error>
       </mat-form-field>
-      <button mat-raised-button color="primary" class="save-btn">Сохранить изменения</button>
+      <button mat-raised-button color="primary" class="save-btn" [disabled]="dataForm.invalid">Сохранить изменения</button>
     </form>
   </mat-card-content>
 </mat-card>
