@@ -1,9 +1,13 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
+  ElementRef,
+  input,
   OnInit,
-} from "@angular/core";
+  ViewChild
+} from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import DepartmentModel from "../../models/department.model";
 import { DepartmentsService } from "../../services/departments.service";
@@ -40,12 +44,15 @@ import { SkeletonComponent } from "@shared/components/skeleton/skeleton.componen
   styleUrl: "./department-page.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DepartmentPageComponent {
+export class DepartmentPageComponent implements AfterViewInit {
   protected department$!: BehaviorSubject<DepartmentModel | null>;
   protected manager$!: BehaviorSubject<UserModel | null>;
   protected employees$!: Observable<UserModel[]>;
   protected departments$!: Observable<DepartmentModel[]>;
   protected parent$!: Observable<DepartmentModel>;
+
+  @ViewChild("employee_search")
+  private searchFieldRef!: ElementRef<HTMLInputElement>;
 
   constructor(
     private route: ActivatedRoute,
@@ -81,7 +88,7 @@ export class DepartmentPageComponent {
 
     this.employees$ = this.department$.pipe(
       filter(value => !!value),
-      switchMap(value => this.departmentsService.getEmployees(value!.id)),
+      switchMap(value => this.departmentsService.getEmployeesByDepartment(value!.id)),
     );
 
     this.departments$ = this.department$.pipe(
@@ -93,6 +100,10 @@ export class DepartmentPageComponent {
       filter(value => !!value),
       switchMap(value => this.departmentsService.getParent(value!.id)),
     );
+  }
+
+  public ngAfterViewInit(): void {
+    this.searchFieldRef?.nativeElement?.focus();
   }
 
   protected async openDepartment(slug: string) {

@@ -49,7 +49,7 @@ export class EmployeesDepartmentCardComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.employees$ = this.departmentService.getEmployees(this.department.id);
+    this.employees$ = this.departmentService.getEmployeesByDepartment(this.department.id);
     this.userService
       .getById(this.department.managerId)
       .pipe(takeUntilDestroyed(this.destroyRef))

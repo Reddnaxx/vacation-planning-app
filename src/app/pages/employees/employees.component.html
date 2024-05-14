@@ -4,22 +4,23 @@
   </mat-card-header>
   <mat-divider/>
   <mat-card-content class="content">
-    <ul class="departments">
-      <li *ngFor="let department of departments$ | async">
-        <app-department-card [department]="department" class="departments__department" />
-      </li>
-      <li>
-        <button mat-raised-button
-                class="add-button"
-                color="dark"
-                (click)="openDepartmentCreateDialog()"
-        >
-          <mat-icon class="add-button__icon" fontIcon="add" inline />
-        </button>
-      </li>
-    </ul>
-    <ng-template #loader>
-      <app-loader class="loader" />
-    </ng-template>
+    @if(departments$ | async) {
+      <ul class="departments">
+        <li *ngFor="let department of departments$ | async">
+          <app-department-card [department]="department" class="departments__department" />
+        </li>
+        <li>
+          <button mat-raised-button
+                  class="add-button"
+                  color="dark"
+                  (click)="openDepartmentCreateDialog()"
+          >
+            <mat-icon class="add-button__icon" fontIcon="add" inline />
+          </button>
+        </li>
+      </ul>
+    } @else {
+
+    }
   </mat-card-content>
 </mat-card>

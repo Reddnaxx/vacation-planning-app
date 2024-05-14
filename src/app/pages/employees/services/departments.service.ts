@@ -63,7 +63,18 @@ export class DepartmentsService {
       });
   }
 
-  public getEmployees(id: string): Observable<UserModel[]> {
+  public getAllEmployees(): Observable<UserModel[]> {
+    return this.fs
+      .collection<UserModel>("/users")
+      .valueChanges()
+      .pipe(
+        catchError(err => {
+          throw new Error(err);
+        }),
+      );
+  }
+
+  public getEmployeesByDepartment(id: string): Observable<UserModel[]> {
     return this.fs
       .collection<UserModel>("/users", ref =>
         ref

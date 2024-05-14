@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { IEmployeesAddDialogData } from "./interfaces/employees-add-dialog-data.interface";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { IEmployeesAddDialogForm } from "./interfaces/employees-add-dialog-form.interface";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable } from 'rxjs';
 import { UserModel } from "../../models/user.model";
 import { EmployeesDeleteDialogComponent } from "../employees-delete-dialog/employees-delete-dialog.component";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -20,7 +20,7 @@ import { EmployeesModule } from "../../modules/employees.module";
 })
 export class EmployeesAddDialogComponent {
   protected newEmployeeForm!: FormGroup<IEmployeesAddDialogForm>;
-  protected employees$!: BehaviorSubject<UserModel[]>;
+  protected employees$!: Observable<UserModel[]>;
 
   protected get name() {
     return this.newEmployeeForm.controls.name;
@@ -53,6 +53,7 @@ export class EmployeesAddDialogComponent {
       ]),
       password: new FormControl<string>("", [Validators.required]),
     });
+    this.employees$ = this.departmentService.getAllEmployees();
   }
 
   protected async createEmployee(
