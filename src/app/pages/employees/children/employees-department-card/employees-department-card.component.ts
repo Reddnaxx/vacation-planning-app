@@ -16,10 +16,11 @@ import { LoaderComponent } from "@shared/components/loader/loader.component";
 import { EmployeeDepartmentInfoCardComponent } from "./components/employee-department-info-card/employee-department-info-card.component";
 import { UserService } from "@shared/services/user.service";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+import { SkeletonComponent } from '@shared/components/skeleton/skeleton.component';
 
 @Component({
-  selector: "app-employees-department",
+  selector: "app-department-card",
   standalone: true,
   imports: [
     EmployeesModule,
@@ -27,6 +28,7 @@ import { Router } from "@angular/router";
     MatStepper,
     LoaderComponent,
     EmployeeDepartmentInfoCardComponent,
+    SkeletonComponent,
   ],
   templateUrl: "./employees-department-card.component.html",
   styleUrl: "./employees-department-card.component.scss",
@@ -47,7 +49,7 @@ export class EmployeesDepartmentCardComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.employees$ = this.departmentService.getEmployees(this.department.id);
+    this.employees$ = this.departmentService.getEmployeesByDepartment(this.department.id);
     this.userService
       .getById(this.department.managerId)
       .pipe(takeUntilDestroyed(this.destroyRef))

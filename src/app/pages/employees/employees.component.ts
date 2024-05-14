@@ -26,7 +26,6 @@ import { BreadCrumbService } from "@shared/services/bread-crumb.service";
 })
 export class EmployeesComponent {
   protected departments$!: Observable<DepartmentModel[]>;
-  protected isLoading$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     private departmentsService: DepartmentsService,
@@ -37,7 +36,6 @@ export class EmployeesComponent {
     this.departments$ = this.departmentsService.departments$.pipe(
       takeUntilDestroyed(this.destroy),
     );
-    this.departments$.subscribe(() => this.isLoading$.next(false));
     this.breadcrumbService.loadBreadCrumbs();
   }
 

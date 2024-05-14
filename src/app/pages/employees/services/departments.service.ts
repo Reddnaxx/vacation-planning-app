@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import DepartmentModel from "../models/department.model";
-import { map, Observable } from "rxjs";
+import { map, Observable, switchMap } from "rxjs";
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -19,10 +19,8 @@ export class DepartmentsService {
     private fs: AngularFirestore,
     private fa: AngularFireAuth,
   ) {
-    this.departmentsCollection = this.fs.collection<DepartmentModel>(
-      "/departments",
-      ref => ref.orderBy("name"),
-    );
+    this.departmentsCollection =
+      this.fs.collection<DepartmentModel>("/departments");
     this.departments$ = this.departmentsCollection.valueChanges().pipe(
       catchError(err => {
         throw new Error(err);
@@ -30,12 +28,13 @@ export class DepartmentsService {
     );
   }
 
-  public async create(name: string): Promise<DepartmentModel> {
+  public async create(name: string, parent?: string): Promise<DepartmentModel> {
     const newDepartment: DepartmentModel = {
       id: "",
       name: name,
       managerId: "users/efCYrJg3N9yyMptitQOg",
       slug: slug(name),
+      parent: parent || "",
     };
     await this.departmentsCollection
       .add(newDepartment)
@@ -64,7 +63,18 @@ export class DepartmentsService {
       });
   }
 
-  public getEmployees(id: string): Observable<UserModel[]> {
+  public getAllEmployees(): Observable<UserModel[]> {
+    return this.fs
+      .collection<UserModel>("/users")
+      .valueChanges()
+      .pipe(
+        catchError(err => {
+          throw new Error(err);
+        }),
+      );
+  }
+
+  public getEmployeesByDepartment(id: string): Observable<UserModel[]> {
     return this.fs
       .collection<UserModel>("/users", ref =>
         ref
@@ -158,5 +168,30 @@ export class DepartmentsService {
       .catch(err => {
         throw new Error(err);
       });
+  }
+
+  public getChildren(id: string) {
+    return this.fs
+      .collection<DepartmentModel>(`/departments`, ref =>
+        ref.where("parent", "==", id),
+      )
+      .valueChanges();
+  }
+
+  public getParent(id: string) {
+    return this.fs
+      .collection<DepartmentModel>(`/departments`)
+      .doc(id)
+      .valueChanges()
+      .pipe(
+        switchMap(value =>
+          this.fs
+            .collection<DepartmentModel>("/departments", ref =>
+              ref.where("id", "==", value?.parent),
+            )
+            .valueChanges(),
+        ),
+        map(value => value[0]),
+      );
   }
 }

@@ -6,18 +6,19 @@
          password.value)">
     <mat-form-field color="accent">
       <mat-label class="form__label">Почта</mat-label>
-      <input type="email" matInput
-             [formControl]="email">
-      <!--      <mat-autocomplete #usersAuto="matAutocomplete">-->
-      <!--        <ng-container *ngIf="employees$ | async as employees">-->
-      <!--          <mat-option *ngFor="let employee of employees |-->
-      <!--                              filter:'email':newEmployeeForm.controls.email.value"-->
-      <!--                      [value]="employee.email"-->
-      <!--          >-->
-      <!--            {{ employee.email }} <br/> {{ employee.name }}-->
-      <!--          </mat-option>-->
-      <!--        </ng-container>-->
-      <!--      </mat-autocomplete>-->
+      <input type="email" matInput [formControl]="email"
+             [matAutocomplete]="usersAuto"
+             autocomplete="no">
+            <mat-autocomplete #usersAuto="matAutocomplete">
+              <ng-container *ngIf="employees$ | async as employees">
+                <mat-option *ngFor="let employee of employees |
+                                    filter:['email']:newEmployeeForm.controls.email.value"
+                            [value]="employee.email"
+                >
+                  {{ employee.email }}
+                </mat-option>
+              </ng-container>
+            </mat-autocomplete>
     </mat-form-field>
     <mat-form-field color="accent">
       <mat-label class="form__label">ФИО</mat-label>
