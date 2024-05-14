@@ -1,0 +1,37 @@
+.skeleton {
+  background-color: rgba(255, 255, 255, 0.1);
+  height: 100%;
+  overflow: hidden;
+
+  animation: appear 0.2s forwards;
+}
+
+.shimmer{
+  width: 10%;
+  height: 100%;
+
+  background: linear-gradient(100deg,
+    rgba(255,255,255,0) 20%,
+    rgba(255,255,255,0.75) 50%,
+    rgba(255,255,255,0) 80%);
+
+  animation: shimmer 1s infinite linear;
+}
+
+@keyframes shimmer{
+  from {
+    transform: translateX(-100dvw);
+  }
+  to{
+    transform: translateX(100dvw);
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

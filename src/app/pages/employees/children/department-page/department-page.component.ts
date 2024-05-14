@@ -23,6 +23,7 @@ import { BreadCrumbService } from "@shared/services/bread-crumb.service";
 import { EmployeesModule } from "@pages/employees/modules/employees.module";
 import { EmployeesDepartmentCardComponent } from "@pages/employees/children/employees-department-card/employees-department-card.component";
 import { EmployeesDepartmentCreateDialogComponent } from "@pages/employees/children/employees-department-create-dialog/employees-department-create-dialog.component";
+import { SkeletonComponent } from "@shared/components/skeleton/skeleton.component";
 
 @Component({
   selector: "app-department",
@@ -33,6 +34,7 @@ import { EmployeesDepartmentCreateDialogComponent } from "@pages/employees/child
     EmployeesEmployeeComponent,
     EmployeeInfoCardComponent,
     EmployeesDepartmentCardComponent,
+    SkeletonComponent,
   ],
   templateUrl: "./department-page.component.html",
   styleUrl: "./department-page.component.scss",
@@ -40,7 +42,7 @@ import { EmployeesDepartmentCreateDialogComponent } from "@pages/employees/child
 })
 export class DepartmentPageComponent {
   protected department$!: BehaviorSubject<DepartmentModel | null>;
-  protected manager$!: Observable<UserModel>;
+  protected manager$!: BehaviorSubject<UserModel | null>;
   protected employees$!: Observable<UserModel[]>;
   protected departments$!: Observable<DepartmentModel[]>;
   protected parent$!: Observable<DepartmentModel>;
@@ -56,6 +58,7 @@ export class DepartmentPageComponent {
     private breadcrumbService: BreadCrumbService,
   ) {
     this.department$ = new BehaviorSubject<DepartmentModel | null>(null);
+    this.manager$ = new BehaviorSubject<UserModel | null>(null);
 
     this.route.params
       .pipe(
@@ -69,10 +72,12 @@ export class DepartmentPageComponent {
         this.breadcrumbService.loadBreadCrumbs();
       });
 
-    this.manager$ = this.department$.pipe(
-      filter(value => !!value),
-      switchMap(value => this.userService.getById(value!.managerId)),
-    );
+    this.department$
+      .pipe(
+        filter(value => !!value),
+        switchMap(value => this.userService.getById(value!.managerId)),
+      )
+      .subscribe(value => this.manager$.next(value));
 
     this.employees$ = this.department$.pipe(
       filter(value => !!value),

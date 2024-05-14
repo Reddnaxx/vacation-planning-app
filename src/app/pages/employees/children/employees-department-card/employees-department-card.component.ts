@@ -17,6 +17,7 @@ import { EmployeeDepartmentInfoCardComponent } from "./components/employee-depar
 import { UserService } from "@shared/services/user.service";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { ActivatedRoute, Router } from "@angular/router";
+import { SkeletonComponent } from '@shared/components/skeleton/skeleton.component';
 
 @Component({
   selector: "app-department-card",
@@ -27,6 +28,7 @@ import { ActivatedRoute, Router } from "@angular/router";
     MatStepper,
     LoaderComponent,
     EmployeeDepartmentInfoCardComponent,
+    SkeletonComponent,
   ],
   templateUrl: "./employees-department-card.component.html",
   styleUrl: "./employees-department-card.component.scss",
