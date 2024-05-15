@@ -158,6 +158,7 @@ export class DepartmentsService {
             phone: phone,
             email: email,
             role: "employee",
+            password: ""
           })
           .then(res => {
             res.update({ id: res.id, uid: data.user?.uid });

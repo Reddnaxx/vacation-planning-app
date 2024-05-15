@@ -31,8 +31,6 @@ export const routes: Routes = [
   },
   {
     path: "",
-    loadChildren: () =>
-      import("./pages/register/public.module").then(m => m.PublicModule),
     data: {
       breadcrumb: "Планировщик отпусков",
     },

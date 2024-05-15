@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth-service/auth.service';
 import { CustomValidators } from '../../_helpers/custom-validators';
-import { UserModel } from '@shared/models/user.model';
+import UserModel from '@shared/models/user.model';
 
 
 @Component({
@@ -37,9 +37,13 @@ export class RegisterComponent {
       email: this.form.value.email,
       password: this.form.value.password,
       firstName: this.form.value.firstName,
+      surname: '',
       lastName: this.form.value.lastName,
       department: this.form.value.department,
-      isManager: false
+      isActive: false,
+      id: '',
+      uid: '',
+      role: ''
     };
 
     this.authService.register(user).then(

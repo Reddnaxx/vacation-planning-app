@@ -1,7 +1,7 @@
 import { Component, Input } from "@angular/core";
 import { CommonModule, NgOptimizedImage } from "@angular/common";
 import { MaterialModule } from "../../../../shared/modules/material/material.module";
-import { UserModel } from "@shared/models/user.model";
+import UserModel from "@shared/models/user.model";
 import {
   FormControl,
   FormGroup,
