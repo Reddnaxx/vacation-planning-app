@@ -15,7 +15,6 @@ import { BehaviorSubject, filter, Observable, switchMap } from "rxjs";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { DepartmentSectionComponent } from "./children/department-section/department-section.component";
 import { EmployeesEmployeeComponent } from "../employees-employee/employees-employee.component";
-import { UserModel } from "@pages/employees/models/user.model";
 import { UserService } from "@shared/services/user.service";
 import { EmployeeInfoCardComponent } from "../employees-employee/components/employee-info-card/employee-info-card.component";
 import { MatDialog } from "@angular/material/dialog";
@@ -28,6 +27,7 @@ import { EmployeesModule } from "@pages/employees/modules/employees.module";
 import { EmployeesDepartmentCardComponent } from "@pages/employees/children/employees-department-card/employees-department-card.component";
 import { EmployeesDepartmentCreateDialogComponent } from "@pages/employees/children/employees-department-create-dialog/employees-department-create-dialog.component";
 import { SkeletonComponent } from "@shared/components/skeleton/skeleton.component";
+import UserModel from '@shared/models/user.model';
 
 @Component({
   selector: "app-department",

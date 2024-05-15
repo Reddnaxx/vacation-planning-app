@@ -1,4 +1,7 @@
 .skeleton {
+  display: flex;
+  align-items: center;
+  position: relative;
   background-color: rgba(255, 255, 255, 0.1);
   height: 100%;
   overflow: hidden;
@@ -6,7 +9,21 @@
   animation: appear 0.2s forwards;
 }
 
+.dark {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 1rem;
+  width: 100%;
+}
+
 .shimmer{
+  position: absolute;
   width: 10%;
   height: 100%;
 

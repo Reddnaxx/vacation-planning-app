@@ -5,11 +5,11 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from "@angular/fire/compat/firestore";
-import { UserModel } from "../models/user.model";
 import { catchError, tap } from "rxjs/operators";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import slug from "slug";
 import { LoggerService } from "@shared/services/logger.service";
+import UserModel from '@shared/models/user.model';
 
 @Injectable({ providedIn: "root" })
 export class DepartmentsService {
@@ -133,7 +133,9 @@ export class DepartmentsService {
 
   public async createEmployee(
     id: string,
-    name: string,
+    firstName: string,
+    surname: string,
+    lastName: string,
     phone: string,
     email: string,
     password: string,
@@ -142,20 +144,23 @@ export class DepartmentsService {
 
     await this.fa
       .createUserWithEmailAndPassword(email, password)
-      .then(async () => {
+      .then(async (data) => {
         await this.fs
           .collection<UserModel>("/users")
           .add({
-            id: this.fs.createId(),
+            id: "",
+            uid: "",
             isActive: true,
             department: `departments/${id}`,
-            name: name,
+            firstName: firstName,
+            surname: surname,
+            lastName: lastName,
             phone: phone,
             email: email,
             role: "employee",
           })
           .then(res => {
-            res.update({ id: res.id });
+            res.update({ id: res.id, uid: data.user?.uid });
             this.loggerService.success(
               `Employee (id: ${id}) created successfully`,
             );

@@ -42,7 +42,11 @@
       <div class="department-page__info">
         <div class="department-page__manager manager">
           <h4 class="manager__title">Управляющий</h4>
-          <p class="manager__name"><span>{{ manager.name }}</span></p>
+          <p
+            class="manager__name">
+            <span>{{ manager.lastName }} {{ manager.firstName }}
+              {{ manager.surname ? " " + manager.surname : "" }}</span>
+          </p>
           <p class="manager__email">{{ manager.email }}</p>
           <p class="manager__phone">{{ manager.phone }}</p>
         </div>

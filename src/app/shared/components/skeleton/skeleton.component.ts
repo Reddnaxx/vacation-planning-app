@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { CommonModule } from '@angular/common';
+import { CommonModule } from "@angular/common";
 
 @Component({
   selector: "app-skeleton",
@@ -17,4 +17,7 @@ export class SkeletonComponent {
 
   @Input()
   public borderRadius?: string;
+
+  @Input()
+  public dark?: boolean;
 }

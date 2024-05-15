@@ -4,7 +4,9 @@
     <div class="info">
       <mat-card-title class="info__name">{{ user.lastName }} {{ user.firstName }}</mat-card-title>
       <mat-card-subtitle class="info__dep">{{ user.department }}</mat-card-subtitle>
-      <mat-card-subtitle class="info__role">{{ user.isManager ? "Управляющий" : "Сотрудник" }}</mat-card-subtitle>
+      <mat-card-subtitle
+        class="info__role">{{ user.role === "manager" ? "Управляющий" : "Сотрудник" }}
+      </mat-card-subtitle>
     </div>
   </mat-card-header>
   <mat-card-content>
@@ -22,7 +24,8 @@
                class="form__input" />
         <mat-error *ngIf="dataForm.controls.phone.errors">Неправильно введен номер телефона</mat-error>
       </mat-form-field>
-      <button mat-raised-button color="primary" class="save-btn" [disabled]="dataForm.invalid">Сохранить изменения</button>
+      <button mat-raised-button color="primary" class="save-btn" [disabled]="dataForm.invalid">Сохранить изменения
+      </button>
     </form>
   </mat-card-content>
 </mat-card>

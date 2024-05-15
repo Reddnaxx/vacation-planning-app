@@ -3,8 +3,8 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from "@angular/fire/compat/firestore";
-import { UserModel } from "../../pages/employees/models/user.model";
 import { filter, Observable } from "rxjs";
+import UserModel from '@shared/models/user.model';
 
 @Injectable({
   providedIn: "root",

@@ -1,6 +1,5 @@
 import { Component } from "@angular/core";
 import { MaterialModule } from "@shared/modules/material/material.module";
-import UserModel from "../../shared/models/user.model";
 import { CommonModule } from "@angular/common";
 import { ProfileUserSectionComponent } from "./children/profile-user-section/profile-user-section.component";
 import { ProfileHistorySectionComponent } from "./children/profile-history-section/profile-history-section.component";
@@ -8,6 +7,7 @@ import { HistoryInfoCardComponent } from "./children/history-info-card/history-i
 import { BreadCrumbComponent } from "@shared/components/bread-crumb/bread-crumb.component";
 import { BreadCrumbService } from "@shared/services/bread-crumb.service";
 import HistoryModel from "@pages/profile/models/history.model";
+import UserModel from "@shared/models/user.model";
 
 @Component({
   selector: "app-profile",
@@ -29,10 +29,15 @@ export class ProfileComponent {
 
   constructor(private breadcrumbService: BreadCrumbService) {
     this.user = new UserModel(
+      "test",
+      "test",
       "Александр",
+      "Сергеевич",
       "Рукавишников",
       "test@mail.ru",
-      "Отдел разработки",
+      "",
+      "manager",
+      true,
     );
     this.history = [
       new HistoryModel(

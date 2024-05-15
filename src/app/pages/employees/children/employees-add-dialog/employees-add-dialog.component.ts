@@ -4,12 +4,12 @@ import { IEmployeesAddDialogData } from "./interfaces/employees-add-dialog-data.
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { IEmployeesAddDialogForm } from "./interfaces/employees-add-dialog-form.interface";
 import { Observable } from "rxjs";
-import { UserModel } from "../../models/user.model";
 import { EmployeesDeleteDialogComponent } from "../employees-delete-dialog/employees-delete-dialog.component";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { DepartmentsService } from "../../services/departments.service";
 import { EmployeesModule } from "../../modules/employees.module";
 import { PhoneMaskDirective } from "@shared/directives/phone-mask.directive";
+import UserModel from "@shared/models/user.model";
 
 @Component({
   selector: "app-employees-add-dialog",
@@ -23,8 +23,16 @@ export class EmployeesAddDialogComponent {
   protected newEmployeeForm!: FormGroup<IEmployeesAddDialogForm>;
   protected employees$!: Observable<UserModel[]>;
 
-  protected get name() {
-    return this.newEmployeeForm.controls.name;
+  protected get firstName() {
+    return this.newEmployeeForm.controls.firstName;
+  }
+
+  protected get surname() {
+    return this.newEmployeeForm.controls.surname;
+  }
+
+  protected get lastName() {
+    return this.newEmployeeForm.controls.lastName;
   }
 
   protected get email() {
@@ -46,7 +54,9 @@ export class EmployeesAddDialogComponent {
     public snackBar: MatSnackBar,
   ) {
     this.newEmployeeForm = new FormGroup<IEmployeesAddDialogForm>({
-      name: new FormControl<string>("", [Validators.required]),
+      firstName: new FormControl<string>("", [Validators.required]),
+      lastName: new FormControl<string>("", [Validators.required]),
+      surname: new FormControl<string>(""),
       phone: new FormControl<string>("", [Validators.required]),
       email: new FormControl<string>("", [
         Validators.email,
@@ -58,7 +68,9 @@ export class EmployeesAddDialogComponent {
   }
 
   protected async createEmployee(
-    name: string | null,
+    firstName: string | null,
+    lastName: string | null,
+    surname: string | null,
     phone: string | null,
     email: string | null,
     password: string | null,
@@ -66,14 +78,20 @@ export class EmployeesAddDialogComponent {
     this.dialogRef.close();
     await this.departmentService.createEmployee(
       this.data.id,
-      name!,
+      firstName!,
+      surname || "",
+      lastName!,
       phone!,
       email!,
       password!,
     );
-    this.snackBar.open(`${name} был успешно добавлен`, "Ок", {
-      horizontalPosition: "right",
-      panelClass: "app-snack-bar-success",
-    });
+    this.snackBar.open(
+      `${firstName} ${surname} ${lastName} был успешно добавлен`,
+      "Ок",
+      {
+        horizontalPosition: "right",
+        panelClass: "app-snack-bar-success",
+      },
+    );
   }
 }
