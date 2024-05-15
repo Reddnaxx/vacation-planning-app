@@ -1,12 +1,18 @@
 <mat-card class="employee-card">
   <mat-card-content class="employee-card__content">
     <div class="employee-card__info">
-      <h4 class="employee-card__name">{{employee.name}}</h4>
-      <p class="employee-card__role">{{employee.role === 'manager'
-        ? 'Управляющий'
-        : 'Сотрудник'}}</p>
-      <p class="employee-card__email">{{employee.email}}</p>
-      <p class="employee-card__phone">{{employee.phone}}</p>
+      <h4
+        class="employee-card__name">{{ employee.lastName }} {{ employee.firstName }}{{
+          employee.surname ? " " +
+            employee.surname : ""
+        }}</h4>
+      <p class="employee-card__role">{{
+          employee.role === 'manager'
+            ? 'Управляющий'
+            : 'Сотрудник'
+        }}</p>
+      <p class="employee-card__email">{{ employee.email }}</p>
+      <p class="employee-card__phone">{{ employee.phone }}</p>
     </div>
     <div class="employee-card__active" *ngIf="employee.role !== 'manager'">
       <button mat-icon-button [matMenuTriggerFor]="menu">

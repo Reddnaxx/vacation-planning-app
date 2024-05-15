@@ -6,7 +6,6 @@ import {
   OnInit,
 } from "@angular/core";
 import { EmployeesEmployeeComponent } from "../employees-employee/employees-employee.component";
-import { UserModel } from "../../models/user.model";
 import DepartmentModel from "../../models/department.model";
 import { Observable } from "rxjs";
 import { EmployeesModule } from "../../modules/employees.module";
@@ -17,9 +16,11 @@ import { EmployeeDepartmentInfoCardComponent } from "./components/employee-depar
 import { UserService } from "@shared/services/user.service";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router } from "@angular/router";
+import { SkeletonComponent } from "@shared/components/skeleton/skeleton.component";
+import UserModel from "@shared/models/user.model";
 
 @Component({
-  selector: "app-employees-department",
+  selector: "app-department-card",
   standalone: true,
   imports: [
     EmployeesModule,
@@ -27,6 +28,7 @@ import { Router } from "@angular/router";
     MatStepper,
     LoaderComponent,
     EmployeeDepartmentInfoCardComponent,
+    SkeletonComponent,
   ],
   templateUrl: "./employees-department-card.component.html",
   styleUrl: "./employees-department-card.component.scss",
@@ -47,7 +49,9 @@ export class EmployeesDepartmentCardComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.employees$ = this.departmentService.getEmployees(this.department.id);
+    this.employees$ = this.departmentService.getEmployeesByDepartment(
+      this.department.id,
+    );
     this.userService
       .getById(this.department.managerId)
       .pipe(takeUntilDestroyed(this.destroyRef))

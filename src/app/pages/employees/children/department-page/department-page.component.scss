@@ -5,6 +5,16 @@
   &__btns {
     display: flex;
     gap: 5px;
+
+    @media (width < 728px) {
+      display: none;
+    }
+  }
+
+  &__menu-btn {
+    @media (width > 728px) {
+      display: none;
+    }
   }
 
   &__header {
@@ -16,6 +26,10 @@
   &__title {
     font-size: 2rem;
     font-family: "Russo One", "Helvetica Neue", sans-serif;
+
+    @media (width < 1200px) {
+      font-size: 1.875rem;
+    }
   }
 
   &__content {
@@ -42,6 +56,12 @@
     width: fit-content;
   }
 
+  &__parent {
+    p {
+      margin-bottom: 0.5rem;
+    }
+  }
+
   .manager {
     font-size: 1rem;
 
@@ -49,6 +69,13 @@
       font-size: 1.25rem;
       font-weight: normal;
     }
+  }
+
+  &__children {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 1rem;
+    --department-card-color: var(--color-primary);
   }
 }
 

@@ -1,9 +1,16 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  OnDestroy,
+  OnInit,
+} from "@angular/core";
 import { HeaderComponent } from "@shared/components/header/header.component";
 import { IconService } from "@shared/services/icon.service";
 import { RouterModule, RouterOutlet } from "@angular/router";
 import { BreadCrumbComponent } from "@shared/components/bread-crumb/bread-crumb.component";
 import { MatCard } from "@angular/material/card";
+import { LoggerService } from "@shared/services/logger.service";
 
 @Component({
   selector: "app-root",
@@ -19,10 +26,17 @@ import { MatCard } from "@angular/material/card";
   styleUrl: "./app.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public title: string = "ПЛАНИРОВЩИК ОТПУСКОВ";
 
-  constructor(private iconService: IconService) {
+  constructor(
+    private iconService: IconService,
+    private loggerService: LoggerService,
+  ) {
     this.iconService.registerIcons();
+  }
+
+  public ngOnInit(): void {
+    this.loggerService.log("Page initialized");
   }
 }

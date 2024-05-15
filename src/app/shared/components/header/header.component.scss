@@ -33,9 +33,18 @@
   @media (width < 728px) {
     font-size: 1.75rem;
   }
+
+  @media (width < 400px) {
+    font-size: 1.25rem;
+  }
 }
 
 .logo {
   width: 64px;
   height: 64px;
+
+  @media (width < 400px) {
+    display: none;
+  }
 }
+

@@ -3,8 +3,16 @@
   justify-content: space-between;
   padding-block: 15px;
   gap: 50px;
+
+  @media (width < 1200px) {
+    flex-direction: column;
+  }
+}
+
+.user-section {
+  flex: 1;
 }
 
 .history-section {
-  flex: 1;
+  flex: 2;
 }

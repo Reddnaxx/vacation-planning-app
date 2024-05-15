@@ -10,6 +10,7 @@ import { LoaderComponent } from "@shared/components/loader/loader.component";
 import { BreadCrumbComponent } from "@shared/components/bread-crumb/bread-crumb.component";
 import { EmployeesDepartmentCardComponent } from "./children/employees-department-card/employees-department-card.component";
 import { BreadCrumbService } from "@shared/services/bread-crumb.service";
+import { SkeletonComponent } from '@shared/components/skeleton/skeleton.component';
 
 @Component({
   selector: "app-employees",
@@ -19,6 +20,7 @@ import { BreadCrumbService } from "@shared/services/bread-crumb.service";
     EmployeesDepartmentCardComponent,
     LoaderComponent,
     BreadCrumbComponent,
+    SkeletonComponent,
   ],
   templateUrl: "./employees.component.html",
   styleUrl: "./employees.component.scss",
@@ -26,7 +28,6 @@ import { BreadCrumbService } from "@shared/services/bread-crumb.service";
 })
 export class EmployeesComponent {
   protected departments$!: Observable<DepartmentModel[]>;
-  protected isLoading$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     private departmentsService: DepartmentsService,
@@ -37,7 +38,6 @@ export class EmployeesComponent {
     this.departments$ = this.departmentsService.departments$.pipe(
       takeUntilDestroyed(this.destroy),
     );
-    this.departments$.subscribe(() => this.isLoading$.next(false));
     this.breadcrumbService.loadBreadCrumbs();
   }
 
