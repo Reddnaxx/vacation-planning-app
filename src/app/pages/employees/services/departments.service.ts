@@ -6,9 +6,10 @@ import {
   AngularFirestoreCollection,
 } from "@angular/fire/compat/firestore";
 import { UserModel } from "../models/user.model";
-import { catchError } from "rxjs/operators";
+import { catchError, tap } from "rxjs/operators";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import slug from "slug";
+import { LoggerService } from "@shared/services/logger.service";
 
 @Injectable({ providedIn: "root" })
 export class DepartmentsService {
@@ -18,17 +19,21 @@ export class DepartmentsService {
   constructor(
     private fs: AngularFirestore,
     private fa: AngularFireAuth,
+    private loggerService: LoggerService,
   ) {
+    this.loggerService.log("Fetching departments");
     this.departmentsCollection =
       this.fs.collection<DepartmentModel>("/departments");
     this.departments$ = this.departmentsCollection.valueChanges().pipe(
-      catchError(err => {
-        throw new Error(err);
+      tap({
+        error: e => this.loggerService.error(e),
       }),
     );
+    this.loggerService.success("Departments successfully fetched");
   }
 
   public async create(name: string, parent?: string): Promise<DepartmentModel> {
+    this.loggerService.log("Creating new department");
     const newDepartment: DepartmentModel = {
       id: "",
       name: name,
@@ -40,6 +45,7 @@ export class DepartmentsService {
       .add(newDepartment)
       .then(res => {
         res.update({ id: res.id });
+        this.loggerService.success("Department created successfully");
       })
       .catch(err => {
         throw new Error(err);
@@ -59,11 +65,13 @@ export class DepartmentsService {
               .where("isActive", "==", true),
           )
           .get()
+          .pipe()
           .forEach(e => e.forEach(r => r.ref.update({ isActive: false })));
       });
   }
 
   public getAllEmployees(): Observable<UserModel[]> {
+    this.loggerService.log("Fetching all employees");
     return this.fs
       .collection<UserModel>("/users")
       .valueChanges()
@@ -71,6 +79,9 @@ export class DepartmentsService {
         catchError(err => {
           throw new Error(err);
         }),
+        tap(() =>
+          this.loggerService.success("All employees fetched successfully"),
+        ),
       );
   }
 
@@ -84,27 +95,36 @@ export class DepartmentsService {
       .valueChanges()
       .pipe(
         map(value => value.reverse()),
-        catchError(err => {
-          throw new Error(err);
+        tap({
+          error: e => this.loggerService.error(e),
         }),
       );
   }
 
   public get(slug: string) {
+    this.loggerService.log(`Fetching department (slug: ${slug})`);
+
     return this.departments$.pipe(
       map(item => item.filter(dep => dep.slug === slug)[0]),
-      catchError(err => {
-        throw new Error(err);
+      tap({
+        next: () =>
+          this.loggerService.success("Department fetched successfully"),
+        error: e => this.loggerService.error(e),
       }),
     );
   }
 
   public async edit(id: string, name: string) {
+    this.loggerService.log(`Editing department (id: ${id})`);
+
     await this.fs
       .collection<DepartmentModel>("/departments")
       .doc(id)
       .update({
         name: name,
+      })
+      .then(() => {
+        this.loggerService.success(`Department edited successfully`);
       })
       .catch(err => {
         throw new Error(err);
@@ -118,6 +138,8 @@ export class DepartmentsService {
     email: string,
     password: string,
   ) {
+    this.loggerService.log(`Creating employee for department (id: ${id})`);
+
     await this.fa
       .createUserWithEmailAndPassword(email, password)
       .then(async () => {
@@ -134,6 +156,9 @@ export class DepartmentsService {
           })
           .then(res => {
             res.update({ id: res.id });
+            this.loggerService.success(
+              `Employee (id: ${id}) created successfully`,
+            );
             return res;
           })
           .catch(err => {
@@ -159,11 +184,15 @@ export class DepartmentsService {
   }
 
   public async removeEmployee(id: string) {
+    this.loggerService.log(`Removing employee (id: ${id})`);
     await this.fs
       .collection<UserModel>(`/users`)
       .doc(id)
       .update({
         isActive: false,
+      })
+      .then(() => {
+        this.loggerService.success(`Employee removed successfully`);
       })
       .catch(err => {
         throw new Error(err);

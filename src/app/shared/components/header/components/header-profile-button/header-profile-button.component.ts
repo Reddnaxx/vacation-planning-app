@@ -4,6 +4,7 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: "app-header-profile-button",
@@ -15,6 +16,7 @@ import { MatIcon } from "@angular/material/icon";
     MatButtonModule,
     NgOptimizedImage,
     MatIcon,
+    RouterLink,
   ],
   templateUrl: "./header-profile-button.component.html",
   styleUrl: "./header-profile-button.component.scss",
