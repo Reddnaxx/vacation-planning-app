@@ -37,4 +37,5 @@ export const routes: Routes = [
       breadcrumb: "Планировщик отпусков",
     },
   },
+  { path: '**', title: "Страница не найдена", component: PageNotFoundComponent },
 ];
