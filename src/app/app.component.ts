@@ -1,8 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  HostListener,
-  OnDestroy,
+  Inject,
   OnInit,
 } from "@angular/core";
 import { HeaderComponent } from "@shared/components/header/header.component";
@@ -10,7 +9,8 @@ import { IconService } from "@shared/services/icon.service";
 import { RouterModule, RouterOutlet } from "@angular/router";
 import { BreadCrumbComponent } from "@shared/components/bread-crumb/bread-crumb.component";
 import { MatCard } from "@angular/material/card";
-import { LoggerService } from "@shared/services/logger.service";
+import { ILoggerService } from "@shared/services/loggers/interfaces/logger-service.interface";
+import { LoggerService } from "@shared/services/loggers/logger-factory.service";
 
 @Component({
   selector: "app-root",
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private iconService: IconService,
-    private loggerService: LoggerService,
+    @Inject(LoggerService) private loggerService: ILoggerService,
   ) {
     this.iconService.registerIcons();
   }
