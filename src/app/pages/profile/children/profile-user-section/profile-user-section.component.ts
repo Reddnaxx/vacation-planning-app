@@ -1,15 +1,11 @@
 import { Component, Input } from "@angular/core";
 import { CommonModule, NgOptimizedImage } from "@angular/common";
-import { MaterialModule } from "../../../../shared/modules/material/material.module";
-import UserModel from "../../../../shared/models/user.model";
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from "@angular/forms";
-import { IProfileData } from "@shared/models/profile-data.interface";
-import { PhoneMaskDirective } from '@shared/directives/phone-mask.directive';
+import { MaterialModule } from "@shared/modules/material/material.module";
+import UserModel from "@shared/models/user.model";
+import { ReactiveFormsModule } from "@angular/forms";
+import { PhoneMaskDirective } from "@shared/directives/phone-mask.directive";
+import { ProfileUserEditFormViewModel } from "@pages/profile/view-models/profile-user-edit-form.view-model";
+import { ProfileEditModel } from '@pages/profile/models/profile-edit.model';
 
 @Component({
   selector: "app-profile-user-section",
@@ -28,8 +24,13 @@ export class ProfileUserSectionComponent {
   @Input({ required: true })
   public user!: UserModel;
 
-  public dataForm: FormGroup<IProfileData> = new FormGroup<IProfileData>({
-    email: new FormControl<string>("", [Validators.email, Validators.required]),
-    phone: new FormControl<string>("", [Validators.required]),
-  });
+  protected get data(): ProfileEditModel {
+    return this.dataForm.toModel();
+  }
+
+  protected dataForm: ProfileUserEditFormViewModel;
+
+  constructor() {
+    this.dataForm = new ProfileUserEditFormViewModel();
+  }
 }
