@@ -5,7 +5,6 @@ export default class HistoryModel {
     public dateEnd: string,
     public status: string,
     public type: string,
-    public content: string,
-    public timeOff: string,
+    public reason: string,
   ) {}
 }

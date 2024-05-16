@@ -8,6 +8,9 @@ import { HistoryInfoCardComponent } from "./children/history-info-card/history-i
 import { BreadCrumbComponent } from "@shared/components/bread-crumb/bread-crumb.component";
 import { BreadCrumbService } from "@shared/services/bread-crumb.service";
 import HistoryModel from "@pages/profile/models/history.model";
+import {
+  ProfileManagerSectionComponent
+} from '@pages/profile/children/profile-manager-section/profile-manager-section.component';
 
 @Component({
   selector: "app-profile",
@@ -19,6 +22,7 @@ import HistoryModel from "@pages/profile/models/history.model";
     ProfileHistorySectionComponent,
     HistoryInfoCardComponent,
     BreadCrumbComponent,
+    ProfileManagerSectionComponent,
   ],
   templateUrl: "./profile.component.html",
   styleUrl: "./profile.component.scss",
@@ -34,53 +38,6 @@ export class ProfileComponent {
       "test@mail.ru",
       "Отдел разработки",
     );
-    this.history = [
-      new HistoryModel(
-        "Заявка №1",
-        "16 Февраля",
-        "17 Февраля 2023г",
-        "Выполнено",
-        "Отгул",
-        "По семейным",
-        "5",
-      ),
-      new HistoryModel(
-        "Заявка №2",
-        "16 Февраля",
-        "16 Июня 2023г",
-        "Выполнено",
-        "Отгул",
-        "По семейным",
-        "10",
-      ),
-      new HistoryModel(
-        "Заявка №3",
-        "1 Сентября",
-        "31 Сентября 2024г",
-        "Подтверждено",
-        "Отгул",
-        "По семейным",
-        "6",
-      ),
-      new HistoryModel(
-        "Заявка №4",
-        "1 Декабря",
-        "10 Января 2024г",
-        "Отклонено",
-        "Отгул",
-        "По семейным",
-        "7",
-      ),
-      new HistoryModel(
-        "Заявка №5",
-        "29 Марта",
-        "4 Апреля 2024г",
-        "В ожидании",
-        "Отгул",
-        "По семейным",
-        "11",
-      ),
-    ];
     this.breadcrumbService.loadBreadCrumbs();
   }
 }
