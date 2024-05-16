@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { ManagerInfoCardComponent } from "@pages/profile/children/manager-info-card/manager-info-card.component";
 import { MatCardActions } from "@angular/material/card";
@@ -20,12 +20,15 @@ import UserModel from "@shared/models/user.model";
   templateUrl: "./profile-manager-section.component.html",
   styleUrl: "./profile-manager-section.component.scss",
 })
-export class ProfileManagerSectionComponent {
+export class ProfileManagerSectionComponent implements OnInit {
   protected history$!: Observable<HistoryModel[]>;
-  @Input({ required: true })
-  public user!: UserModel;
+  filteredHistory$!: Observable<HistoryModel[]>;
+  @Input({ required: true }) public user!: UserModel;
 
-  constructor(private historyService: HistoryService) {
+  constructor(private historyService: HistoryService) {}
+
+  ngOnInit() {
     this.history$ = this.historyService.history$;
+    this.filteredHistory$ = this.historyService.getHistoryByStatus("Ожидание");
   }
 }

@@ -7,8 +7,6 @@ import { InfoHistoryComponent } from "@pages/profile/children/info-history/info-
 import { HistoryDialogComponent } from "@shared/components/history-dialog/history-dialog.component";
 import UserModel from "@shared/models/user.model";
 import { ManagerSectionDenyDialogComponent } from "@pages/profile/children/profile-manager-section/components/manager-section-deny-dialog/manager-section-deny-dialog.component";
-import { HistoryService } from "@shared/services/history.service";
-import { MatSnackBar } from "@angular/material/snack-bar";
 import { provideNativeDateAdapter } from "@angular/material/core";
 import { ManagerSectionAcceptDialogComponent } from "@pages/profile/children/profile-manager-section/components/manager-section-accept-dialog/manager-section-accept-dialog.component";
 
@@ -35,8 +33,6 @@ export class ManagerInfoCardComponent {
   public user!: UserModel;
 
   constructor(
-    private historyService: HistoryService,
-    private snackBar: MatSnackBar,
     private dialog: MatDialog,
   ) {}
 

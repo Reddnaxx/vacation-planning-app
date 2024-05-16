@@ -88,4 +88,17 @@ export class HistoryService {
         throw new Error(err);
       });
   }
+
+  public getHistoryByStatus(
+    status: "Принято" | "Отклонено" | "Ожидание",
+  ): Observable<HistoryModel[]> {
+    return this.fs
+      .collection<HistoryModel>("/history", ref => ref.where("status", "==", status))
+      .valueChanges()
+      .pipe(
+        catchError(err => {
+          throw new Error(err);
+        })
+      );
+  }
 }

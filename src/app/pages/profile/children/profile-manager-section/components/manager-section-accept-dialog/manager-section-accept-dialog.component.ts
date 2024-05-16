@@ -4,8 +4,6 @@ import { IManagerAcceptDialogData } from "./interfaces/manager-accept-dialog.dat
 import { MaterialModule } from "@shared/modules/material/material.module";
 import { HistoryService } from "@shared/services/history.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import HistoryModel from "@pages/profile/models/history.model";
-import UserModel from "@shared/models/user.model";
 import { provideNativeDateAdapter } from "@angular/material/core";
 
 @Component({
