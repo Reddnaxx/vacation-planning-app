@@ -11,15 +11,16 @@ export class ProdLoggerService implements ILoggerService {
 
   public log(message: string) {
     this.logs.push(`${new Date().toLocaleTimeString()} log: ${message}`);
+    this.sendLogs();
   }
 
   public success(message: string) {
     this.logs.push(`${new Date().toLocaleTimeString()} success: ${message}`);
+    this.sendLogs();
   }
 
   public error(error: Error) {
     this.logs.push(`${new Date().toLocaleTimeString()} ERROR: ${error}`);
-
     this.sendLogs(true);
   }
 

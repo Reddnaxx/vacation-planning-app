@@ -4,6 +4,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { EmployeesDeleteDialogComponent } from "../employees-delete-dialog/employees-delete-dialog.component";
 import { EmployeesModule } from "@pages/employees/modules/employees.module";
 import UserModel from "@shared/models/user.model";
+import { EmployeesEditDialogComponent } from "@pages/employees/children/employees-edit-dialog/employees-edit-dialog.component";
 
 @Component({
   selector: "app-employees-employee",
@@ -27,6 +28,14 @@ export class EmployeesEmployeeComponent {
       data: {
         name: `${this.employee.firstName} ${this.employee.lastName}`,
         id: this.employee.id,
+      },
+    });
+  }
+
+  protected openEditDialog(): void {
+    this.dialog.open(EmployeesEditDialogComponent, {
+      data: {
+        employee: this.employee,
       },
     });
   }

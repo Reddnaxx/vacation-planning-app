@@ -205,6 +205,25 @@ export class DepartmentsService {
       });
   }
 
+  public async editEmployee(
+    id: string,
+    data: Partial<
+      Omit<UserModel, "id" | "uid" | "department" | "role" | "isActive">
+    >,
+  ) {
+    this.loggerService.log(`Editing employee (id: ${id})`);
+    await this.fs
+      .collection<UserModel>(`/users`)
+      .doc(id)
+      .update(data)
+      .then(() => {
+        this.loggerService.success(`Employee edited successfully`);
+      })
+      .catch(err => {
+        throw new Error(err);
+      });
+  }
+
   public getChildren(id: string) {
     return this.fs
       .collection<DepartmentModel>(`/departments`, ref =>

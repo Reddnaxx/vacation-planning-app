@@ -1,6 +1,7 @@
 .department-page {
   margin-inline: auto;
   margin-top: 20px;
+  overflow: hidden;
 
   &__btns {
     display: flex;
@@ -52,6 +53,10 @@
     gap: 15px;
   }
 
+  &__employee-container {
+    overflow: hidden;
+  }
+
   &__add-employee-btn {
     width: fit-content;
   }
@@ -91,4 +96,11 @@
   padding: 25px;
   width: 100%;
   justify-content: center;
+}
+
+.skeleton__bottom-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-top: 0.25rem;
 }
