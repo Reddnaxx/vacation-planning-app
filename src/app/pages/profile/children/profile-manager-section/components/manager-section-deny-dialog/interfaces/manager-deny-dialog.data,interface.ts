@@ -1,3 +1,3 @@
-export interface iManagerDenyDialogData {
+export interface IManagerDenyDialogData {
   number: number;
 }

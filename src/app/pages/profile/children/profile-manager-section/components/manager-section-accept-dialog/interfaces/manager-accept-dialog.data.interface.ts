@@ -1,3 +1,3 @@
-export interface iManagerAcceptDialogData {
+export interface IManagerAcceptDialogData {
   number: number;
 }

@@ -1,20 +1,19 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject, Input } from "@angular/core";
 import { MatButton } from "@angular/material/button";
 import {
   MAT_DIALOG_DATA,
   MatDialogActions,
   MatDialogRef,
-  MatDialogTitle
-} from '@angular/material/dialog';
+  MatDialogTitle,
+} from "@angular/material/dialog";
 import { MatDivider } from "@angular/material/divider";
-import {
-  iManagerDenyDialogData
-} from '@pages/profile/children/profile-manager-section/components/manager-section-deny-dialog/interfaces/manager-deny-dialog.data,interface';
+import { IManagerDenyDialogData } from "./interfaces/manager-deny-dialog.data,interface";
+import { MaterialModule } from "@shared/modules/material/material.module";
 
 @Component({
   selector: "app-manager-section-deny-dialog",
   standalone: true,
-  imports: [MatButton, MatDialogActions, MatDialogTitle, MatDivider],
+  imports: [MaterialModule, MatDivider],
   templateUrl: "./manager-section-deny-dialog.component.html",
   styleUrl: "./manager-section-deny-dialog.component.scss",
 })
@@ -24,7 +23,7 @@ export class ManagerSectionDenyDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<ManagerSectionDenyDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: iManagerDenyDialogData,
+    @Inject(MAT_DIALOG_DATA) public data: IManagerDenyDialogData,
   ) {}
 
   onNoClick(): void {
