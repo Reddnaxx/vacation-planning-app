@@ -9,7 +9,7 @@ import HistoryModel from "@pages/profile/models/history.model";
 import { MaterialModule } from "@shared/modules/material/material.module";
 import { timeOffTypes } from "@shared/components/history-dialog/data/time-off-types";
 import { HistoryService } from "@shared/services/history.service";
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-calendar-button",

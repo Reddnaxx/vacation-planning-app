@@ -1,18 +1,13 @@
 import { Component, Input } from "@angular/core";
 import { MaterialModule } from "@shared/modules/material/material.module";
 import { CommonModule } from "@angular/common";
-import {
-  MatDialog,
-  MatDialogModule,
-  MatDialogRef,
-} from "@angular/material/dialog";
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import HistoryModel from "@pages/profile/models/history.model";
 import { InfoHistoryComponent } from "@pages/profile/children/info-history/info-history.component";
 import { HistoryDialogComponent } from "@shared/components/history-dialog/history-dialog.component";
 import UserModel from "@shared/models/user.model";
 import { ManagerSectionDenyDialogComponent } from "@pages/profile/children/profile-manager-section/components/manager-section-deny-dialog/manager-section-deny-dialog.component";
 import { HistoryService } from "@shared/services/history.service";
-import { FormControl, FormGroup } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { provideNativeDateAdapter } from "@angular/material/core";
 import { ManagerSectionAcceptDialogComponent } from "@pages/profile/children/profile-manager-section/components/manager-section-accept-dialog/manager-section-accept-dialog.component";

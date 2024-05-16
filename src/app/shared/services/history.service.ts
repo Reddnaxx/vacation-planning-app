@@ -35,9 +35,9 @@ export class HistoryService {
       id: "",
       dateStart: dateStart,
       dateEnd: dateEnd,
-      status: "Ожидание",
       type: type,
       reason: reason,
+      status: "Ожидание",
     };
 
     await this.historyCollection
@@ -76,15 +76,13 @@ export class HistoryService {
         throw new Error(err);
       });
   }
-  public async update(
-    id: string,
-    status: "Принято" | "Отклонено"
-  ) {
+
+  public async update(id: string, status: "Принять" | "Отклонить") {
     await this.fs
       .collection<HistoryModel>("/history")
       .doc(id)
       .update({
-        status:status,
+        status: status,
       })
       .catch(err => {
         throw new Error(err);
