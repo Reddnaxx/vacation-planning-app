@@ -1,0 +1,31 @@
+<mat-card class="wrapper">
+  <mat-card-header class="top-container">
+    <img mat-card-image ngSrc="assets/svg/default-profile.png" alt="" width="128" height="128" />
+    <div class="info">
+      <mat-card-title class="info__name">{{ user.lastName }} {{ user.firstName }}</mat-card-title>
+      <mat-card-subtitle class="info__dep">{{ user.department }}</mat-card-subtitle>
+      <mat-card-subtitle
+        class="info__role">{{ user.role === "manager" ? "Управляющий" : "Сотрудник" }}
+      </mat-card-subtitle>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="form" [formGroup]="dataForm.form">
+      <mat-form-field appearance="outline">
+        <mat-label class="form__label">Почта</mat-label>
+        <input matInput [formControl]="dataForm.emailControl" type="email" name="email" id="email"
+               class="form__input" />
+        <mat-error *ngIf="dataForm.emailControl.errors">Неправильно введен Email</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label class="form__label">Телефон</mat-label>
+        <input matInput [formControl]="dataForm.phoneControl" type="text" name="phone" id="phone"
+               phoneMask
+               class="form__input" />
+        <mat-error *ngIf="dataForm.phoneControl.errors">Неправильно введен номер телефона</mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="save-btn" [disabled]="dataForm.form.invalid">Сохранить изменения
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

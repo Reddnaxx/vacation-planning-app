@@ -5,17 +5,21 @@
 }
 
 .title {
-  font-size: 2.625rem;
+  font-size: 2.5rem;
   flex: 1;
   font-weight: normal;
+
+  @media (width < 1200px) {
+    font-size: 2rem;
+  }
 }
 
 .month-picker {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex: 1;
-  gap: 50px;
+  padding-inline: 100px;
 
   &__date {
     display: flex;
@@ -27,6 +31,10 @@
   p {
     font-family: "Russo One", "Helvetica Neue", sans-serif;
     font-size: 2rem;
+
+    @media (width < 1200px) {
+      font-size: 1.5rem;
+    }
   }
 
   span {
@@ -34,6 +42,10 @@
     font-size: 1.125rem;
     color: var(--text-color-transparent);
     font-weight: bold;
+
+    @media (width < 1200px) {
+      font-size: 0.875rem;
+    }
   }
 }
 
@@ -48,5 +60,9 @@
 }
 
 .new-btn {
-  font-size: 1.75rem;
+  font-size: 1.25rem;
+
+  @media (width < 1200px) {
+    font-size: 0.875rem;
+  }
 }

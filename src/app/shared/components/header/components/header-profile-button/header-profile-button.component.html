@@ -1,0 +1,25 @@
+<button [matBadge]="1" matBadgeColor="warn" class="wrapper" [matMenuTriggerFor]="menu">
+  <img class="img" ngSrc="/assets/svg/default-profile.png"
+       alt="Профиль" height="128" width="128" />
+</button>
+
+<mat-menu #menu="matMenu" xPosition="before">
+  <ng-template matMenuContent>
+    <a mat-menu-item class="profile-btn" routerLink="profile" routerLinkActive="active">
+      <mat-icon svgIcon="profile" />
+      Профиль
+    </a>
+    <a mat-menu-item class="calendar-btn" routerLink="calendar" routerLinkActive="active">
+      <mat-icon svgIcon="calendar" />
+      Календарь
+    </a>
+    <a mat-menu-item class="employees-btn" routerLink="employees" routerLinkActive="active">
+      <mat-icon svgIcon="employees" />
+      Сотрудники
+    </a>
+    <button mat-menu-item class="exit-btn">
+      <mat-icon svgIcon="exit" />
+      Выход
+    </button>
+  </ng-template>
+</mat-menu>

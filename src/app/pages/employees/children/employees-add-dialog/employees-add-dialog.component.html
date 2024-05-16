@@ -1,0 +1,64 @@
+<h2 mat-dialog-title class="title">Добавить сотрудника</h2>
+<mat-dialog-actions class="actions">
+  <form class="form"
+        [formGroup]="newEmployeeForm"
+        (ngSubmit)="createEmployee(firstName.value,
+         lastName.value,
+          surname.value,
+           phone.value,
+           email.value,
+         password.value)">
+    <mat-form-field color="accent">
+      <mat-label class="form__label">Почта</mat-label>
+      <input type="email" matInput [formControl]="email"
+             [matAutocomplete]="usersAuto"
+             autocomplete="no">
+      <mat-autocomplete #usersAuto="matAutocomplete">
+        <ng-container *ngIf="employees$ | async as employees">
+          <mat-option *ngFor="let employee of employees |
+                                    filter:['email']:newEmployeeForm.controls.email.value"
+                      [value]="employee.email"
+          >
+            {{ employee.email }}
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field color="accent">
+      <mat-label class="form__label">Фамилия</mat-label>
+      <input type="text" matInput
+             [formControl]="lastName">
+    </mat-form-field>
+    <mat-form-field color="accent">
+      <mat-label class="form__label">Имя</mat-label>
+      <input type="text" matInput
+             [formControl]="firstName">
+    </mat-form-field>
+    <mat-form-field color="accent">
+      <mat-label class="form__label">Отчество (если есть)</mat-label>
+      <input type="text" matInput
+             [formControl]="surname">
+    </mat-form-field>
+    <mat-form-field color="accent">
+      <mat-label class="form__label">Телефон</mat-label>
+      <input type="text" matInput
+             autocomplete="tel-national"
+             [formControl]="phone" phoneMask>
+    </mat-form-field>
+    <mat-form-field color="accent">
+      <mat-label class="form__label">Пароль</mat-label>
+      <input type="password" matInput
+             [formControl]="password">
+    </mat-form-field>
+    <button mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!newEmployeeForm.valid ||
+             !newEmployeeForm.controls.email.value"
+    >
+      Добавить
+    </button>
+  </form>
+</mat-dialog-actions>
+
+

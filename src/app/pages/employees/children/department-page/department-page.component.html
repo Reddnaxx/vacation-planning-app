@@ -1,0 +1,123 @@
+<mat-card class="department-page">
+  <mat-card-header class="department-page__header">
+    <div class="department-page__btns">
+      <button mat-stroked-button (click)="goBack()">
+        <mat-icon fontIcon="arrow_back_ios" />
+        Назад
+      </button>
+      <button mat-stroked-button (click)="openDepartmentEditDialog()">
+        <mat-icon fontIcon="edit" />
+        Редактировать
+      </button>
+      <button mat-stroked-button color="warn" (click)="openDepartmentDeleteDialog()">
+        <mat-icon fontIcon="delete" />
+        Удалить
+      </button>
+    </div>
+    <button mat-icon-button class="department-page__menu-btn" [matMenuTriggerFor]="menu">
+      <mat-icon fontIcon="more_horiz" />
+    </button>
+    <mat-menu #menu="matMenu">
+      <ng-template matMenuContent>
+        <button mat-menu-item (click)="openDepartmentEditDialog()">
+          <mat-icon fontIcon="edit" />
+          Редактировать
+        </button>
+        <button mat-menu-item (click)="openDepartmentDeleteDialog()">
+          <mat-icon fontIcon="delete" color="warn" />
+          Удалить
+        </button>
+      </ng-template>
+    </mat-menu>
+    <mat-card-title *ngIf="department$ | async as department;else titleSkeleton"
+                    class="department-page__title">{{ department.name | titlecase }}
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-divider />
+
+  <mat-card-content class="department-page__content">
+    <app-department-section name="Информация"
+                            *ngIf="manager$ | async as manager;else rectSkeleton">
+      <div class="department-page__info">
+        <div class="department-page__manager manager">
+          <h4 class="manager__title">Управляющий</h4>
+          <p
+            class="manager__name">
+            <span>{{ manager.lastName }} {{ manager.firstName }}
+              {{ manager.surname ? " " + manager.surname : "" }}</span>
+          </p>
+          <p class="manager__email">{{ manager.email }}</p>
+          <p class="manager__phone">{{ manager.phone }}</p>
+        </div>
+        <div class="department-page__parent"
+             *ngIf="parent$ | async as parent;else rectSkeleton ">
+          <h4>Родительский отдел</h4>
+          <p>{{ parent.name }}</p>
+          <button mat-flat-button (click)="openDepartment(parent.slug)">Перейти</button>
+        </div>
+      </div>
+    </app-department-section>
+    <app-department-section name="Отделы"
+                            *ngIf="departments$ | async as departments; else rectSkeleton">
+      <button mat-raised-button color="accent" class="department-page__add-employee-btn"
+              (click)="openDepartmentAddDialog()">
+        <mat-icon fontIcon="add" />
+        Добавить отдел
+      </button>
+      <ul class="department-page__children">
+        @if (departments.length > 0) {
+          <app-department-card *ngFor="let department of departments"
+                               [department]="department" />
+        } @else {
+          <p>Нет дочерних отделов</p>
+        }
+      </ul>
+    </app-department-section>
+    <app-department-section name="Сотрудники" expanded>
+      <mat-form-field color="accent" floatLabel="auto">
+        <mat-label>Поиск</mat-label>
+        <input matInput autocomplete="off" #employee_search>
+      </mat-form-field>
+      <button mat-raised-button color="accent"
+              class="department-page__add-employee-btn"
+              (click)="openEmployeeAddDialog()">
+        <mat-icon fontIcon="add" />
+        Добавить сотрудника
+      </button>
+      <div class="department-page__employees"
+           *ngIf="employees$ | async as employees;else employeeSkeleton">
+        @if (employees.length !== 0 && (manager$ | async)) {
+          <app-employees-employee [@show] *ngFor="let employee of employees |
+                                  filter:['firstName', 'lastName', 'surname', 'email', 'phone']
+                                   :employee_search.value; let i = index"
+                                  [employee]="employee"
+                                  [isDeleteLocked]="employee.id === manager$.value!.id" />
+        } @else {
+          <p>Список пуст</p>
+        }
+      </div>
+    </app-department-section>
+  </mat-card-content>
+</mat-card>
+
+<ng-template #titleSkeleton>
+  <app-skeleton width="25rem" borderRadius="4px" />
+</ng-template>
+
+<ng-template #rectSkeleton>
+  <app-skeleton [dark]="true" width="100%" height="3rem" borderRadius="4px">
+    <app-skeleton width="15rem" height="1.75rem" borderRadius="4px" />
+  </app-skeleton>
+</ng-template>
+
+<ng-template #employeeSkeleton>
+  <app-skeleton [dark] width="100%" height="8rem" borderRadius="4px">
+    <app-skeleton width="20rem" height="1.75rem" borderRadius="4px" />
+    <app-skeleton width="8rem" height="1.5rem" borderRadius="4px" />
+    <div class="skeleton__bottom-container">
+      <app-skeleton width="7rem" height="1.25rem" borderRadius="4px" />
+      <app-skeleton width="7rem" height="1.25rem" borderRadius="4px" />
+    </div>
+  </app-skeleton>
+</ng-template>

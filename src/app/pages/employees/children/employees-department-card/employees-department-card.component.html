@@ -1,0 +1,28 @@
+<mat-card *ngIf="department;else loader" class="department-card" (click)="navigateToDepartmentPage()">
+  <mat-card-header class="department-card__header">
+    <mat-card-title class="department-card__title">{{ department.name | titlecase }}</mat-card-title>
+  </mat-card-header>
+  <mat-divider />
+  <mat-card-content class="department-card__content">
+    <ng-container>
+      @if (manager) {
+        <h3 class="department-card__manager-name">Управляющий: <br />
+          {{ manager.lastName }} {{ manager.firstName }}{{ manager.surname ? " " + manager.surname : "" }}</h3>
+        <p class="department-card__manager-email">{{ manager.email }}</p>
+      } @else {
+        <app-skeleton width="10rem" height="1.5rem" borderRadius="4px" />
+        <app-skeleton width="15rem" height="1.25rem" borderRadius="4px" />
+        <app-skeleton width="7rem" height="1.25rem" borderRadius="4px" />
+      }
+      <p *ngIf="employees$ | async as employees;else skeleton">Кол-во сотрудников: {{ employees.length }}</p>
+    </ng-container>
+  </mat-card-content>
+</mat-card>
+
+<ng-template #loader>
+  <app-loader class="loader" />
+</ng-template>
+
+<ng-template #skeleton>
+  <app-skeleton width="15rem" height="1.25rem" borderRadius="4px" />
+</ng-template>

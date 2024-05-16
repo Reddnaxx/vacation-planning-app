@@ -1,0 +1,53 @@
+.wrapper {
+  background-color: var(--color-primary);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+  color: var(--text-color-light);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  &__label {
+    font-family: "Russo One", "Helvetica Neue", sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__input {
+    font-size: 1.75rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+  }
+}
+
+.top-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  &__name {
+    font-size: 2rem;
+    font-family: "Russo One", "Helvetica Neue", sans-serif;
+  }
+
+  &__dep, &__role {
+    color: var(--text-color-transparent);
+    font-size: 1.25rem;
+  }
+}
+
+.save-btn {
+  font-size: 1.5rem;
+  --mdc-protected-button-container-height: unset;
+  padding: 1.5rem;
+}

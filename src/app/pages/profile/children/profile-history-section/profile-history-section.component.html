@@ -1,0 +1,22 @@
+<mat-card class="wrapper" >
+  <mat-card-header class="header">
+    <mat-card-title class="title">История Заявок</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <ng-container *ngIf="history.length > 0;else history_empty">
+      <ul class="list">
+        <li *ngFor="let historyCard of history">
+          <app-history-info-card [history]="historyCard"/>
+        </li>
+      </ul>
+    </ng-container>
+
+  </mat-card-content>
+  <mat-card-actions class="actions-container">
+    <button mat-raised-button color="primary" class="new-btn">Оставить новую заявку</button>
+  </mat-card-actions>
+</mat-card>
+
+<ng-template #history_empty>
+  <p class="empty">Список пуст</p>
+</ng-template>

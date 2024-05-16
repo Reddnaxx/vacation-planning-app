@@ -1,0 +1,106 @@
+.department-page {
+  margin-inline: auto;
+  margin-top: 20px;
+  overflow: hidden;
+
+  &__btns {
+    display: flex;
+    gap: 5px;
+
+    @media (width < 728px) {
+      display: none;
+    }
+  }
+
+  &__menu-btn {
+    @media (width > 728px) {
+      display: none;
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-family: "Russo One", "Helvetica Neue", sans-serif;
+
+    @media (width < 1200px) {
+      font-size: 1.875rem;
+    }
+  }
+
+  &__content {
+    padding-block: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+  }
+
+  &__employees {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  &__employee-container {
+    overflow: hidden;
+  }
+
+  &__add-employee-btn {
+    width: fit-content;
+  }
+
+  &__parent {
+    p {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .manager {
+    font-size: 1rem;
+
+    &__title {
+      font-size: 1.25rem;
+      font-weight: normal;
+    }
+  }
+
+  &__children {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 1rem;
+    --department-card-color: var(--color-primary);
+  }
+}
+
+.page-loader {
+  display: flex;
+  padding: 100px;
+  width: 100%;
+  justify-content: center;
+}
+
+.section-loader {
+  display: flex;
+  padding: 25px;
+  width: 100%;
+  justify-content: center;
+}
+
+.skeleton__bottom-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-top: 0.25rem;
+}
