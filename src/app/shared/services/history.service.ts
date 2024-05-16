@@ -77,7 +77,7 @@ export class HistoryService {
       });
   }
 
-  public async update(id: string, status: "Принять" | "Отклонить") {
+  public async update(id: string, status: "Принято" | "Отклонено") {
     await this.fs
       .collection<HistoryModel>("/history")
       .doc(id)

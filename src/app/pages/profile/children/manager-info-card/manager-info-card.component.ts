@@ -44,6 +44,7 @@ export class ManagerInfoCardComponent {
     this.dialog.open(ManagerSectionDenyDialogComponent, {
       data: {
         number: this.number.toString(),
+        history: this.history,
       },
       backdropClass: "blur-backdrop",
     });
@@ -53,6 +54,7 @@ export class ManagerInfoCardComponent {
     this.dialog.open(ManagerSectionAcceptDialogComponent, {
       data: {
         number: this.number.toString(),
+        history: this.history,
       },
       backdropClass: "blur-backdrop",
     });

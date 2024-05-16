@@ -9,6 +9,8 @@ import {
 import { MatDivider } from "@angular/material/divider";
 import { IManagerDenyDialogData } from "./interfaces/manager-deny-dialog.data,interface";
 import { MaterialModule } from "@shared/modules/material/material.module";
+import { HistoryService } from "@shared/services/history.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-manager-section-deny-dialog",
@@ -18,19 +20,24 @@ import { MaterialModule } from "@shared/modules/material/material.module";
   styleUrl: "./manager-section-deny-dialog.component.scss",
 })
 export class ManagerSectionDenyDialogComponent {
-  @Input({ required: true })
-  public number!: number;
-
   constructor(
-    public dialogRef: MatDialogRef<ManagerSectionDenyDialogComponent>,
+    private dialogRef: MatDialogRef<ManagerSectionDenyDialogComponent>,
+    private historyService: HistoryService,
+    private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: IManagerDenyDialogData,
   ) {}
 
-  onNoClick(): void {
+  protected async onDeny() {
     this.dialogRef.close();
+    this.dialogRef.close();
+    await this.historyService.update(this.data.history.id, "Отклонено");
+    this.snackBar.open("Заявка отклонена", "Ок", {
+      panelClass: "app-snack-bar-success",
+      horizontalPosition: "right",
+    });
   }
 
-  onDeleteClick(): void {
-    this.dialogRef.close(true);
+  protected onNoClick() {
+    this.dialogRef.close();
   }
 }
