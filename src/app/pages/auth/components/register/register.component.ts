@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth-service/auth.service';
 import UserModel from '@shared/models/user.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { CustomValidators } from '@pages/auth/_helpers/custom-validators';
+import DepartmentModel from '@pages/employees/models/department.model';
 
 @Component({
   selector: 'app-register',
@@ -24,7 +25,7 @@ export class RegisterComponent {
     { validators: CustomValidators.passwordsMatching }
   );
 
-  departments!: any[];
+  departments!: DepartmentModel[];
 
   constructor(private authService: AuthService, private router: Router, private firestore: AngularFirestore) { }
 

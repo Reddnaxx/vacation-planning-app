@@ -1,12 +1,8 @@
 <div class="container">
-
   <div>
-
     <div>
-
       <mat-card>
         <mat-card-title>Вход</mat-card-title>
-
         <mat-card-content>
           <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
 
@@ -20,21 +16,14 @@
               <input type="password" matInput placeholder="Введите пароль..." formControlName="password">
               <mat-error *ngIf="password.touched && password.hasError('required')">Пароль не введен</mat-error>
             </mat-form-field>
-
+            
             <div class="button">
               <button mat-button type="submit" [disabled]="!loginForm.valid">Войти</button>
             </div>
-
             <p>Нет аккаунта?<a [routerLink]="['../register']"> Зарегистрироваться</a></p>
-
           </form>
         </mat-card-content>
-
       </mat-card>
-
     </div>
-
-
   </div>
-
 </div>
