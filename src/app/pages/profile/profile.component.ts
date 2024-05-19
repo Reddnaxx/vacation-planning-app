@@ -11,6 +11,7 @@ import { AuthService } from "@pages/auth/services/auth-service/auth.service";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import UserModel from "@shared/models/user.model";
 
 @Component({
   selector: "app-profile",
@@ -29,7 +30,7 @@ import { Subscription } from 'rxjs';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   subscription!: Subscription;
-  profileUser: any; // тип поменять
+  public profileUser: UserModel | null = null;
   public history!: HistoryModel[]
 
   constructor(private auth: AngularFireAuth, private authService: AuthService, private router: Router, private breadcrumbService: BreadCrumbService) {

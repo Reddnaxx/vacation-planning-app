@@ -26,7 +26,7 @@ import { PhoneMaskDirective } from '@shared/directives/phone-mask.directive';
 })
 export class ProfileUserSectionComponent {
   @Input({ required: true })
-  public user!: UserModel;
+  public user!: UserModel | null;
 
   public dataForm: FormGroup<IProfileData> = new FormGroup<IProfileData>({
     email: new FormControl<string>("", [Validators.email, Validators.required]),

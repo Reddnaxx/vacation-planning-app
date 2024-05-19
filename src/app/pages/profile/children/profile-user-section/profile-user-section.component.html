@@ -2,11 +2,14 @@
   <mat-card-header class="top-container">
     <img mat-card-image ngSrc="assets/svg/default-profile.png" alt="" width="128" height="128" />
     <div class="info">
+      <div *ngIf="user">
       <mat-card-title class="info__name">{{ user.lastName }} {{ user.firstName }}</mat-card-title>
       <mat-card-subtitle class="info__dep">{{ user.department }}</mat-card-subtitle>
+      <mat-card-subtitle class="info__email">{{ user.email }}</mat-card-subtitle>
       <mat-card-subtitle
         class="info__role">{{ user.role === "manager" ? "Управляющий" : "Сотрудник" }}
       </mat-card-subtitle>
+      </div>
     </div>
   </mat-card-header>
   <mat-card-content>

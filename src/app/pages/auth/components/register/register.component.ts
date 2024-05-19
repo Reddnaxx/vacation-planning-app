@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth-service/auth.service';
-import { CustomValidators } from '../../_helpers/custom-validators';
 import UserModel from '@shared/models/user.model';
-
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { CustomValidators } from '@pages/auth/_helpers/custom-validators';
 
 @Component({
   selector: 'app-register',
@@ -24,9 +24,15 @@ export class RegisterComponent {
     { validators: CustomValidators.passwordsMatching }
   );
 
-  constructor(private authService: AuthService, private router: Router) { }
+  departments!: any[];
 
-  ngOnInit(): void { }
+  constructor(private authService: AuthService, private router: Router, private firestore: AngularFirestore) { }
+
+  ngOnInit(): void {
+    this.firestore.collection('departments').valueChanges().subscribe((data: any[]) => {
+      this.departments = data;
+    });
+  }
 
   onRegister() {
     if (this.form.invalid) {
@@ -48,6 +54,7 @@ export class RegisterComponent {
 
     this.authService.register(user).then(
       () => {
+        this.firestore.collection('users').add(user);
         this.router.navigate(["../profile"])
       },
       (error) => {
