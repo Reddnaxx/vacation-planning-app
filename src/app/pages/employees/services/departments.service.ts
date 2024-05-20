@@ -187,7 +187,9 @@ export class DepartmentsService {
           .forEach(user =>
             user.docs[0].ref.update({
               isActive: true,
-              name: name,
+              firstName: firstName,
+              lastName: lastName,
+              surname: surname,
               phone: phone,
               email: email,
               department: `departments/${id}`,
