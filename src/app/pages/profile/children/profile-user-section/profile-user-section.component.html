@@ -14,19 +14,19 @@
     </div>
   </mat-card-header>
   <mat-card-content>
-    <form class="form" [formGroup]="dataForm">
+    <form class="form" [formGroup]="dataForm.form">
       <mat-form-field appearance="outline">
         <mat-label class="form__label">Почта</mat-label>
-        <input matInput [formControl]="dataForm.controls.email" type="email" name="email" id="email"
+        <input matInput [formControl]="dataForm.emailControl" type="email" name="email" id="email"
                class="form__input" />
-        <mat-error *ngIf="dataForm.controls.email.errors">Неправильно введен Email</mat-error>
+        <mat-error *ngIf="dataForm.emailControl.errors">Неправильно введен Email</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label class="form__label">Телефон</mat-label>
-        <input matInput [formControl]="dataForm.controls.phone" type="text" name="phone" id="phone"
+        <input matInput [formControl]="dataForm.phoneControl" type="text" name="phone" id="phone"
                phoneMask
                class="form__input" />
-        <mat-error *ngIf="dataForm.controls.phone.errors">Неправильно введен номер телефона</mat-error>
+        <mat-error *ngIf="dataForm.phoneControl.errors">Неправильно введен номер телефона</mat-error>
       </mat-form-field>
       <button mat-raised-button color="primary" class="save-btn"
               (click)="editUser()"

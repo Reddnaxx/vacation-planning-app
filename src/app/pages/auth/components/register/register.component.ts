@@ -87,5 +87,6 @@ export class RegisterComponent {
 
   get passwordConfirm(): FormControl {
     return this.form.get("passwordConfirm") as FormControl;
+
   }
 }

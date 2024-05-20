@@ -1,11 +1,10 @@
 import { Injectable } from "@angular/core";
 import { environment } from "@environment/environment";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
+import { ILoggerService } from "@shared/services/loggers/interfaces/logger-service.interface";
 
-@Injectable({
-  providedIn: "root",
-})
-export class LoggerService {
+@Injectable()
+export class DevLoggerService implements ILoggerService {
   private logs: string[] = [];
 
   constructor(private fs: AngularFirestore) {}

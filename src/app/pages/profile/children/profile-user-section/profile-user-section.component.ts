@@ -16,6 +16,9 @@ import { filter, map, Observable } from "rxjs";
 import { tap } from "rxjs/operators";
 import { UserService } from "@shared/services/user.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { ReactiveFormsModule } from "@angular/forms";
+import { ProfileUserEditFormViewModel } from "@pages/profile/view-models/profile-user-edit-form.view-model";
+import { ProfileEditModel } from '@pages/profile/models/profile-edit.model';
 
 @Component({
   selector: "app-profile-user-section",
@@ -76,5 +79,8 @@ export class ProfileUserSectionComponent implements OnInit {
       panelClass: "app-snack-bar-success",
     });
     this.dataForm.reset(this.dataForm.value);
+    
+  protected get data(): ProfileEditModel {
+    return this.dataForm.toModel();
   }
 }

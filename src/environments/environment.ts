@@ -13,6 +13,6 @@ export const environment = {
     measurementId: "G-N0LS1KWPCK",
   },
   logger: {
-    minLength: 20,
+    minLength: 40,
   },
 };

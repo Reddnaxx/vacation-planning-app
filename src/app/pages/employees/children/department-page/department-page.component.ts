@@ -4,10 +4,8 @@ import {
   Component,
   DestroyRef,
   ElementRef,
-  input,
-  OnInit,
-  ViewChild
-} from '@angular/core';
+  ViewChild,
+} from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import DepartmentModel from "../../models/department.model";
 import { DepartmentsService } from "../../services/departments.service";
@@ -20,14 +18,21 @@ import { EmployeeInfoCardComponent } from "../employees-employee/components/empl
 import { MatDialog } from "@angular/material/dialog";
 import { EmployeesAddDialogComponent } from "../employees-add-dialog/employees-add-dialog.component";
 import { Title } from "@angular/platform-browser";
-import { EmployeesDepartmentEditDialogComponent } from "@pages/employees/children/employees-department-edit-dialog/employees-department-edit-dialog.component";
-import { DepartmentDeleteDialogComponent } from "@pages/employees/children/department-delete-dialog/department-delete-dialog.component";
+import { EmployeesDepartmentEditDialogComponent } from "../employees-department-edit-dialog/employees-department-edit-dialog.component";
+import { DepartmentDeleteDialogComponent } from "../department-delete-dialog/department-delete-dialog.component";
 import { BreadCrumbService } from "@shared/services/bread-crumb.service";
 import { EmployeesModule } from "@pages/employees/modules/employees.module";
-import { EmployeesDepartmentCardComponent } from "@pages/employees/children/employees-department-card/employees-department-card.component";
-import { EmployeesDepartmentCreateDialogComponent } from "@pages/employees/children/employees-department-create-dialog/employees-department-create-dialog.component";
+import { EmployeesDepartmentCardComponent } from "../employees-department-card/employees-department-card.component";
+import { EmployeesDepartmentCreateDialogComponent } from "../employees-department-create-dialog/employees-department-create-dialog.component";
 import { SkeletonComponent } from "@shared/components/skeleton/skeleton.component";
-import UserModel from '@shared/models/user.model';
+import UserModel from "@shared/models/user.model";
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from "@angular/animations";
 
 @Component({
   selector: "app-department",
@@ -43,6 +48,22 @@ import UserModel from '@shared/models/user.model';
   templateUrl: "./department-page.component.html",
   styleUrl: "./department-page.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger("show", [
+      state(
+        "showed",
+        style({
+          opacity: 1,
+        }),
+      ),
+      transition(":enter", [
+        style({
+          opacity: 0,
+        }),
+        animate("0.2s"),
+      ]),
+    ]),
+  ],
 })
 export class DepartmentPageComponent implements AfterViewInit {
   protected department$!: BehaviorSubject<DepartmentModel | null>;
@@ -88,7 +109,9 @@ export class DepartmentPageComponent implements AfterViewInit {
 
     this.employees$ = this.department$.pipe(
       filter(value => !!value),
-      switchMap(value => this.departmentsService.getEmployeesByDepartment(value!.id)),
+      switchMap(value =>
+        this.departmentsService.getEmployeesByDepartment(value!.id),
+      ),
     );
 
     this.departments$ = this.department$.pipe(

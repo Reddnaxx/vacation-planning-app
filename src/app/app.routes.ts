@@ -43,4 +43,5 @@ export const routes: Routes = [
     loadChildren: () =>
       import("./pages/auth/public.module").then(m => m.PublicModule),
   },
+  { path: '**', title: "Страница не найдена", component: PageNotFoundComponent },
 ];

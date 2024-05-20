@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, Inject } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { IEmployeesAddDialogData } from "./interfaces/employees-add-dialog-data.interface";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { IEmployeesAddDialogForm } from "./interfaces/employees-add-dialog-form.interface";
 import { Observable } from "rxjs";
 import { EmployeesDeleteDialogComponent } from "../employees-delete-dialog/employees-delete-dialog.component";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -10,6 +8,8 @@ import { DepartmentsService } from "../../services/departments.service";
 import { EmployeesModule } from "../../modules/employees.module";
 import { PhoneMaskDirective } from "@shared/directives/phone-mask.directive";
 import UserModel from "@shared/models/user.model";
+import { IEmployeesAddDialogForm } from "./interfaces/employees-add-dialog-form.interface";
+import { IEmployeesAddDialogData } from "./interfaces/employees-add-dialog-data.interface";
 
 @Component({
   selector: "app-employees-add-dialog",

@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Inject, Injectable } from "@angular/core";
 import DepartmentModel from "../models/department.model";
 import { map, Observable, switchMap } from "rxjs";
 import {
@@ -8,8 +8,9 @@ import {
 import { catchError, tap } from "rxjs/operators";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import slug from "slug";
-import { LoggerService } from "@shared/services/logger.service";
 import UserModel from "@shared/models/user.model";
+import { ILoggerService } from "@shared/services/loggers/interfaces/logger-service.interface";
+import { LoggerService } from "@shared/services/loggers/logger-factory.service";
 
 @Injectable({ providedIn: "root" })
 export class DepartmentsService {
@@ -19,7 +20,7 @@ export class DepartmentsService {
   constructor(
     private fs: AngularFirestore,
     private fa: AngularFireAuth,
-    private loggerService: LoggerService,
+    @Inject(LoggerService) private loggerService: ILoggerService,
   ) {
     this.loggerService.log("Fetching departments");
     this.departmentsCollection =
@@ -205,6 +206,25 @@ export class DepartmentsService {
       })
       .then(() => {
         this.loggerService.success(`Employee removed successfully`);
+      })
+      .catch(err => {
+        throw new Error(err);
+      });
+  }
+
+  public async editEmployee(
+    id: string,
+    data: Partial<
+      Omit<UserModel, "id" | "uid" | "department" | "role" | "isActive">
+    >,
+  ) {
+    this.loggerService.log(`Editing employee (id: ${id})`);
+    await this.fs
+      .collection<UserModel>(`/users`)
+      .doc(id)
+      .update(data)
+      .then(() => {
+        this.loggerService.success(`Employee edited successfully`);
       })
       .catch(err => {
         throw new Error(err);
