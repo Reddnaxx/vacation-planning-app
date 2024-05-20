@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { CommonModule, NgOptimizedImage } from "@angular/common";
-import { RouterModule } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
 import { MaterialModule } from "@shared/modules/material/material.module";
 import { MatBadgeModule } from "@angular/material/badge";
 import { AuthService } from "@pages/auth/services/auth-service/auth.service";
@@ -20,7 +20,10 @@ import { AuthService } from "@pages/auth/services/auth-service/auth.service";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderProfileButtonComponent {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
   protected async logout() {
     await this.authService.logout();

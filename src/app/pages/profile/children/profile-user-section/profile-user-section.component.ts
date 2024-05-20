@@ -1,24 +1,16 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { CommonModule, NgOptimizedImage } from "@angular/common";
-import { MaterialModule } from "../../../../shared/modules/material/material.module";
+import { MaterialModule } from "@shared/modules/material/material.module";
 import UserModel from "@shared/models/user.model";
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from "@angular/forms";
-import { IProfileData } from "@shared/models/profile-data.interface";
+import { ReactiveFormsModule } from "@angular/forms";
 import { PhoneMaskDirective } from "@shared/directives/phone-mask.directive";
 import { DepartmentsService } from "@pages/employees/services/departments.service";
 import DepartmentModel from "@pages/employees/models/department.model";
 import { filter, map, Observable } from "rxjs";
-import { tap } from "rxjs/operators";
 import { UserService } from "@shared/services/user.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { ReactiveFormsModule } from "@angular/forms";
-import { ProfileUserEditFormViewModel } from "@pages/profile/view-models/profile-user-edit-form.view-model";
-import { ProfileEditModel } from '@pages/profile/models/profile-edit.model';
+import { ProfileUserEditFormViewModel } from "../../view-models/profile-user-edit-form.view-model";
+import { ProfileEditModel } from "@pages/profile/models/profile-edit.model";
 
 @Component({
   selector: "app-profile-user-section",
@@ -39,7 +31,7 @@ export class ProfileUserSectionComponent implements OnInit {
 
   protected department$!: Observable<DepartmentModel | undefined>;
 
-  protected dataForm!: FormGroup<IProfileData>;
+  protected dataForm!: ProfileUserEditFormViewModel;
 
   constructor(
     private departmentsService: DepartmentsService,
@@ -57,29 +49,25 @@ export class ProfileUserSectionComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.dataForm = new FormGroup<IProfileData>({
-      email: new FormControl<string>(this.user.email || "", [
-        Validators.email,
-        Validators.required,
-      ]),
-      phone: new FormControl<string>(this.user.phone || "", [
-        Validators.required,
-        Validators.minLength(18),
-      ]),
+    this.dataForm = new ProfileUserEditFormViewModel();
+    this.dataForm.fromModel({
+      email: this.user.email || "",
+      phone: this.user.phone || "",
     });
   }
 
   protected async editUser() {
     await this.userService.edit(this.user.id, {
-      email: this.dataForm.value.email ?? undefined,
-      phone: this.dataForm.value.phone ?? undefined,
+      email: this.dataForm.emailControl.value ?? undefined,
+      phone: this.dataForm.emailControl.value ?? undefined,
     });
     this.snackBar.open("Профиль успешно изменен", "Ок", {
       horizontalPosition: "right",
       panelClass: "app-snack-bar-success",
     });
-    this.dataForm.reset(this.dataForm.value);
-    
+    this.dataForm.form.reset(this.dataForm.form.value);
+  }
+
   protected get data(): ProfileEditModel {
     return this.dataForm.toModel();
   }

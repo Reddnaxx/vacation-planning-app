@@ -30,7 +30,7 @@
       </mat-form-field>
       <button mat-raised-button color="primary" class="save-btn"
               (click)="editUser()"
-              [disabled]="dataForm.invalid || !dataForm.dirty">
+              [disabled]="dataForm.form.invalid || !dataForm.form.dirty">
         Сохранить
         изменения
       </button>

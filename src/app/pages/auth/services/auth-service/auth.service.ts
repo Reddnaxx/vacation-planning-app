@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import UserModel from "@shared/models/user.model";
-import { BehaviorSubject, map, Observable, switchMap } from "rxjs";
+import { BehaviorSubject, filter, map, Observable, switchMap } from "rxjs";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { tap } from "rxjs/operators";
 import { Router } from "@angular/router";
@@ -24,6 +24,13 @@ export class AuthService {
       !!localStorage.getItem("user"),
     );
     this.user$ = this.auth.user.pipe(
+      filter(user => {
+        if (!user) {
+          this.isAuthenticated$.next(false);
+          this.router.navigateByUrl("/login");
+        }
+        return !!user;
+      }),
       switchMap(user => {
         return this.fs
           .collection<UserModel>("/users", ref =>
@@ -66,10 +73,11 @@ export class AuthService {
   }
 
   public async logout() {
-    await this.router.navigate(["/login"]);
-    return await this.auth.signOut().then(() => {
-      this.isAuthenticated$.next(true);
-      localStorage.removeItem("user");
+    await this.router.navigate(["/login"]).then(async () => {
+      await this.auth.signOut().then(() => {
+        this.isAuthenticated$.next(true);
+        localStorage.removeItem("user");
+      });
     });
   }
 }

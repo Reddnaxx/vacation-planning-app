@@ -3,6 +3,7 @@ import { ProfileComponent } from "@pages/profile/profile.component";
 import { CalendarComponent } from "@pages/calendar/calendar.component";
 import { privateGuard } from "@pages/auth/guards/private-guard";
 import { publicGuard } from "@pages/auth/guards/public-guard";
+import { PageNotFoundComponent } from "@pages/page-not-found/page-not-found.component";
 
 export const routes: Routes = [
   {
@@ -43,5 +44,9 @@ export const routes: Routes = [
     loadChildren: () =>
       import("./pages/auth/public.module").then(m => m.PublicModule),
   },
-  { path: '**', title: "Страница не найдена", component: PageNotFoundComponent },
+  {
+    path: "**",
+    title: "Страница не найдена",
+    component: PageNotFoundComponent,
+  },
 ];

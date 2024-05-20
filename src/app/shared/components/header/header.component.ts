@@ -1,14 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  NgZone,
-  OnInit,
-} from "@angular/core";
-import { HttpClientModule } from "@angular/common/http";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { MaterialModule } from "../../modules/material/material.module";
-import { MatToolbar } from "@angular/material/toolbar";
-import { CommonModule, NgOptimizedImage } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { MatBadgeModule } from "@angular/material/badge";
 import { HeaderProfileButtonComponent } from "./components/header-profile-button/header-profile-button.component";
 import { BreadCrumbComponent } from "@shared/components/bread-crumb/bread-crumb.component";
@@ -33,10 +25,7 @@ export class HeaderComponent {
   @Input() title!: string;
   protected isAuth$!: BehaviorSubject<boolean>;
 
-  constructor(
-    private authService: AuthService,
-    private ngZone: NgZone,
-  ) {
+  constructor(private authService: AuthService) {
     this.isAuth$ = this.authService.isAuthenticated$;
   }
 }

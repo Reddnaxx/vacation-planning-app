@@ -5,7 +5,10 @@ import { ProfileEditModel } from "@pages/profile/models/profile-edit.model";
 export class ProfileUserEditFormViewModel {
   public form: FormGroup<IProfileEditForm> = new FormGroup<IProfileEditForm>({
     email: new FormControl<string>("", [Validators.email, Validators.required]),
-    phone: new FormControl<string>("", [Validators.required]),
+    phone: new FormControl<string>("", [
+      Validators.required,
+      Validators.minLength(18),
+    ]),
   });
 
   public get emailControl() {
