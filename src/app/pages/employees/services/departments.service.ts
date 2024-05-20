@@ -1,6 +1,6 @@
 import { Inject, Injectable } from "@angular/core";
 import DepartmentModel from "../models/department.model";
-import { map, Observable, switchMap } from "rxjs";
+import { filter, first, map, Observable, switchMap, take } from "rxjs";
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -11,6 +11,7 @@ import slug from "slug";
 import UserModel from "@shared/models/user.model";
 import { ILoggerService } from "@shared/services/loggers/interfaces/logger-service.interface";
 import { LoggerService } from "@shared/services/loggers/logger-factory.service";
+import { AuthService } from "@pages/auth/services/auth-service/auth.service";
 
 @Injectable({ providedIn: "root" })
 export class DepartmentsService {
@@ -20,6 +21,7 @@ export class DepartmentsService {
   constructor(
     private fs: AngularFirestore,
     private fa: AngularFireAuth,
+    private authService: AuthService,
     @Inject(LoggerService) private loggerService: ILoggerService,
   ) {
     this.loggerService.log("Fetching departments");
@@ -33,14 +35,18 @@ export class DepartmentsService {
     this.loggerService.success("Departments successfully fetched");
   }
 
-  public async create(name: string, parent?: string): Promise<DepartmentModel> {
+  public async create(
+    name: string,
+    parent?: string | null,
+  ): Promise<DepartmentModel> {
     this.loggerService.log("Creating new department");
+    const userId = this.authService.userId;
     const newDepartment: DepartmentModel = {
       id: "",
       name: name,
-      managerId: "users/efCYrJg3N9yyMptitQOg",
+      managerId: userId ? `users/${userId}` : "",
       slug: slug(name),
-      parent: parent || "",
+      parent: parent ?? "",
     };
     await this.departmentsCollection
       .add(newDepartment)
@@ -247,6 +253,7 @@ export class DepartmentsService {
       .doc(id)
       .valueChanges()
       .pipe(
+        filter(value => !!value?.parent),
         switchMap(value =>
           this.fs
             .collection<DepartmentModel>("/departments", ref =>

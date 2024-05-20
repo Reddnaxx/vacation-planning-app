@@ -50,12 +50,6 @@
           <p class="manager__email">{{ manager.email }}</p>
           <p class="manager__phone">{{ manager.phone }}</p>
         </div>
-        <div class="department-page__parent"
-             *ngIf="parent$ | async as parent;else rectSkeleton ">
-          <h4>Родительский отдел</h4>
-          <p>{{ parent.name }}</p>
-          <button mat-flat-button (click)="openDepartment(parent.slug)">Перейти</button>
-        </div>
       </div>
     </app-department-section>
     <app-department-section name="Отделы"

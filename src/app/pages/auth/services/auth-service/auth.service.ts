@@ -1,11 +1,10 @@
-import { Injectable } from "@angular/core";
+import { Injectable, signal } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import UserModel from "@shared/models/user.model";
 import { BehaviorSubject, filter, map, Observable, switchMap } from "rxjs";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { tap } from "rxjs/operators";
 import { Router } from "@angular/router";
-import { user } from "@angular/fire/auth";
 
 @Injectable({
   providedIn: "root",
@@ -14,6 +13,10 @@ export class AuthService {
   public user$!: Observable<UserModel>;
 
   public isAuthenticated$: BehaviorSubject<boolean>;
+
+  public get userId() {
+    return JSON.parse(localStorage.getItem("user") ?? "").id;
+  }
 
   constructor(
     private auth: AngularFireAuth,
