@@ -25,7 +25,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
   styleUrls: ["./history-dialog.component.scss"],
 })
 export class HistoryDialogComponent {
-  public history!: HistoryModel;
+  public history?: HistoryModel;
   protected historyForm!: FormGroup;
 
   protected readonly timeOffTypes = timeOffTypes;
@@ -36,17 +36,21 @@ export class HistoryDialogComponent {
     private historyService: HistoryService,
     private snackBar: MatSnackBar,
   ) {
-    this.history = this.data.history;
+    this.history = this.data?.history;
     this.historyForm = new FormGroup({
-      type: new FormControl(this.history.type),
-      reason: new FormControl(this.history.reason),
-      dateFrom: new FormControl<Date | null>(new Date(this.history.dateStart)),
-      dateTo: new FormControl<Date | null>(new Date(this.history.dateEnd)),
+      type: new FormControl(this.history?.type ?? ""),
+      reason: new FormControl(this.history?.reason ?? ""),
+      dateFrom: new FormControl<Date | null>(
+        this.history ? new Date(this.history?.dateStart) : null,
+      ),
+      dateTo: new FormControl<Date | null>(
+        this.history ? new Date(this.history?.dateEnd) : null,
+      ),
     });
   }
 
   protected async saveChanges() {
-    if (!history) {
+    if (!this.history) {
       this.historyService
         .create(
           this.historyForm.get("dateFrom")?.value.toDateString(),

@@ -37,7 +37,6 @@ export class ProfileHistorySectionComponent {
 
   openDialog() {
     this.dialog.open(HistoryDialogComponent, {
-      data: { history },
       backdropClass: "blur-backdrop",
     });
   }
