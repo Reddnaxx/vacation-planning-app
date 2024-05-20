@@ -52,16 +52,10 @@ input {
 
 .button {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
   background: $secondary-color;
-  box-shadow: 0px 4px 10px $text-color;
   border-radius: 8px;
-
-  cursor: pointer;
-  padding: 4px 20px;
+  padding: 1.5rem;
+  font-size: 1.5rem;
 }
 
 p {

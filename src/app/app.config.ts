@@ -13,13 +13,11 @@ import { provideAnimationsAsync } from "@angular/platform-browser/animations/asy
 import { environment } from "../environments/environment";
 import { HttpClientModule } from "@angular/common/http";
 import { GlobalErrorHandlerService } from "./shared/services/global-error-handler.service";
-import { AngularFireModule, FIREBASE_OPTIONS } from "@angular/fire/compat";
+import { FIREBASE_OPTIONS } from "@angular/fire/compat";
 import { provideAnimations } from "@angular/platform-browser/animations";
-import { AuthGuard } from "@pages/auth/guards/auth-guard";
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    AuthGuard,
     provideRouter(routes),
     importProvidersFrom(
       provideFirebaseApp(() => initializeApp(environment.firebase)),

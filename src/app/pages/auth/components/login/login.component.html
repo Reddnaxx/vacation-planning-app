@@ -4,7 +4,7 @@
       <mat-card>
         <mat-card-title>Вход</mat-card-title>
         <mat-card-content>
-          <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <form [formGroup]="loginForm" (ngSubmit)="login()">
 
             <mat-form-field>
               <input type="email" matInput placeholder="Введите почту..." formControlName="email">
@@ -16,10 +16,9 @@
               <input type="password" matInput placeholder="Введите пароль..." formControlName="password">
               <mat-error *ngIf="password.touched && password.hasError('required')">Пароль не введен</mat-error>
             </mat-form-field>
-            
-            <div class="button">
-              <button mat-button type="submit" [disabled]="!loginForm.valid">Войти</button>
-            </div>
+            <button mat-raised-button color="primary" class="button" type="submit" (click)="login()"
+                    [disabled]="loginForm.invalid">
+              Войти</button>
             <p>Нет аккаунта?<a [routerLink]="['../register']"> Зарегистрироваться</a></p>
           </form>
         </mat-card-content>

@@ -9,7 +9,7 @@ import { catchError, tap } from "rxjs/operators";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import slug from "slug";
 import { LoggerService } from "@shared/services/logger.service";
-import UserModel from '@shared/models/user.model';
+import UserModel from "@shared/models/user.model";
 
 @Injectable({ providedIn: "root" })
 export class DepartmentsService {
@@ -101,7 +101,7 @@ export class DepartmentsService {
       );
   }
 
-  public get(slug: string) {
+  public getBySlug(slug: string) {
     this.loggerService.log(`Fetching department (slug: ${slug})`);
 
     return this.departments$.pipe(
@@ -112,6 +112,12 @@ export class DepartmentsService {
         error: e => this.loggerService.error(e),
       }),
     );
+  }
+
+  public getByPath(path: string) {
+    this.loggerService.log(`Fetching department (path: ${path})`);
+
+    return this.fs.doc<DepartmentModel>(path).valueChanges();
   }
 
   public async edit(id: string, name: string) {
@@ -144,7 +150,7 @@ export class DepartmentsService {
 
     await this.fa
       .createUserWithEmailAndPassword(email, password)
-      .then(async (data) => {
+      .then(async data => {
         await this.fs
           .collection<UserModel>("/users")
           .add({
@@ -158,7 +164,7 @@ export class DepartmentsService {
             phone: phone,
             email: email,
             role: "employee",
-            password: ""
+            password: "",
           })
           .then(res => {
             res.update({ id: res.id, uid: data.user?.uid });

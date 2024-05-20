@@ -51,15 +51,9 @@ input {
 
 .button {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
-  background: $secondary-color;
-  box-shadow: 0px 4px 10px $text-color;
   border-radius: 8px;
-
-  padding: 5px 20px;
+  padding: 1.5rem;
+  font-size: 1.25rem;
   cursor: pointer;
 }
 
@@ -70,6 +64,9 @@ p {
 }
 
 a {
-  color: $link-color;
-  cursor: pointer;
+  transition-duration: 0.2s;
+
+  &:hover {
+    color: $link-color;
+  }
 }

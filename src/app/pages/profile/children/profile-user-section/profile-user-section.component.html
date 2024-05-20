@@ -3,12 +3,13 @@
     <img mat-card-image ngSrc="assets/svg/default-profile.png" alt="" width="128" height="128" />
     <div class="info">
       <div *ngIf="user">
-      <mat-card-title class="info__name">{{ user.lastName }} {{ user.firstName }}</mat-card-title>
-      <mat-card-subtitle class="info__dep">{{ user.department }}</mat-card-subtitle>
-      <mat-card-subtitle class="info__email">{{ user.email }}</mat-card-subtitle>
-      <mat-card-subtitle
-        class="info__role">{{ user.role === "manager" ? "Управляющий" : "Сотрудник" }}
-      </mat-card-subtitle>
+        <mat-card-title class="info__name">{{ user.lastName }} {{ user.firstName }} {{ user.surname }}</mat-card-title>
+        <mat-card-subtitle *ngIf="department$ | async as department" class="info__dep">
+          {{ department?.name }}
+        </mat-card-subtitle>
+        <mat-card-subtitle
+          class="info__role">{{ user.role === "manager" ? "Управляющий" : "Сотрудник" }}
+        </mat-card-subtitle>
       </div>
     </div>
   </mat-card-header>
@@ -17,7 +18,7 @@
       <mat-form-field appearance="outline">
         <mat-label class="form__label">Почта</mat-label>
         <input matInput [formControl]="dataForm.controls.email" type="email" name="email" id="email"
-          class="form__input" />
+               class="form__input" />
         <mat-error *ngIf="dataForm.controls.email.errors">Неправильно введен Email</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
@@ -27,7 +28,11 @@
                class="form__input" />
         <mat-error *ngIf="dataForm.controls.phone.errors">Неправильно введен номер телефона</mat-error>
       </mat-form-field>
-      <button mat-raised-button color="primary" class="save-btn" [disabled]="dataForm.invalid">Сохранить изменения
+      <button mat-raised-button color="primary" class="save-btn"
+              (click)="editUser()"
+              [disabled]="dataForm.invalid || !dataForm.dirty">
+        Сохранить
+        изменения
       </button>
     </form>
   </mat-card-content>

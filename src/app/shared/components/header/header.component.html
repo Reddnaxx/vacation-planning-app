@@ -3,5 +3,5 @@
     <mat-icon class="logo" svgIcon="logo" />
     <h1 class="title">{{ title }}</h1>
   </a>
-  <app-header-profile-button/>
+  <app-header-profile-button *ngIf="isAuth$ | async"/>
 </header>
