@@ -1,6 +1,7 @@
 export default class UserModel {
   constructor(
     public id: string,
+    public password: string,
     public uid: string,
     public firstName: string,
     public surname: string,

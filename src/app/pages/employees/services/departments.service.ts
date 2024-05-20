@@ -102,7 +102,7 @@ export class DepartmentsService {
       );
   }
 
-  public get(slug: string) {
+  public getBySlug(slug: string) {
     this.loggerService.log(`Fetching department (slug: ${slug})`);
 
     return this.departments$.pipe(
@@ -113,6 +113,12 @@ export class DepartmentsService {
         error: e => this.loggerService.error(e),
       }),
     );
+  }
+
+  public getByPath(path: string) {
+    this.loggerService.log(`Fetching department (path: ${path})`);
+
+    return this.fs.doc<DepartmentModel>(path).valueChanges();
   }
 
   public async edit(id: string, name: string) {
@@ -159,6 +165,7 @@ export class DepartmentsService {
             phone: phone,
             email: email,
             role: "employee",
+            password: "",
           })
           .then(res => {
             res.update({ id: res.id, uid: data.user?.uid });

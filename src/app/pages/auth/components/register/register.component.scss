@@ -1,7 +1,8 @@
 $primary-color: #FFFFFF;
 $secondary-color: #8000FF;
-$link-color: #0000FF;
+$link-color: #5F5FFF;
 $text-color: #000000;
+$optional-text-color: rgba(255, 255, 255, 0.5);
 
 body {
   color: $text-color;
@@ -10,7 +11,7 @@ body {
 .container {
   display: flex;
   justify-content: center;
-  margin: 100px;
+  margin: 50px;
   min-width: 350px;
 }
 
@@ -18,6 +19,7 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 mat-form-field {
@@ -34,7 +36,8 @@ mat-card-title {
   display: flex;
   align-items: center;
   text-align: center;
-
+  justify-content: center;
+  margin: 20px;
   color: $primary-color;
 
   flex: none;
@@ -46,38 +49,24 @@ input {
   width: 100%;
 }
 
-mat-checkbox {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 15px 20px;
-}
-
 .button {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-
-  width: 350px;
-  height: 62px;
-
-  background: $secondary-color;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+  padding: 1.5rem;
+  font-size: 1.25rem;
+  cursor: pointer;
 }
 
 p {
   text-align: center;
   margin-top: 20px;
+  color: $optional-text-color;
 }
 
 a {
-  color: $link-color;
-  cursor: pointer;
+  transition-duration: 0.2s;
+
+  &:hover {
+    color: $link-color;
+  }
 }

@@ -91,7 +91,7 @@ export class DepartmentPageComponent implements AfterViewInit {
     this.route.params
       .pipe(
         takeUntilDestroyed(this.destroyRef),
-        switchMap(value => this.departmentsService.get(value["slug"])),
+        switchMap(value => this.departmentsService.getBySlug(value["slug"])),
         filter(value => !!value),
       )
       .subscribe(value => {
