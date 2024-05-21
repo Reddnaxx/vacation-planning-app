@@ -25,9 +25,11 @@ export class AuthService {
     private router: Router,
   ) {
     const localUser = localStorage.getItem("user");
-    const user: UserModel = localUser ? JSON.parse(localUser) : null;
+    const user: UserModel =
+      localUser && localUser !== "undefined" ? JSON.parse(localUser) : null;
     this.isAuthenticated$ = new BehaviorSubject<boolean>(!!user);
     this.isManager$ = new BehaviorSubject<boolean>(user?.role === "manager");
+    if (!user) return;
     this.user$ = this.auth.user.pipe(
       filter(user => {
         if (!user) {

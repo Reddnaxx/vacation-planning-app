@@ -9,7 +9,6 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MONTHS_NAMES } from "./data/months";
 import { MatDialog } from "@angular/material/dialog";
-import HistoryModel from "@pages/profile/models/history.model";
 import { HistoryDialogComponent } from "@shared/components/history-dialog/history-dialog.component";
 
 @Component({
@@ -36,13 +35,10 @@ export class CalendarHeaderComponent {
     this.changeMonthEvent.emit(offset);
   }
 
-  public history!: HistoryModel;
-
   constructor(private dialog: MatDialog) {}
 
-  openEditDialog() {
+  protected openNewRequestDialog() {
     this.dialog.open(HistoryDialogComponent, {
-      data: { history },
       backdropClass: "blur-backdrop",
     });
   }
