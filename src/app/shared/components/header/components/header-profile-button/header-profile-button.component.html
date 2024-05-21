@@ -1,4 +1,7 @@
-<button [matBadge]="1" matBadgeColor="warn" class="wrapper" [matMenuTriggerFor]="menu">
+<button [matBadge]="newRequestsCount()" [matBadgeHidden]="newRequestsCount() === 0"
+        matBadgeColor="warn"
+        class="wrapper"
+        [matMenuTriggerFor]="menu">
   <img class="img" ngSrc="/assets/svg/default-profile.png"
        alt="Профиль" height="128" width="128" />
 </button>

@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import UserModel from "@shared/models/user.model";
 import { BehaviorSubject, filter, map, Observable, switchMap } from "rxjs";
@@ -13,6 +13,7 @@ export class AuthService {
   public user$!: Observable<UserModel>;
 
   public isAuthenticated$: BehaviorSubject<boolean>;
+  public isManager$: BehaviorSubject<boolean>;
 
   public get userId() {
     return JSON.parse(localStorage.getItem("user") ?? "").id;
@@ -23,9 +24,10 @@ export class AuthService {
     private fs: AngularFirestore,
     private router: Router,
   ) {
-    this.isAuthenticated$ = new BehaviorSubject<boolean>(
-      !!localStorage.getItem("user"),
-    );
+    const localUser = localStorage.getItem("user");
+    const user: UserModel = localUser ? JSON.parse(localUser) : null;
+    this.isAuthenticated$ = new BehaviorSubject<boolean>(!!user);
+    this.isManager$ = new BehaviorSubject<boolean>(user?.role === "manager");
     this.user$ = this.auth.user.pipe(
       filter(user => {
         if (!user) {

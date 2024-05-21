@@ -15,4 +15,8 @@
   &.app-snack-bar-success {
     --mdc-snackbar-container-color: var(--color-green);
   }
+
+  &.app-snack-bar-info {
+    --mdc-snackbar-container-color: var(--color-blue);
+  }
 }

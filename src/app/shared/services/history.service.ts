@@ -5,8 +5,9 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from "@angular/fire/compat/firestore";
-import { catchError } from "rxjs/operators";
+import { catchError, tap } from "rxjs/operators";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
+import { GlobalEventService } from "@shared/services/global-event.service";
 
 @Injectable({ providedIn: "root" })
 export class HistoryService {
@@ -16,6 +17,7 @@ export class HistoryService {
   constructor(
     private fs: AngularFirestore,
     private fa: AngularFireAuth,
+    private globalEventService: GlobalEventService,
   ) {
     this.historyCollection = this.fs.collection<HistoryModel>("/history");
     this.history$ = this.historyCollection.valueChanges().pipe(
@@ -93,12 +95,20 @@ export class HistoryService {
     status: "Принято" | "Отклонено" | "Ожидание",
   ): Observable<HistoryModel[]> {
     return this.fs
-      .collection<HistoryModel>("/history", ref => ref.where("status", "==", status))
+      .collection<HistoryModel>("/history", ref =>
+        ref.where("status", "==", status),
+      )
       .valueChanges()
       .pipe(
         catchError(err => {
           throw new Error(err);
-        })
+        }),
+        tap(value => {
+          this.globalEventService.publish({
+            name: "notification",
+            content: `Получены новые заявки (${value.length})`,
+          });
+        }),
       );
   }
 }

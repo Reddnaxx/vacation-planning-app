@@ -4,6 +4,7 @@ import { CalendarComponent } from "@pages/calendar/calendar.component";
 import { privateGuard } from "@pages/auth/guards/private-guard";
 import { publicGuard } from "@pages/auth/guards/public-guard";
 import { PageNotFoundComponent } from "@pages/page-not-found/page-not-found.component";
+import { managerGuard } from "@pages/employees/guards/manager.guard";
 
 export const routes: Routes = [
   {
@@ -21,7 +22,7 @@ export const routes: Routes = [
       import("./pages/employees/modules/employees-routes").then(
         m => m.EMPLOYEES_ROUTES,
       ),
-    canActivate: [privateGuard],
+    canActivate: [privateGuard, managerGuard],
     data: {
       breadcrumb: "Сотрудники",
     },

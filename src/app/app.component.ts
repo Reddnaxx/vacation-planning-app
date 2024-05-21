@@ -11,6 +11,8 @@ import { BreadCrumbComponent } from "@shared/components/bread-crumb/bread-crumb.
 import { MatCard } from "@angular/material/card";
 import { ILoggerService } from "@shared/services/loggers/interfaces/logger-service.interface";
 import { LoggerService } from "@shared/services/loggers/logger-factory.service";
+import { GlobalEventService } from "@shared/services/global-event.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-root",
@@ -32,11 +34,22 @@ export class AppComponent implements OnInit {
   constructor(
     private iconService: IconService,
     @Inject(LoggerService) private loggerService: ILoggerService,
+    private eventService: GlobalEventService,
+    private snackBar: MatSnackBar,
+    private globalEventService: GlobalEventService,
   ) {
     this.iconService.registerIcons();
   }
 
   public ngOnInit(): void {
-    this.loggerService.log("Page initialized");
+    this.loggerService.log("App initialized");
+    this.eventService.on("notification").subscribe(value => {
+      this.snackBar.open(value.content, "", {
+        duration: 3000,
+        horizontalPosition: "left",
+        verticalPosition: "top",
+        panelClass: "app-snack-bar-info",
+      });
+    });
   }
 }
