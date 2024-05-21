@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import HistoryModel from "@pages/profile/models/history.model";
-import { Observable } from "rxjs";
+import { filter, Observable } from "rxjs";
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -8,6 +8,7 @@ import {
 import { catchError, tap } from "rxjs/operators";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { GlobalEventService } from "@shared/services/global-event.service";
+import { AuthService } from "@pages/auth/services/auth-service/auth.service";
 
 @Injectable({ providedIn: "root" })
 export class HistoryService {
@@ -17,6 +18,7 @@ export class HistoryService {
   constructor(
     private fs: AngularFirestore,
     private fa: AngularFireAuth,
+    private authService: AuthService,
     private globalEventService: GlobalEventService,
   ) {
     this.historyCollection = this.fs.collection<HistoryModel>("/history");
@@ -40,6 +42,7 @@ export class HistoryService {
       type: type,
       reason: reason,
       status: "Ожидание",
+      userId: this.authService.userId,
     };
 
     await this.historyCollection
@@ -91,6 +94,20 @@ export class HistoryService {
       });
   }
 
+  public getUserHistory(): Observable<HistoryModel[]> {
+    const userId = this.authService.userId;
+    return this.fs
+      .collection<HistoryModel>("/history", ref =>
+        ref.where("userId", "==", userId),
+      )
+      .valueChanges()
+      .pipe(
+        catchError(err => {
+          throw new Error(err);
+        }),
+      );
+  }
+
   public getHistoryByStatus(
     status: "Принято" | "Отклонено" | "Ожидание",
   ): Observable<HistoryModel[]> {
@@ -103,11 +120,13 @@ export class HistoryService {
         catchError(err => {
           throw new Error(err);
         }),
-        tap(value => {
-          this.globalEventService.publish({
-            name: "notification",
-            content: `Получены новые заявки (${value.length})`,
-          });
+        tap(async value => {
+          if (this.authService.isManager$.value && value.length > 0) {
+            this.globalEventService.publish({
+              name: "notification",
+              content: `Получены новые заявки (${value.length})`,
+            });
+          }
         }),
       );
   }

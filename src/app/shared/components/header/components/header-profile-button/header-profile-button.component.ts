@@ -11,6 +11,7 @@ import { MatBadgeModule } from "@angular/material/badge";
 import { AuthService } from "@pages/auth/services/auth-service/auth.service";
 import { HistoryService } from "@shared/services/history.service";
 import { GlobalEventService } from "@shared/services/global-event.service";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: "app-header-profile-button",
@@ -28,6 +29,7 @@ import { GlobalEventService } from "@shared/services/global-event.service";
 })
 export class HeaderProfileButtonComponent {
   protected newRequestsCount = signal<number>(0);
+  protected isManager$?: Observable<boolean>;
 
   constructor(
     private authService: AuthService,
@@ -39,6 +41,7 @@ export class HeaderProfileButtonComponent {
     this.historyService
       .getHistoryByStatus("Ожидание")
       .subscribe(value => this.newRequestsCount.update(() => value.length));
+    this.isManager$ = this.authService.isManager$;
   }
 
   protected async logout() {

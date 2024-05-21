@@ -16,7 +16,8 @@
       <mat-icon svgIcon="calendar" />
       Календарь
     </a>
-    <a mat-menu-item class="employees-btn" routerLink="employees" routerLinkActive="active">
+    <a *ngIf="isManager$ | async" mat-menu-item class="employees-btn"
+       routerLink="employees" routerLinkActive="active">
       <mat-icon svgIcon="employees" />
       Сотрудники
     </a>

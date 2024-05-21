@@ -28,7 +28,6 @@ export class HistoryInfoCardComponent {
     });
   }
 
-
   toDate(value: string) {
     return new Date(value).toLocaleDateString();
   }

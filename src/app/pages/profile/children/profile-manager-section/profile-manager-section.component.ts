@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ManagerInfoCardComponent } from "@pages/profile/children/manager-info-card/manager-info-card.component";
 import { MatCardActions } from "@angular/material/card";
@@ -27,8 +27,7 @@ export class ProfileManagerSectionComponent implements OnInit {
 
   constructor(private historyService: HistoryService) {}
 
-  ngOnInit() {
-    this.history$ = this.historyService.history$;
-    this.filteredHistory$ = this.historyService.getHistoryByStatus("Ожидание");
+  public ngOnInit() {
+    this.history$ = this.historyService.getHistoryByStatus("Ожидание");
   }
 }

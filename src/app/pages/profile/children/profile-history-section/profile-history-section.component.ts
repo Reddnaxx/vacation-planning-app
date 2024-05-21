@@ -8,9 +8,8 @@ import { MatDialog } from "@angular/material/dialog";
 import { HistoryDialogComponent } from "@shared/components/history-dialog/history-dialog.component";
 import { HistoryService } from "@shared/services/history.service";
 import { Observable } from "rxjs";
-import UserModel from '@shared/models/user.model';
-
-
+import UserModel from "@shared/models/user.model";
+import { LoaderComponent } from '@shared/components/loader/loader.component';
 
 @Component({
   selector: "app-profile-history-section",
@@ -20,6 +19,7 @@ import UserModel from '@shared/models/user.model';
     MaterialModule,
     MatCardActions,
     HistoryInfoCardComponent,
+    LoaderComponent,
   ],
   templateUrl: "./profile-history-section.component.html",
   styleUrl: "./profile-history-section.component.scss",
@@ -32,7 +32,7 @@ export class ProfileHistorySectionComponent {
     private dialog: MatDialog,
     private historyService: HistoryService,
   ) {
-    this.history$ = this.historyService.history$;
+    this.history$ = this.historyService.getUserHistory();
   }
 
   openDialog() {

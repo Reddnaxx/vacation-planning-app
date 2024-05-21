@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
 import { MaterialModule } from "../../shared/modules/material/material.module";
 import { CommonModule, NgOptimizedImage } from "@angular/common";
 import { ProfileUserSectionComponent } from "./children/profile-user-section/profile-user-section.component";
@@ -13,7 +13,7 @@ import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import UserModel from "@shared/models/user.model";
 import { LoaderComponent } from "@shared/components/loader/loader.component";
-import { MatButtonToggleGroup } from "@angular/material/button-toggle";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 
 @Component({
   selector: "app-profile",
@@ -28,14 +28,19 @@ import { MatButtonToggleGroup } from "@angular/material/button-toggle";
     BreadCrumbComponent,
     ProfileManagerSectionComponent,
     LoaderComponent,
-    MatButtonToggleGroup,
+    MatSlideToggleModule,
   ],
   templateUrl: "./profile.component.html",
   styleUrl: "./profile.component.scss",
 })
-export class ProfileComponent {
+export class ProfileComponent implements AfterViewInit {
   protected user$: Observable<UserModel>;
   protected history!: HistoryModel[];
+
+  protected isManagerSectionActive: boolean = false;
+
+  @ViewChild("toggle", { read: ElementRef })
+  private toggleGroup?: ElementRef;
 
   constructor(
     private authService: AuthService,
@@ -45,5 +50,11 @@ export class ProfileComponent {
     this.history = [];
     this.user$ = this.authService.user$;
     this.breadcrumbService.loadBreadCrumbs();
+  }
+
+  public ngAfterViewInit(): void {
+    if (this.toggleGroup?.nativeElement) {
+      this.toggleGroup.nativeElement.value = "history";
+    }
   }
 }

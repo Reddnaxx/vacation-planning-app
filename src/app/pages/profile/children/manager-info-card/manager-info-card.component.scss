@@ -9,14 +9,8 @@
   background: var(--mager-card-color);
 }
 
-.display {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
 .card-info {
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-right: 20px;
 
   @media (width < 1680px) {
@@ -29,7 +23,7 @@
   font-weight: bold;
   display: inline-block;
   white-space: nowrap;
-  margin-right: 270px;
+  margin-right: auto;
   @media (width < 1680px) {
     display: none;
   }
