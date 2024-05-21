@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="user$ | async as user">
   <app-profile-user-section class="user-section" [user]="user"/>
   <app-profile-history-section class="history-section" />
 <!--  <app-profile-manager-section class="manager-section" [user]="user" />-->
