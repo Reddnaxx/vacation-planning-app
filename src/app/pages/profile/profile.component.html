@@ -1,7 +1,7 @@
-<div class="wrapper" *ngIf="user$ | async as user;else loader">
-  <app-profile-user-section class="user-section"
-                            [user]="user" />
-  <app-profile-history-section class="history-section" [history]="history" />
+<div class="wrapper">
+  <app-profile-user-section class="user-section" [user]="user"/>
+  <app-profile-history-section class="history-section" />
+<!--  <app-profile-manager-section class="manager-section" [user]="user" />-->
 </div>
 
 <ng-template #loader>

@@ -16,20 +16,21 @@ import { HistoryDialogComponent } from "@shared/components/history-dialog/histor
 export class HistoryInfoCardComponent {
   @Input({ required: true })
   public history!: HistoryModel;
+  @Input({ required: true })
+  public number!: number;
 
   constructor(private dialog: MatDialog) {}
 
   openEditDialog(history: HistoryModel) {
-    // Проверка на статус "В ожидании"
-    if (history.status === "В ожидании") {
-      this.dialog.open(HistoryDialogComponent, {
-        data: { history },
-        backdropClass: "blur-backdrop",
-      });
-    } else {
-      // Открытие диалогового окна с информацией о заявке
-      this.openDialog(history);
-    }
+    this.dialog.open(HistoryDialogComponent, {
+      data: { history },
+      backdropClass: "blur-backdrop",
+    });
+  }
+
+
+  toDate(value: string) {
+    return new Date(value).toLocaleDateString();
   }
 
   openDialog(history: HistoryModel) {

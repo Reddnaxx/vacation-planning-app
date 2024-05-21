@@ -7,6 +7,9 @@ import { HistoryInfoCardComponent } from "./children/history-info-card/history-i
 import HistoryModel from "./models/history.model";
 import { BreadCrumbComponent } from "@shared/components/bread-crumb/bread-crumb.component";
 import { BreadCrumbService } from "@shared/services/bread-crumb.service";
+import {
+  ProfileManagerSectionComponent
+} from '@pages/profile/children/profile-manager-section/profile-manager-section.component';
 import { AuthService } from "@pages/auth/services/auth-service/auth.service";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { Router } from "@angular/router";
@@ -25,6 +28,7 @@ import { LoaderComponent } from '@shared/components/loader/loader.component';
     ProfileHistorySectionComponent,
     HistoryInfoCardComponent,
     BreadCrumbComponent,
+    ProfileManagerSectionComponent,
     LoaderComponent,
   ],
   templateUrl: "./profile.component.html",

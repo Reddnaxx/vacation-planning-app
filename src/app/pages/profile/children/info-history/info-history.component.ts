@@ -9,6 +9,7 @@ import {
 import { MatButton } from "@angular/material/button";
 import HistoryModel from "@pages/profile/models/history.model";
 
+
 @Component({
   selector: "app-info-history",
   templateUrl: "./info-history.component.html",

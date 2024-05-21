@@ -1,10 +1,10 @@
 <div class="cau">
-  <h2 mat-dialog-title class="title">{{ history.id ? history.id : 'Новая заявка' }}</h2>
-  <p class="time-offs-left">Осталось отгулов: {{ history.timeOff }}</p>
+  <h2 mat-dialog-title class="title">{{ history?.id ? history?.id : 'Новая заявка' }}</h2>
+  <p class="time-offs-left">Осталось отгулов:10</p>
   <form [formGroup]="historyForm" class="form">
     <div class="type-wrapper">
       <h3 class="type">Тип</h3>
-      <mat-select placeholder="Выбрать тип" class="dates">
+      <mat-select formControlName="type" placeholder="Выбрать тип" class="dates">
         <mat-option>Без причины</mat-option>
         @for (type of timeOffTypes; track type) {
           <mat-option [value]="type">{{ type }}</mat-option>
