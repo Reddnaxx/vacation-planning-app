@@ -1,0 +1,27 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25dvh;
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  p {
+    font-size: 1.75rem;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+
+    & > button {
+      padding: 2rem;
+    }
+  }
+}

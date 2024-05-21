@@ -1,0 +1,37 @@
+<h2 mat-dialog-title class="title">Редактировать сотрудника</h2>
+<mat-dialog-actions class="actions">
+  <form class="form"
+        [formGroup]="newEmployeeForm"
+        (ngSubmit)="editEmployee()">
+    <mat-form-field color="accent">
+      <mat-label class="form__label">Фамилия</mat-label>
+      <input type="text" matInput
+             [formControl]="lastName">
+    </mat-form-field>
+    <mat-form-field color="accent">
+      <mat-label class="form__label">Имя</mat-label>
+      <input type="text" matInput
+             [formControl]="firstName">
+    </mat-form-field>
+    <mat-form-field color="accent">
+      <mat-label class="form__label">Отчество (если есть)</mat-label>
+      <input type="text" matInput
+             [formControl]="surname">
+    </mat-form-field>
+    <mat-form-field color="accent">
+      <mat-label class="form__label">Телефон</mat-label>
+      <input type="text" matInput
+             autocomplete="tel-national"
+             [formControl]="phone" phoneMask>
+    </mat-form-field>
+    <button mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!newEmployeeForm.valid"
+    >
+      Сохранить
+    </button>
+  </form>
+</mat-dialog-actions>
+
+

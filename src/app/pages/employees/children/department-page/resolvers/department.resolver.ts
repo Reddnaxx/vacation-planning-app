@@ -6,6 +6,6 @@ import { map } from "rxjs";
 
 export const departmentResolver: ResolveFn<IBreadCrumb> = (route, state) => {
   return inject(DepartmentsService)
-    .get(route.params["slug"] || "")
+    .getBySlug(route.params["slug"] || "")
     .pipe(map(value => ({ url: state.url, label: value.name })));
 };

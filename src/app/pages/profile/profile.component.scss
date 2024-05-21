@@ -16,6 +16,14 @@
 .history-section {
   flex: 2;
 }
+
 .manager-section{
   flex: 2;
+
+.loader {
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  top: 50%;
+  transform: scale(1.5);
 }

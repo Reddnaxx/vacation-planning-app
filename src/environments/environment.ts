@@ -12,4 +12,7 @@ export const environment = {
     appId: "1:657987093593:web:b9049a5dbeef63bc8e9d48",
     measurementId: "G-N0LS1KWPCK",
   },
+  logger: {
+    minLength: 40,
+  },
 };

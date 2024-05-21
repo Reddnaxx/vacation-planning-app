@@ -4,5 +4,6 @@ export default class DepartmentModel {
     public id: string,
     public managerId: string,
     public slug: string,
+    public parent?: string,
   ) {}
 }

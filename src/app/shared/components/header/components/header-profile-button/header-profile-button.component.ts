@@ -1,23 +1,31 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { CommonModule, NgOptimizedImage } from "@angular/common";
-import { MatMenuModule } from "@angular/material/menu";
+import { Router, RouterModule } from "@angular/router";
+import { MaterialModule } from "@shared/modules/material/material.module";
 import { MatBadgeModule } from "@angular/material/badge";
-import { MatButtonModule } from "@angular/material/button";
-import { MatIcon } from "@angular/material/icon";
+import { AuthService } from "@pages/auth/services/auth-service/auth.service";
 
 @Component({
   selector: "app-header-profile-button",
   standalone: true,
   imports: [
     CommonModule,
-    MatMenuModule,
+    MaterialModule,
+    RouterModule,
     MatBadgeModule,
-    MatButtonModule,
     NgOptimizedImage,
-    MatIcon,
   ],
   templateUrl: "./header-profile-button.component.html",
   styleUrl: "./header-profile-button.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderProfileButtonComponent {}
+export class HeaderProfileButtonComponent {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
+
+  protected async logout() {
+    await this.authService.logout();
+  }
+}

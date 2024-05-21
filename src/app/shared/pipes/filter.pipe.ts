@@ -12,16 +12,17 @@ export class FilterPipe implements PipeTransform {
     searchText: string | null,
   ): T[] {
     if (!items) return [];
-    if (!searchText) return items;
+    if (!searchText || searchText?.length === 0) return items;
 
-    return items.filter(item =>
-      fields
-        .map(field =>
-          slug(item[field], { trim: true }).includes(
+    return items.filter(item => {
+      return fields
+        .map(field => {
+          if (!(field in item)) return;
+          return slug(item[field], { trim: true }).includes(
             slug(searchText, { trim: true }),
-          ),
-        )
-        .some(value => value),
-    );
+          );
+        })
+        .some(value => value);
+    });
   }
 }

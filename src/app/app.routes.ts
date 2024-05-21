@@ -1,12 +1,16 @@
 import { Routes } from "@angular/router";
 import { ProfileComponent } from "@pages/profile/profile.component";
 import { CalendarComponent } from "@pages/calendar/calendar.component";
+import { privateGuard } from "@pages/auth/guards/private-guard";
+import { publicGuard } from "@pages/auth/guards/public-guard";
+import { PageNotFoundComponent } from "@pages/page-not-found/page-not-found.component";
 
 export const routes: Routes = [
   {
     path: "profile",
     title: "Профиль",
     component: ProfileComponent,
+    canActivate: [privateGuard],
     data: {
       breadcrumb: "Профиль",
     },
@@ -17,6 +21,7 @@ export const routes: Routes = [
       import("./pages/employees/modules/employees-routes").then(
         m => m.EMPLOYEES_ROUTES,
       ),
+    canActivate: [privateGuard],
     data: {
       breadcrumb: "Сотрудники",
     },
@@ -25,16 +30,23 @@ export const routes: Routes = [
     path: "calendar",
     title: "Календарь",
     component: CalendarComponent,
+    canActivate: [privateGuard],
     data: {
       breadcrumb: "Календарь",
     },
   },
   {
     path: "",
-    loadChildren: () =>
-      import("./pages/register/public.module").then(m => m.PublicModule),
     data: {
       breadcrumb: "Планировщик отпусков",
     },
+    canActivate: [publicGuard],
+    loadChildren: () =>
+      import("./pages/auth/public.module").then(m => m.PublicModule),
+  },
+  {
+    path: "**",
+    title: "Страница не найдена",
+    component: PageNotFoundComponent,
   },
 ];

@@ -1,5 +1,4 @@
-<mat-card *ngIf="department$ | async as department;else pageLoader"
-          class="department-page">
+<mat-card class="department-page">
   <mat-card-header class="department-page__header">
     <div class="department-page__btns">
       <button mat-stroked-button (click)="goBack()">
@@ -30,55 +29,89 @@
         </button>
       </ng-template>
     </mat-menu>
-    <mat-card-title class="department-page__title">{{ department.name | titlecase }}</mat-card-title>
+    <mat-card-title *ngIf="department$ | async as department;else titleSkeleton"
+                    class="department-page__title">{{ department.name | titlecase }}
+    </mat-card-title>
   </mat-card-header>
 
   <mat-divider />
 
-  <mat-card-content class="department-page__content" *ngIf="manager$ | async as manager;else sectionLoader">
-
-    <app-department-section name="Информация">
-      <div class="department-page__info" *ngIf="manager;else sectionLoader">
+  <mat-card-content class="department-page__content">
+    <app-department-section name="Информация"
+                            *ngIf="manager$ | async as manager;else rectSkeleton">
+      <div class="department-page__info">
         <div class="department-page__manager manager">
           <h4 class="manager__title">Управляющий</h4>
-          <p class="manager__name"><span>{{ manager.name }}</span></p>
+          <p
+            class="manager__name">
+            <span>{{ manager.lastName }} {{ manager.firstName }}
+              {{ manager.surname ? " " + manager.surname : "" }}</span>
+          </p>
           <p class="manager__email">{{ manager.email }}</p>
           <p class="manager__phone">{{ manager.phone }}</p>
         </div>
       </div>
     </app-department-section>
-
+    <app-department-section name="Отделы"
+                            *ngIf="departments$ | async as departments; else rectSkeleton">
+      <button mat-raised-button color="accent" class="department-page__add-employee-btn"
+              (click)="openDepartmentAddDialog()">
+        <mat-icon fontIcon="add" />
+        Добавить отдел
+      </button>
+      <ul class="department-page__children">
+        @if (departments.length > 0) {
+          <app-department-card *ngFor="let department of departments"
+                               [department]="department" />
+        } @else {
+          <p>Нет дочерних отделов</p>
+        }
+      </ul>
+    </app-department-section>
     <app-department-section name="Сотрудники" expanded>
       <mat-form-field color="accent" floatLabel="auto">
         <mat-label>Поиск</mat-label>
         <input matInput autocomplete="off" #employee_search>
       </mat-form-field>
-      <button mat-raised-button color="accent" class="department-page__add-employee-btn"
+      <button mat-raised-button color="accent"
+              class="department-page__add-employee-btn"
               (click)="openEmployeeAddDialog()">
         <mat-icon fontIcon="add" />
         Добавить сотрудника
       </button>
-      <div *ngIf="employees$ | async as employees;else sectionLoader" class="department-page__employees">
-        @if (employees.length !== 0) {
-          <app-employees-employee *ngFor="let employee of employees |
-                                  filter:['name', 'email', 'phone']
+      <div class="department-page__employees"
+           *ngIf="employees$ | async as employees;else employeeSkeleton">
+        @if (employees.length !== 0 && (manager$ | async)) {
+          <app-employees-employee [@show] *ngFor="let employee of employees |
+                                  filter:['firstName', 'lastName', 'surname', 'email', 'phone']
                                    :employee_search.value; let i = index"
                                   [employee]="employee"
-                                  [isDeleteLocked]="employee.id === manager.id" />
+                                  [isDeleteLocked]="employee.id === manager$.value!.id" />
         } @else {
           <p>Список пуст</p>
         }
       </div>
     </app-department-section>
-
   </mat-card-content>
-
-  <ng-template #sectionLoader>
-    <app-loader class="section-loader" />
-  </ng-template>
-
 </mat-card>
 
-<ng-template #pageLoader>
-  <app-loader class="page-loader" />
+<ng-template #titleSkeleton>
+  <app-skeleton width="25rem" borderRadius="4px" />
+</ng-template>
+
+<ng-template #rectSkeleton>
+  <app-skeleton [dark]="true" width="100%" height="3rem" borderRadius="4px">
+    <app-skeleton width="15rem" height="1.75rem" borderRadius="4px" />
+  </app-skeleton>
+</ng-template>
+
+<ng-template #employeeSkeleton>
+  <app-skeleton [dark] width="100%" height="8rem" borderRadius="4px">
+    <app-skeleton width="20rem" height="1.75rem" borderRadius="4px" />
+    <app-skeleton width="8rem" height="1.5rem" borderRadius="4px" />
+    <div class="skeleton__bottom-container">
+      <app-skeleton width="7rem" height="1.25rem" borderRadius="4px" />
+      <app-skeleton width="7rem" height="1.25rem" borderRadius="4px" />
+    </div>
+  </app-skeleton>
 </ng-template>

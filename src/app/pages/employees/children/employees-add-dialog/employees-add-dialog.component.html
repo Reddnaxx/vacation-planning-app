@@ -2,32 +2,48 @@
 <mat-dialog-actions class="actions">
   <form class="form"
         [formGroup]="newEmployeeForm"
-        (ngSubmit)="createEmployee(name.value, phone.value,email.value,
+        (ngSubmit)="createEmployee(firstName.value,
+         lastName.value,
+          surname.value,
+           phone.value,
+           email.value,
          password.value)">
     <mat-form-field color="accent">
       <mat-label class="form__label">Почта</mat-label>
-      <input type="email" matInput
-             [formControl]="email">
-      <!--      <mat-autocomplete #usersAuto="matAutocomplete">-->
-      <!--        <ng-container *ngIf="employees$ | async as employees">-->
-      <!--          <mat-option *ngFor="let employee of employees |-->
-      <!--                              filter:'email':newEmployeeForm.controls.email.value"-->
-      <!--                      [value]="employee.email"-->
-      <!--          >-->
-      <!--            {{ employee.email }} <br/> {{ employee.name }}-->
-      <!--          </mat-option>-->
-      <!--        </ng-container>-->
-      <!--      </mat-autocomplete>-->
+      <input type="email" matInput [formControl]="email"
+             [matAutocomplete]="usersAuto"
+             autocomplete="no">
+      <mat-autocomplete #usersAuto="matAutocomplete">
+        <ng-container *ngIf="employees$ | async as employees">
+          <mat-option *ngFor="let employee of employees |
+                                    filter:['email']:newEmployeeForm.controls.email.value"
+                      [value]="employee.email"
+          >
+            {{ employee.email }}
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
     </mat-form-field>
     <mat-form-field color="accent">
-      <mat-label class="form__label">ФИО</mat-label>
+      <mat-label class="form__label">Фамилия</mat-label>
       <input type="text" matInput
-             [formControl]="name">
+             [formControl]="lastName">
+    </mat-form-field>
+    <mat-form-field color="accent">
+      <mat-label class="form__label">Имя</mat-label>
+      <input type="text" matInput
+             [formControl]="firstName">
+    </mat-form-field>
+    <mat-form-field color="accent">
+      <mat-label class="form__label">Отчество (если есть)</mat-label>
+      <input type="text" matInput
+             [formControl]="surname">
     </mat-form-field>
     <mat-form-field color="accent">
       <mat-label class="form__label">Телефон</mat-label>
       <input type="text" matInput
-             [formControl]="phone">
+             autocomplete="tel-national"
+             [formControl]="phone" phoneMask>
     </mat-form-field>
     <mat-form-field color="accent">
       <mat-label class="form__label">Пароль</mat-label>

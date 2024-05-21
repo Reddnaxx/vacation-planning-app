@@ -1,0 +1,72 @@
+$primary-color: #FFFFFF;
+$secondary-color: #8000FF;
+$link-color: #5F5FFF;
+$text-color: #000000;
+$optional-text-color: rgba(255, 255, 255, 0.5);
+
+body {
+  color: $text-color;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin: 50px;
+  min-width: 350px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-form-field {
+  width: 100%;
+  min-width: 300px;
+}
+
+mat-card-title {
+  font-family: 'Russo One';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 39px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  margin: 20px;
+  color: $primary-color;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+input {
+  width: 100%;
+}
+
+.button {
+  display: flex;
+  border-radius: 8px;
+  padding: 1.5rem;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+p {
+  text-align: center;
+  margin-top: 20px;
+  color: $optional-text-color;
+}
+
+a {
+  transition-duration: 0.2s;
+
+  &:hover {
+    color: $link-color;
+  }
+}

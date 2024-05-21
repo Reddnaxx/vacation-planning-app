@@ -10,6 +10,16 @@
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
     transform: translate(-2px, -2px);
   }
+
+  @media (width < 1200px) {
+    min-width: 125px;
+    min-height: 85px;
+  }
+
+  @media (width < 1000px) {
+    min-width: 90px;
+    min-height: 70px;
+  }
 }
 
 .transparent {
@@ -22,12 +32,21 @@
     left: 15px;
     font-size: 1.125rem;
     font-family: "Russo One", "Helvetica Neue", sans-serif;
+
+    @media (width < 1200px) {
+      font-size: 0.875rem;
+      left: 10px;
+    }
   }
 
   mat-card-subtitle {
     position: absolute;
     font-family: "Russo One", "Helvetica Neue", sans-serif;
     right: 15px;
+
+    @media (width < 1200px) {
+      right: 10px;
+    }
   }
 }
 
@@ -37,6 +56,10 @@
 
   &:hover {
     background-color: var(--cell-today-color-hover);
+  }
+
+  @media (width < 1200px) {
+    font-size: 0.725rem;
   }
 }
 
