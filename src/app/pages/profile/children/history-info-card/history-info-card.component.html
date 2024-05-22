@@ -8,11 +8,11 @@
   <div class="date">{{ toDate(history.dateStart) }} - {{ toDate(history.dateEnd) }}</div>
   <p class="status" [ngClass]="{
     'status1': history.status === 'Выполнено',
-    'status2': history.status === 'Подтверждено',
+    'status2': history.status === 'Принято',
     'status3': history.status === 'Отклонено',
     'status4': history.status === 'Ожидание'
   }">{{ history.status }}</p>
-  <button *ngIf="history.status !== 'Ожидание' ; else edit_btn" mat-icon-button class="delete-btn">
+  <button *ngIf="history.status !== 'Ожидание' ; else edit_btn" mat-icon-button class="delete-btn" (click)="deleteHistory(history.id)">
     <mat-icon fontIcon="delete"></mat-icon>
   </button>
   <ng-template #edit_btn>

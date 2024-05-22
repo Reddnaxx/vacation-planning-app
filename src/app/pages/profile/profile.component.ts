@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
-import { MaterialModule } from "../../shared/modules/material/material.module";
+import { MaterialModule } from "@shared/modules/material/material.module";
 import { CommonModule, NgOptimizedImage } from "@angular/common";
 import { ProfileUserSectionComponent } from "./children/profile-user-section/profile-user-section.component";
 import { ProfileHistorySectionComponent } from "./children/profile-history-section/profile-history-section.component";

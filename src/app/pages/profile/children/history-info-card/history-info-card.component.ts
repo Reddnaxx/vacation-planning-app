@@ -5,6 +5,8 @@ import { MatDialog } from "@angular/material/dialog";
 import HistoryModel from "@pages/profile/models/history.model";
 import { InfoHistoryComponent } from "@pages/profile/children/info-history/info-history.component";
 import { HistoryDialogComponent } from "@shared/components/history-dialog/history-dialog.component";
+import { HistoryService } from "@shared/services/history.service";
+import { ConfirmDeleteDialogComponentComponent } from "@pages/profile/children/history-info-card/components/confirm-delete-dialog-component/confirm-delete-dialog-component.component";
 
 @Component({
   selector: "app-history-info-card",
@@ -19,7 +21,10 @@ export class HistoryInfoCardComponent {
   @Input({ required: true })
   public number!: number;
 
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private HistoryService: HistoryService,
+  ) {}
 
   openEditDialog(history: HistoryModel) {
     this.dialog.open(HistoryDialogComponent, {
@@ -36,5 +41,24 @@ export class HistoryInfoCardComponent {
     this.dialog.open(InfoHistoryComponent, {
       data: history,
     });
+  }
+
+  deleteHistory(id: string) {
+    this.dialog
+      .open(ConfirmDeleteDialogComponentComponent, {
+        data: { id },
+      })
+      .afterClosed()
+      .subscribe(result => {
+        if (result) {
+          this.HistoryService.remove(id)
+            .then(() => {
+              console.log("Удалено");
+            })
+            .catch(error => {
+              console.error("Что-то пошло не так", error);
+            });
+        }
+      });
   }
 }

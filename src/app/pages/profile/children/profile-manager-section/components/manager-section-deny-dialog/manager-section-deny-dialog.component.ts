@@ -1,10 +1,7 @@
-import { Component, Inject, Input } from "@angular/core";
-import { MatButton } from "@angular/material/button";
+import { Component, Inject } from "@angular/core";
 import {
   MAT_DIALOG_DATA,
-  MatDialogActions,
   MatDialogRef,
-  MatDialogTitle,
 } from "@angular/material/dialog";
 import { MatDivider } from "@angular/material/divider";
 import { IManagerDenyDialogData } from "./interfaces/manager-deny-dialog.data,interface";
