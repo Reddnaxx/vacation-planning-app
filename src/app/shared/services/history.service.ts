@@ -108,6 +108,20 @@ export class HistoryService {
       );
   }
 
+  public getVacations(): Observable<HistoryModel[]> {
+    const userId = this.authService.userId;
+    return this.fs
+      .collection<HistoryModel>("/history", ref =>
+        ref.where("userId", "==", userId).where("status", "==", "Принято"),
+      )
+      .valueChanges()
+      .pipe(
+        catchError(err => {
+          throw new Error(err);
+        }),
+      );
+  }
+
   public getHistoryByStatus(
     status: "Принято" | "Отклонено" | "Ожидание",
   ): Observable<HistoryModel[]> {

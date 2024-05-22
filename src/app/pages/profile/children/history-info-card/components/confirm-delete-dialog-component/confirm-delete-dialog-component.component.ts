@@ -1,13 +1,12 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from "@angular/core";
 import {
-  MAT_DIALOG_DATA,
   MatDialogActions,
   MatDialogContent,
   MatDialogRef,
-  MatDialogTitle
-} from '@angular/material/dialog';
-import { MatButton } from '@angular/material/button';
-import { MatSnackBar } from '@angular/material/snack-bar';
+  MatDialogTitle,
+} from "@angular/material/dialog";
+import { MatButton } from "@angular/material/button";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-confirm-delete-dialog-component",
@@ -19,8 +18,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ConfirmDeleteDialogComponentComponent {
   constructor(
     public dialogRef: MatDialogRef<ConfirmDeleteDialogComponentComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {}
 
   onConfirm(): void {
@@ -39,4 +37,3 @@ export class ConfirmDeleteDialogComponentComponent {
     this.dialogRef.close(false);
   }
 }
-

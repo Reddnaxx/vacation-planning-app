@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="vacations$ | async as vacations">
   <div class="container">
     <app-calendar-header class="header"
                          (changeMonthEvent)="changeMonth($event)"
@@ -11,6 +11,8 @@
                        [currentDay]="currentDay"
                        [currentMonthDays]="currentMonthDays"
                        [fillDays]="fillDays"
-                       [monthStartDay]="startDayWithOffset" />
+                       [monthStartDay]="startDayWithOffset"
+                       [$vacations]="vacations"
+    />
   </div>
 </div>

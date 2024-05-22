@@ -1,4 +1,4 @@
-<mat-card class="wrapper">
+<mat-card class="wrapper" *ngIf="vacations">
   <mat-card-header class="header">
     <ul class="week-days">
       <li>Пн</li>
@@ -17,20 +17,30 @@
                          [isToday]="day === currentDay &&
                                     monthOffset === 1 &&
                                     yearOffset === 0"
-                         [isDayOff]="i > 4" />
+                         [isDayOff]="i > 4"
+                         [isVacationDay]="isVacationDay(day, monthOffset - 1)"
+                         [vacationDayType]="getVacationType(day, monthOffset - 1)"
+      />
+
       <app-calendar-cell *ngFor="let day of currentMonthDays; let i = index"
                          [day]="day"
                          [isToday]="day === currentDay &&
                                     monthOffset === 0 &&
                                     yearOffset === 0"
-                         [isDayOff]="(monthStartDay + i + 1) % 7 === 0 || (monthStartDay + i) % 7 === 0" />
+                         [isDayOff]="(monthStartDay + i + 1) % 7 === 0 || (monthStartDay + i) % 7 === 0"
+                         [isVacationDay]="isVacationDay(day, monthOffset)"
+                         [vacationDayType]="getVacationType(day, monthOffset)"
+      />
       <app-calendar-cell *ngFor="let day of fillDays; let i = index"
                          [day]="day" cellStyle="transparent"
                          [isToday]="day === currentDay &&
                                     monthOffset === -1 &&
                                     yearOffset === 0"
                          [isDayOff]="(beforeDays.length + currentMonthDays.length + i + 1) % 7 === 0 ||
-                                      (beforeDays.length + currentMonthDays.length + i + 2) % 7 === 0" />
+                                      (beforeDays.length + currentMonthDays.length + i + 2) % 7 === 0"
+                         [isVacationDay]="isVacationDay(day, monthOffset + 1)"
+                         [vacationDayType]="getVacationType(day, monthOffset + 1)"
+      />
     </ul>
   </mat-card-content>
 </mat-card>

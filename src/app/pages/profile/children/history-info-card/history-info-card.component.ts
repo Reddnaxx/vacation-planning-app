@@ -43,21 +43,17 @@ export class HistoryInfoCardComponent {
     });
   }
 
-  deleteHistory(id: string) {
+  deleteHistory() {
     this.dialog
       .open(ConfirmDeleteDialogComponentComponent, {
-        data: { id },
+        data: { id: this.history.id },
       })
       .afterClosed()
       .subscribe(result => {
         if (result) {
-          this.HistoryService.remove(id)
-            .then(() => {
-              console.log("Удалено");
-            })
-            .catch(error => {
-              console.error("Что-то пошло не так", error);
-            });
+          this.HistoryService.remove(this.history.id).catch(error => {
+            throw new Error(error);
+          });
         }
       });
   }

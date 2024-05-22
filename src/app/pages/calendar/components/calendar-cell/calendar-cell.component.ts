@@ -18,6 +18,12 @@ export class CalendarCellComponent {
   @Input()
   public isDayOff?: boolean;
 
+  @Input()
+  public isVacationDay?: boolean;
+
+  @Input()
+  public vacationDayType?: string;
+
   @Input({ required: true })
   public day!: number;
 

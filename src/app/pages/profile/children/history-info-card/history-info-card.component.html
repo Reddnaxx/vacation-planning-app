@@ -12,7 +12,7 @@
     'status3': history.status === 'Отклонено',
     'status4': history.status === 'Ожидание'
   }">{{ history.status }}</p>
-  <button *ngIf="history.status !== 'Ожидание' ; else edit_btn" mat-icon-button class="delete-btn" (click)="deleteHistory(history.id)">
+  <button *ngIf="history.status !== 'Ожидание' ; else edit_btn" mat-icon-button class="delete-btn" (click)="deleteHistory()">
     <mat-icon fontIcon="delete"></mat-icon>
   </button>
   <ng-template #edit_btn>

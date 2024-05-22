@@ -50,6 +50,18 @@
   }
 }
 
+.content {
+  margin-top: auto;
+
+  p {
+    background-color: var(--color-green);
+    padding: 0.25rem;
+    border-radius: 8px;
+    color: var(--text-color-light);
+    width: fit-content;
+  }
+}
+
 .today {
   background-color: var(--cell-today-color);
   color: var(--text-color-light);

@@ -5,6 +5,10 @@ import { MONTH_DAYS } from "./children/calendar-main/data/monthDays";
 import { BreadCrumbComponent } from "@shared/components/bread-crumb/bread-crumb.component";
 import { MatCardModule } from "@angular/material/card";
 import { BreadCrumbService } from "@shared/services/bread-crumb.service";
+import { HistoryService } from "@shared/services/history.service";
+import { Observable } from "rxjs";
+import HistoryModel from "@pages/profile/models/history.model";
+import { AsyncPipe, NgIf } from '@angular/common';
 
 @Component({
   selector: "app-calendar",
@@ -14,6 +18,8 @@ import { BreadCrumbService } from "@shared/services/bread-crumb.service";
     CalendarHeaderComponent,
     BreadCrumbComponent,
     MatCardModule,
+    AsyncPipe,
+    NgIf,
   ],
   templateUrl: "./calendar.component.html",
   styleUrl: "./calendar.component.scss",
@@ -27,6 +33,8 @@ export class CalendarComponent {
   public currentMonth: number;
   public currentDay: number;
   public startDayOfWeek: number;
+
+  protected vacations$!: Observable<HistoryModel[]>;
 
   public changeMonth(offset: number) {
     this.monthOffset += offset;
@@ -82,7 +90,10 @@ export class CalendarComponent {
     );
   }
 
-  constructor(private breadcrumbService: BreadCrumbService) {
+  constructor(
+    private breadcrumbService: BreadCrumbService,
+    private historyService: HistoryService,
+  ) {
     const date = new Date();
 
     this.currentMonth = date.getMonth();
@@ -91,6 +102,8 @@ export class CalendarComponent {
 
     date.setDate(1);
     this.startDayOfWeek = date.getDay() + 1;
+
+    this.vacations$ = this.historyService.getVacations();
 
     this.breadcrumbService.loadBreadCrumbs();
   }
