@@ -1,6 +1,6 @@
 import { Inject, Injectable } from "@angular/core";
 import DepartmentModel from "../models/department.model";
-import { filter, first, map, Observable, switchMap, take } from "rxjs";
+import { filter, map, Observable, switchMap } from "rxjs";
 import {
   AngularFirestore,
   AngularFirestoreCollection,

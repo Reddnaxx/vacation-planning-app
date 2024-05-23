@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Inject } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { IManagerAcceptDialogData } from "./interfaces/manager-accept-dialog.data.interface";
 import { MaterialModule } from "@shared/modules/material/material.module";
@@ -13,6 +13,7 @@ import { provideNativeDateAdapter } from "@angular/material/core";
   providers: [provideNativeDateAdapter()],
   templateUrl: "./manager-section-accept-dialog.component.html",
   styleUrl: "./manager-section-accept-dialog.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ManagerSectionAcceptDialogComponent {
   constructor(

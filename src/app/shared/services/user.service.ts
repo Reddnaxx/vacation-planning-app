@@ -3,7 +3,7 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from "@angular/fire/compat/firestore";
-import { filter, map, Observable } from "rxjs";
+import { filter, Observable } from "rxjs";
 import UserModel from "@shared/models/user.model";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 

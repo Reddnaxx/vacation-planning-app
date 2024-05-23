@@ -36,7 +36,6 @@ export class AppComponent implements OnInit {
     @Inject(LoggerService) private loggerService: ILoggerService,
     private eventService: GlobalEventService,
     private snackBar: MatSnackBar,
-    private globalEventService: GlobalEventService,
   ) {
     this.iconService.registerIcons();
   }

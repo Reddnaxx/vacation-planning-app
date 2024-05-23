@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -12,6 +12,7 @@ import { AuthService } from "../../services/auth-service/auth.service";
   selector: "app-login",
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
   protected loginForm: FormGroup;

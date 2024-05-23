@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { MaterialModule } from "@shared/modules/material/material.module";
 import { CommonModule } from "@angular/common";
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
@@ -23,6 +23,7 @@ import { ManagerSectionAcceptDialogComponent } from "@pages/profile/children/pro
   providers: [provideNativeDateAdapter()],
   templateUrl: "./manager-info-card.component.html",
   styleUrl: "./manager-info-card.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ManagerInfoCardComponent {
   @Input({ required: true })
@@ -32,9 +33,7 @@ export class ManagerInfoCardComponent {
   @Input({ required: true })
   public user!: UserModel;
 
-  constructor(
-    private dialog: MatDialog,
-  ) {}
+  constructor(private dialog: MatDialog) {}
 
   protected openDenyDialog() {
     this.dialog.open(ManagerSectionDenyDialogComponent, {

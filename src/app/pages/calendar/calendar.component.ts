@@ -8,7 +8,7 @@ import { BreadCrumbService } from "@shared/services/bread-crumb.service";
 import { HistoryService } from "@shared/services/history.service";
 import { Observable } from "rxjs";
 import HistoryModel from "@pages/profile/models/history.model";
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe, NgIf } from "@angular/common";
 
 @Component({
   selector: "app-calendar",

@@ -5,5 +5,5 @@ export interface IUser {
   lastName?: string;
   password?: string;
   department?: string;
-  isManager?: boolean
+  isManager?: boolean;
 }

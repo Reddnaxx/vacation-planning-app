@@ -1,4 +1,9 @@
-import { Component, Input, OnInit } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from "@angular/core";
 import { CommonModule, NgOptimizedImage } from "@angular/common";
 import { MaterialModule } from "@shared/modules/material/material.module";
 import UserModel from "@shared/models/user.model";
@@ -24,6 +29,7 @@ import { ProfileEditModel } from "@pages/profile/models/profile-edit.model";
   ],
   templateUrl: "./profile-user-section.component.html",
   styleUrl: "./profile-user-section.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileUserSectionComponent implements OnInit {
   @Input({ required: true })

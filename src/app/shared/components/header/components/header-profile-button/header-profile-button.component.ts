@@ -11,7 +11,7 @@ import { MatBadgeModule } from "@angular/material/badge";
 import { AuthService } from "@pages/auth/services/auth-service/auth.service";
 import { HistoryService } from "@shared/services/history.service";
 import { GlobalEventService } from "@shared/services/global-event.service";
-import { Observable } from 'rxjs';
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-header-profile-button",

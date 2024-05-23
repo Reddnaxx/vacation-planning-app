@@ -1,4 +1,4 @@
-import { Component, Inject } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Inject } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatSelectModule } from "@angular/material/select";
@@ -23,6 +23,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
   providers: [provideNativeDateAdapter()],
   templateUrl: "./history-dialog.component.html",
   styleUrls: ["./history-dialog.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HistoryDialogComponent {
   public history?: HistoryModel;

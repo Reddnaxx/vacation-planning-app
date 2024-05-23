@@ -1,4 +1,4 @@
-import { Component, Inject } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Inject } from "@angular/core";
 import {
   MAT_DIALOG_DATA,
   MatDialogActions,
@@ -8,7 +8,6 @@ import {
 } from "@angular/material/dialog";
 import { MatButton } from "@angular/material/button";
 import HistoryModel from "@pages/profile/models/history.model";
-
 
 @Component({
   selector: "app-info-history",
@@ -22,6 +21,7 @@ import HistoryModel from "@pages/profile/models/history.model";
     MatDialogClose,
     MatButton,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InfoHistoryComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: HistoryModel) {}

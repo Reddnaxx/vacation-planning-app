@@ -6,7 +6,6 @@ import { EmployeesDeleteDialogComponent } from "../employees-delete-dialog/emplo
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { IEmployeesDepartmentCreateForm } from "./interfaces/employees-department-create-form.interface";
 import { EmployeesModule } from "../../modules/employees.module";
-import { IDepartmentDeleteDialogData } from "@pages/employees/children/department-delete-dialog/interfaces/department-delete-dialog-data.interface";
 import { IEmployeesDepartmentCreateData } from "@pages/employees/children/employees-department-create-dialog/interfaces/employees-department-create-data.interface";
 
 @Component({

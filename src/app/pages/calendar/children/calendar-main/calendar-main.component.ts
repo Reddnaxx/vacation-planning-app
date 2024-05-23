@@ -3,7 +3,6 @@ import { MaterialModule } from "@shared/modules/material/material.module";
 import { CommonModule } from "@angular/common";
 import { provideNativeDateAdapter } from "@angular/material/core";
 import { CalendarCellComponent } from "../../components/calendar-cell/calendar-cell.component";
-import { Observable } from "rxjs";
 import HistoryModel from "@pages/profile/models/history.model";
 
 @Component({

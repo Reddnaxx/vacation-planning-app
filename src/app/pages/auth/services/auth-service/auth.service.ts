@@ -1,4 +1,4 @@
-import { Injectable, signal } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import UserModel from "@shared/models/user.model";
 import { BehaviorSubject, filter, map, Observable, switchMap } from "rxjs";

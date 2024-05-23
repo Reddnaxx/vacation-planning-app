@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { MaterialModule } from "@shared/modules/material/material.module";
 import { CommonModule } from "@angular/common";
 import { MatCardActions } from "@angular/material/card";
@@ -9,7 +9,7 @@ import { HistoryDialogComponent } from "@shared/components/history-dialog/histor
 import { HistoryService } from "@shared/services/history.service";
 import { Observable } from "rxjs";
 import UserModel from "@shared/models/user.model";
-import { LoaderComponent } from '@shared/components/loader/loader.component';
+import { LoaderComponent } from "@shared/components/loader/loader.component";
 
 @Component({
   selector: "app-profile-history-section",
@@ -23,6 +23,7 @@ import { LoaderComponent } from '@shared/components/loader/loader.component';
   ],
   templateUrl: "./profile-history-section.component.html",
   styleUrl: "./profile-history-section.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileHistorySectionComponent {
   protected history$!: Observable<HistoryModel[]>;

@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { MaterialModule } from "@shared/modules/material/material.module";
 import { CommonModule } from "@angular/common";
 import { MatDialog } from "@angular/material/dialog";
@@ -14,6 +14,7 @@ import { ConfirmDeleteDialogComponentComponent } from "@pages/profile/children/h
   imports: [MaterialModule, CommonModule, HistoryDialogComponent],
   templateUrl: "./history-info-card.component.html",
   styleUrls: ["./history-info-card.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HistoryInfoCardComponent {
   @Input({ required: true })

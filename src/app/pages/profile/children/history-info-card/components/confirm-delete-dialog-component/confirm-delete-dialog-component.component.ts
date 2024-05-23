@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import {
   MatDialogActions,
   MatDialogContent,
@@ -14,6 +14,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
   imports: [MatDialogTitle, MatDialogContent, MatDialogActions, MatButton],
   templateUrl: "./confirm-delete-dialog-component.component.html",
   styleUrl: "./confirm-delete-dialog-component.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConfirmDeleteDialogComponentComponent {
   constructor(

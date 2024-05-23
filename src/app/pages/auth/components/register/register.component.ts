@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "../../services/auth-service/auth.service";
@@ -12,6 +12,7 @@ import { Observable } from "rxjs";
   selector: "app-register",
   templateUrl: "./register.component.html",
   styleUrls: ["./register.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterComponent {
   form: FormGroup = new FormGroup(
@@ -87,6 +88,5 @@ export class RegisterComponent {
 
   get passwordConfirm(): FormControl {
     return this.form.get("passwordConfirm") as FormControl;
-
   }
 }

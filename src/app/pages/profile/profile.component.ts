@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  ViewChild,
+} from "@angular/core";
 import { MaterialModule } from "@shared/modules/material/material.module";
 import { CommonModule, NgOptimizedImage } from "@angular/common";
 import { ProfileUserSectionComponent } from "./children/profile-user-section/profile-user-section.component";
@@ -32,6 +38,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
   ],
   templateUrl: "./profile.component.html",
   styleUrl: "./profile.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileComponent implements AfterViewInit {
   protected user$: Observable<UserModel>;

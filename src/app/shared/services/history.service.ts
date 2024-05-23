@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import HistoryModel from "@pages/profile/models/history.model";
-import { filter, Observable } from "rxjs";
+import { Observable } from "rxjs";
 import {
   AngularFirestore,
   AngularFirestoreCollection,
