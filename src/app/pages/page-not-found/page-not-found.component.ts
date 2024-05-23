@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageNotFoundComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   protected async navigateToMainPage() {
     await this.router.navigate([""]);
