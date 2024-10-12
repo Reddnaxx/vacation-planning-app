@@ -1,0 +1,51 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-block: 15px;
+  gap: 50px;
+
+  @media (width < 1200px) {
+    flex-direction: column;
+  }
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.right-section {
+  background-color: var(--color-primary);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+  padding: 25px;
+  border-radius: 8px;
+  flex: 2;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  color: var(--text-color-light);
+  font-size: 2.5rem;
+  font-family: Russo One, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  text-align: center;
+}
+
+.user-section {
+  flex: 1;
+}
+
+.loader {
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  top: 50%;
+  transform: scale(1.5);
+}

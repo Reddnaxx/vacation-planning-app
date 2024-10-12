@@ -1,0 +1,20 @@
+<div class="wrapper" *ngIf="user$ | async as user; else loader">
+  <app-profile-user-section class="user-section" [user]="user" />
+  <mat-card class="right-section">
+    <mat-card-header class="header">
+      <mat-card-title
+        class="title">{{ isManagerSectionActive ? "Очередь заявок" : "История заявок" }}
+      </mat-card-title>
+      <mat-slide-toggle *ngIf="user.role === 'manager'"
+                        [(ngModel)]="isManagerSectionActive">
+        Очередь
+      </mat-slide-toggle>
+    </mat-card-header>
+    <app-profile-manager-section class="section" [user]="user" *ngIf="isManagerSectionActive" />
+    <app-profile-history-section class="section" *ngIf="!isManagerSectionActive" />
+  </mat-card>
+</div>
+
+<ng-template #loader>
+  <app-loader class="loader" />
+</ng-template>

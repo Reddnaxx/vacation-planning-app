@@ -1,0 +1,13 @@
+<mat-card-content *ngIf="history$ | async as history">
+  <ng-container *ngIf="history.length > 0; else history_empty">
+    <ul class="list">
+      <li *ngFor="let historyItem of history; let i = index">
+        <app-manager-info-card [history]="historyItem" [number]="i+1" [user]="user"></app-manager-info-card>
+      </li>
+    </ul>
+  </ng-container>
+</mat-card-content>
+
+<ng-template #history_empty>
+  <p class="empty">Список пуст</p>
+</ng-template>

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "vacationplanningapp-7d4f7": {
+      "hosting": {
+        "vacationplanningapp": [
+          "vacationplanningapp-7d4f7"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "vacationplanningapp-7d4f7"
+  }
+}

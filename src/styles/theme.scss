@@ -1,0 +1,69 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$my-purple-palette: (
+  50: #f2e7ff,
+  100:#dcc3ff,
+  200: #c59aff,
+  300: #ac6cff,
+  400: #9744ff,
+  500: #8000ff,
+  600: #7300f8,
+  700: #6100f0,
+  800: #4d00ec,
+  900: #1d00e7,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  )
+);
+
+$my-green-palette: (
+  50: #f1ffe5,
+  100: #dcffbe,
+  200: #c1ff91,
+  300: #a0ff58,
+  400: #80ff00,
+  500: #5bfd00,
+  600: #41ea00,
+  700: #00d500,
+  800: #00c000,
+  900: #009b00,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  )
+);
+
+$my-primary: mat.define-palette($my-purple-palette, 500);
+$my-accent: mat.define-palette($my-green-palette, 700);
+$my-warn: mat.define-palette(mat.$red-palette);
+
+$my-theme: mat.define-dark-theme((
+  color: (
+    primary: $my-primary,
+    accent: $my-accent,
+    warn: $my-warn,
+  ),
+));
+
+
+@include mat.button-theme($my-theme);
+@include mat.all-component-themes($my-theme);

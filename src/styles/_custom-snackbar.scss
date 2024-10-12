@@ -1,0 +1,22 @@
+.mat-mdc-snack-bar-container {
+  --mat-snack-bar-button-color: #ffffff;
+  --mdc-snackbar-supporting-text-color: #ffffff;
+
+  .mdc-snackbar__label {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 550px;
+  }
+
+  &.app-snack-bar-error {
+    --mdc-snackbar-container-color: var(--color-warn);
+  }
+
+  &.app-snack-bar-success {
+    --mdc-snackbar-container-color: var(--color-green);
+  }
+
+  &.app-snack-bar-info {
+    --mdc-snackbar-container-color: var(--color-blue);
+  }
+}

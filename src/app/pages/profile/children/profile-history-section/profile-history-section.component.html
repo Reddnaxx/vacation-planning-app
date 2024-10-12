@@ -1,0 +1,20 @@
+<mat-card-content *ngIf="history$ | async as history;else loader">
+  <ng-container *ngIf="history.length > 0; else history_empty">
+    <ul class="list">
+      <li *ngFor="let historyItem of history; let i = index">
+        <app-history-info-card [history]="historyItem" [number]="i+1"></app-history-info-card>
+      </li>
+    </ul>
+  </ng-container>
+</mat-card-content>
+<mat-card-actions class="actions-container">
+  <button mat-raised-button color="primary" class="new-btn" (click)="openDialog()">Оставить новую заявку</button>
+</mat-card-actions>
+
+<ng-template #history_empty>
+  <p class="empty">Список пуст</p>
+</ng-template>
+
+<ng-template #loader>
+  <app-loader class="loader"/>
+</ng-template>

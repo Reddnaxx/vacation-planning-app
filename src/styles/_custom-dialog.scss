@@ -1,0 +1,15 @@
+.app-default-dialog {
+  --mat-dialog-actions-padding: 20px;
+
+  mat-dialog-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.blur-backdrop {
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.3);
+}

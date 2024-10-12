@@ -1,0 +1,6 @@
+<h2 mat-dialog-title>Удалить "{{ data.name.toLowerCase() }}"?</h2>
+<mat-divider/>
+<mat-dialog-actions class="actions">
+  <button mat-raised-button color="accent" (click)="onNoClick()">Отменить</button>
+  <button mat-raised-button color="warn" (click)="onDeleteClick()">Удалить</button>
+</mat-dialog-actions>

@@ -1,0 +1,38 @@
+.employee-card {
+  &__content {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 10fr 1fr;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 1rem;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__active {
+    height: 100%;
+    justify-self: flex-end;
+    align-self: center;
+    display: flex;
+    gap: 5px;
+  }
+
+  &__role {
+    margin-bottom: 0.5rem;
+  }
+
+  &__name {
+    font-size: 1.25rem;
+    font-weight: normal;
+  }
+
+  &__email, &__phone {
+    font-size: 0.875rem;
+  }
+}
+
